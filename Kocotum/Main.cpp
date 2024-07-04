@@ -93,8 +93,8 @@ void Main()
 		emoji.scaled(0.75).mirrored(isPlayerFacingRight).drawAt(playerPosX, 540);
 	}
 }
-// aaa
-//　ああ
+// aa
+//
 // - Debug ビルド: プログラムの最適化を減らす代わりに、エラーやクラッシュ時に詳細な情報を得られます。
 //
 // - Release ビルド: 最大限の最適化でビルドします。
