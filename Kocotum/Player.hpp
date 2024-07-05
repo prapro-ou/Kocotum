@@ -1,8 +1,4 @@
-﻿/** @file Player.hpp
- *  @brief プレイヤーキャラクターを表すクラスの定義
- */
-
-# pragma once
+﻿# pragma once
 # include <Siv3D.hpp>
 # include "Object.hpp"
 

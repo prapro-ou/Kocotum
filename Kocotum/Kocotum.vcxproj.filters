@@ -139,6 +139,12 @@
     <Filter Include="Header Files\Object">
       <UniqueIdentifier>{b44800e1-92fd-42e8-a786-252b8b11de84}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\UI">
+      <UniqueIdentifier>{ce927405-2c66-4cee-8238-054b9f79769c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI">
+      <UniqueIdentifier>{6053e49e-48b4-44da-b22c-ac71877c95b8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -149,6 +155,9 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SpinBox.cpp">
+      <Filter>Source Files\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -819,6 +828,12 @@
       <Filter>Header Files\Object</Filter>
     </ClInclude>
     <ClInclude Include="Player.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpinBox.hpp">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

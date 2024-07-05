@@ -1,8 +1,4 @@
-﻿/** @file Object.hpp
- *  @brief ゲーム内オブジェクトの基底クラスと関連する定義を含むヘッダファイル
- */
-
-# pragma once
+﻿# pragma once
 # include <Siv3D.hpp>
 
  /// オブジェクトのサイズを定義
