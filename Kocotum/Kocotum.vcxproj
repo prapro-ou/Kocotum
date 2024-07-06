@@ -120,6 +120,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Needle.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="RadiuButton.cpp" />
     <ClCompile Include="SpinBox.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -339,6 +340,7 @@
     <ClInclude Include="Object.hpp" />
     <ClInclude Include="Objects.hpp" />
     <ClInclude Include="Player.hpp" />
+    <ClInclude Include="RadioButton.hpp" />
     <ClInclude Include="SpinBox.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Wall.hpp" />
