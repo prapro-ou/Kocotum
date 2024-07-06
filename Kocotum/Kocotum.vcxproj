@@ -126,6 +126,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Wall.cpp" />
+    <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\engine\texture\box-shadow\128.png" />
@@ -336,10 +337,12 @@
     <ClInclude Include="GravityLine.hpp" />
     <ClInclude Include="Needle.hpp" />
     <ClInclude Include="Object.hpp" />
+    <ClInclude Include="Objects.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="SpinBox.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Wall.hpp" />
+    <ClInclude Include="World.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App\example\obj\blacksmith.obj">
