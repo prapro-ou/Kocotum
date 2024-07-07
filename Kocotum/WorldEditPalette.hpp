@@ -7,6 +7,7 @@
 #include "World.hpp"
 #include "RadioButtons.hpp"
 #include "SpinBox.hpp"
+#include "TextBox.hpp"
 
 /// @brief ワールド編集用のパレットクラス
 class WorldEditPalette
@@ -14,9 +15,10 @@ class WorldEditPalette
 public:
 	/// @brief パレットの位置
 	Vec2 pos;
-
 	/// @brief パレットの本体矩形
 	RectF body;
+	/// @brief ワールドを保存するファイル名
+	TextBox fileName;
 
 	/// @brief コンストラクタ
 	/// @param pos パレットの位置

@@ -31,6 +31,8 @@ Edit::Edit(const InitData& init)
 	{
 		paletteButtons << RectF{ Vec2{ 850 + 107 * i, 20}, 105, 102 };
 	}
+
+	worldPalette.fileName.setText(getData().fileName);
 }
 
 void Edit::createObject(Vec2 pos)
@@ -211,16 +213,7 @@ void Edit::removeCameraAreaIfRequested()
 void Edit::updateSettingWorld()
 {
 	worldPalette.update(getData().world);
-
-	if (KeyC.down())
-	{
-		getData().world.saveWorld(U"test.csv");
-	}
-
-	if (KeyL.down())
-	{
-		getData().world.loadWorld(U"test.csv");
-	}
+	getData().fileName = worldPalette.fileName.getText();
 }
 
 void Edit::updatePaletteButtons()

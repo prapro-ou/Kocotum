@@ -7,7 +7,7 @@ TextBox::TextBox(Vec2 pos, double width, uint16 fontSize, String value)
 	this->width = Max(width, 50.0);
 	this->fontSize = fontSize;
 	this->font = Font(fontSize, Typeface::Regular);
-	this->height = font.fontSize() + 20;
+	this->height = font.fontSize() * 1.5;
 	this->region = RectF(pos, width, height);
 	this->value = value;
 	this->editingText = U"";
