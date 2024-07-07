@@ -115,6 +115,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CameraSetPalette.cpp" />
     <ClCompile Include="GameCamera.cpp" />
     <ClCompile Include="GravityLine.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -335,6 +336,7 @@
     <Xml Include="App\example\xml\test.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CameraSetPalette.hpp" />
     <ClInclude Include="Effect.hpp" />
     <ClInclude Include="GameCamera.hpp" />
     <ClInclude Include="GravityLine.hpp" />
