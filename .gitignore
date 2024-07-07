@@ -362,3 +362,10 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /Kocotum/App/Kocotum.exe
+/Kocotum/App/JumpToggleNeedle.png
+/Kocotum/App/JumpToggleNeedleAlpha.png
+/Kocotum/App/JumpToggleWall.png
+/Kocotum/App/JumpToggleWallAlpha.png
+/Kocotum/App/Needle.png
+/Kocotum/App/player.png
+/Kocotum/App/Wall.png
