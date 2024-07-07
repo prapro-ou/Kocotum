@@ -4,6 +4,14 @@ World::World(Vec2 pos)
 	: player{ Player{ pos } }
 { }
 
+
+void World::clear()
+{
+	this->objects.clear();
+	this->camera.areas.clear();
+
+}
+
 void World::loadWorld(String fileName)
 {
 	const CSV csv{ fileName };

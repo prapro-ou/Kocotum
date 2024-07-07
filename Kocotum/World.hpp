@@ -27,6 +27,9 @@ public:
 	 */
 	World(Vec2 pos);
 
+	/// @brief Worldを初期化する
+	void clear();
+
 	/**
 	 * @brief CSVファイルからワールドデータを読み込む
 	 * @param fileName 読み込むCSVファイルの名前

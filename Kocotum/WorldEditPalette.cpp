@@ -17,6 +17,8 @@ void WorldEditPalette::update(World& world)
 
 		if (path.has_value())
 		{
+			// ワールドを初期化
+			world.clear();
 			// 選択されたファイルからワールドを読み込む
 			world.loadWorld(*path);
 		}
