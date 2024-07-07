@@ -120,6 +120,7 @@
     <ClCompile Include="GravityLine.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Needle.cpp" />
+    <ClCompile Include="ObjectPutPalette.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RadioButtons.cpp" />
     <ClCompile Include="RadioButtons.hpp" />
@@ -342,6 +343,7 @@
     <ClInclude Include="GravityLine.hpp" />
     <ClInclude Include="Needle.hpp" />
     <ClInclude Include="Object.hpp" />
+    <ClInclude Include="ObjectPutPalette.hpp" />
     <ClInclude Include="Objects.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="RadioButton.hpp" />
