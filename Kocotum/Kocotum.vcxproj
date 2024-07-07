@@ -116,6 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CameraSetPalette.cpp" />
+    <ClCompile Include="Edit.cpp" />
     <ClCompile Include="GameCamera.cpp" />
     <ClCompile Include="GravityLine.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -341,8 +342,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CameraSetPalette.hpp" />
+    <ClInclude Include="Edit.hpp" />
     <ClInclude Include="Effect.hpp" />
     <ClInclude Include="GameCamera.hpp" />
+    <ClInclude Include="GameData.hpp" />
     <ClInclude Include="GravityLine.hpp" />
     <ClInclude Include="Needle.hpp" />
     <ClInclude Include="Object.hpp" />

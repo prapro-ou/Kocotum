@@ -28,6 +28,6 @@ void WorldEditPalette::draw() const
 	// パレットの背景を描画
 	body.draw(Palette::Azure).drawFrame(2, Palette::Dimgray);
 
-	// ファイル読み込みボタンを描画
+	// ファイル読み込みボタンを描画(描画するだけ)
 	SimpleGUI::Button(U"ファイル読み込み", pos + Vec2{ 20, 200 });
 }
