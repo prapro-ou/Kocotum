@@ -344,6 +344,7 @@
     <ClInclude Include="CameraSetPalette.hpp" />
     <ClInclude Include="Edit.hpp" />
     <ClInclude Include="Effect.hpp" />
+    <ClInclude Include="Game.hpp" />
     <ClInclude Include="GameCamera.hpp" />
     <ClInclude Include="GameData.hpp" />
     <ClInclude Include="GravityLine.hpp" />
