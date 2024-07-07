@@ -31,7 +31,7 @@ void ObjectSetPalette::loadSettings(std::shared_ptr<Object>& object)
 		}
 	}
 
-	// ジャンプトグルオブジェクトの設定を読み込む
+	// ジャンプ切り替えオブジェクトの設定を読み込む
 	if ((uint16)object->type & isJumpToggle)
 	{
 		if (auto jumpToggleWall = std::dynamic_pointer_cast<JumpToggleWall>(object))
@@ -80,7 +80,7 @@ void ObjectSetPalette::update(std::shared_ptr<Object>& object)
 		}
 	}
 
-	// ジャンプトグルオブジェクトの更新
+	// ジャンプ切り替えオブジェクトの更新
 	jumpToggle.setEnable((uint16)object->type & isJumpToggle);
 	jumpToggle.update();
 

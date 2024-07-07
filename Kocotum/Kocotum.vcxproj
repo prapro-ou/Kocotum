@@ -134,6 +134,7 @@
     </ClCompile>
     <ClCompile Include="Wall.cpp" />
     <ClCompile Include="World.cpp" />
+    <ClCompile Include="WorldEditPalette.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\engine\texture\box-shadow\128.png" />
@@ -355,6 +356,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Wall.hpp" />
     <ClInclude Include="World.hpp" />
+    <ClInclude Include="WorldEditPalette.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App\example\obj\blacksmith.obj">
