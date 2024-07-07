@@ -29,6 +29,8 @@ void Main()
 
 	while (System::Update())
 	{
+		ClearPrint();
+
 		if (not manager.update())
 		{
 			break;
