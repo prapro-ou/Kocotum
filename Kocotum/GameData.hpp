@@ -6,7 +6,7 @@
 
 struct GameData
 {
-	World world{ Vec2{ 256, 1280 } };
+	World world{ Vec2{ 256, 128 } };
 };
 
 using App = SceneManager<String, GameData>;

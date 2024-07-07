@@ -52,7 +52,7 @@ void CameraSetPalette::update(std::shared_ptr<CameraArea>& area)
 	area->setWidth(width.getValue() * CHIP_SIZE.x);
 	area->setHeight(height.getValue() * CHIP_SIZE.y);
 	area->initPos = Vec2{ initX.getValue() * CHIP_SIZE.x, initY.getValue() * CHIP_SIZE.y };
-	area->scale = scale.getValue();
+	area->scale = scale.getValue() / 100.0;
 	area->isScroll = indexScroll;
 	area->velocity = Vec2{ velocityX.getValue() * CHIP_SIZE.x, velocityY.getValue() * CHIP_SIZE.y };
 }

@@ -30,6 +30,7 @@ public:
 
 	void draw() const override
 	{
+		//Print << getData().world.player.pos;
 		{
 			const Transformer2D cameraTransformer = getData().world.camera.createTransformer();
 			getData().world.draw();
