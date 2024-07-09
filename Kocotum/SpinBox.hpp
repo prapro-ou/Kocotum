@@ -54,7 +54,7 @@ public:
 
 	/// @brief スピンボックスの現在の値を取得します。
 	/// @return スピンボックスの値が数値に変換できなければ0, それ以外は格納されている値
-	uint32 getValue();
+	int32 getValue();
 
 	/// @brief スピンボックスの値を設定します。
 	/// @param value 設定する値

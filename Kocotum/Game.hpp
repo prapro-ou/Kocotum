@@ -22,6 +22,11 @@ public:
 	{
 		getData().world.update();
 
+		if (KeyR.down())
+		{
+			getData().world.restart();
+		}
+
 		if (KeyEnter.down())
 		{
 			changeScene(U"Edit");

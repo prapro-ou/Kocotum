@@ -14,7 +14,6 @@ Edit::Edit(const InitData& init)
 	, cameraPalette{ CameraSetPalette{ Vec2{ 850, 120 } } }
 	, worldPalette{ WorldEditPalette{ Vec2{ 850, 120 } } }
 	, selectObject{ std::make_shared<Wall>(Vec2{ 100, 100 }, getData().world.effect, getData().world.player) }
-	, selectCamera{ getData().world.camera.activeArea }
 	, state{ E_EditState::PlacingObject }
 	, editBox{ RectF{ Vec2{ 850, 0 }, 430, 960 } }
 {
@@ -39,6 +38,16 @@ Edit::Edit(const InitData& init)
 
 	// ワールドパレットのファイル名を設定
 	worldPalette.fileName.setText(getData().fileName);
+
+	if (getData().world.camera.areas.isEmpty())
+	{
+		selectCamera = getData().world.camera.activeArea;
+	}
+	else
+	{
+		selectCamera = getData().world.camera.areas[0];
+		cameraPalette.loadSettings(selectCamera);
+	}
 }
 
 /**
@@ -86,6 +95,8 @@ void Edit::createObject(Vec2 pos)
  */
 void Edit::update()
 {
+	Print << getData().world.camera.areas.size();
+
 	// カメラの更新
 	camera.update();
 
@@ -218,6 +229,7 @@ void Edit::updateSettingCamera()
 {
 	// カメラ設定パレットの更新
 	cameraPalette.update(selectCamera);
+
 	if (not editBox.mouseOver())
 	{
 		// カメラエリアの更新

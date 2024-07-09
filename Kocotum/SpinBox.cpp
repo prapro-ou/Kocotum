@@ -33,9 +33,9 @@ TextEditState& SpinBox::getState()
 	return value;
 }
 
-uint32 SpinBox::getValue()
+int32 SpinBox::getValue()
 {
-	return ParseOr<uint32>(value.text, 0);
+	return ParseOr<int32>(value.text, 0);
 }
 
 void SpinBox::setEnable(bool enable)
@@ -50,7 +50,7 @@ bool SpinBox::isEnable()
 
 void SpinBox::setValue(double value)
 {
-	this->value.text = Format(value);
+	this->value.text = Format((int32)value);
 }
 
 void SpinBox::setPos(Vec2 pos)
@@ -99,7 +99,7 @@ void SpinBox::update()
 		if (!input.isEmpty()) value.cursorStopwatch.restart();
 
 		//入力が数値変換できるものならば反映
-		if (ParseOpt<uint32>(input))
+		if (ParseOpt<int32>(input))
 		{
 			//現在の値と入力された値を足して最大桁数を越えなければ反映
 			if (maxDigit >= value.text.size() + input.size())
@@ -117,6 +117,15 @@ void SpinBox::update()
 				}
 				//カーソルの位置を入力分移動させる
 				value.cursorPos += input.size();
+			}
+		}
+		else
+		{
+			if (KeyMinus.down() and ParseOpt<int32>(value.text))
+			{
+				int32 tmp = Parse<int32>(value.text);
+				tmp *= -1;
+				value.text = Format(tmp);
 			}
 		}
 
