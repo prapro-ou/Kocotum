@@ -3,6 +3,7 @@
 #include "Effect.hpp"
 #include "Object.hpp"
 #include "Player.hpp"
+#include "World.hpp"
 #include "Objects.hpp"
 #include "SelectObjectWindow.hpp"
 
@@ -19,11 +20,7 @@ public:
 	/// @brief オブジェクト選択ウィンドウの配列
 	Array<SelectObjectWindow> windows;
 
-	/// @brief エフェクト
-	Effect effect;
-
-	/// @brief プレイヤー
-	Player player;
+	World world;
 
 	/// @brief コンストラクタ
 	/// @param pos パレットの位置

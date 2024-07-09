@@ -2,6 +2,7 @@
 #include <Siv3D.hpp>
 #include "Object.hpp"
 #include "Player.hpp"
+#include "World.hpp"
 #include "Effect.hpp"
 
 /**
@@ -17,7 +18,7 @@ struct Wall : public Object
 	 * @param effect エフェクト参照
 	 * @param player プレイヤー参照
 	 */
-	Wall(Vec2 pos, Effect& effect, Player& player);
+	Wall(Vec2 pos, World& world);
 
 	void restart() override;
 	bool intersectsPlayer() override;
@@ -45,7 +46,7 @@ struct JumpToggleWall : public Object
 	 * @param player プレイヤー参照
 	 * @param init 初期状態（デフォルトはtrue）
 	 */
-	JumpToggleWall(Vec2 pos, Effect& effect, Player& player, bool init = true);
+	JumpToggleWall(Vec2 pos, World& world, bool init = true);
 
 	void restart() override;
 	bool intersectsPlayer() override;

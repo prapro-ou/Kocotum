@@ -13,7 +13,7 @@ Edit::Edit(const InitData& init)
 	, setPalette{ ObjectSetPalette{ Vec2{ 850, 120 } } }
 	, cameraPalette{ CameraSetPalette{ Vec2{ 850, 120 } } }
 	, worldPalette{ WorldEditPalette{ Vec2{ 850, 120 } } }
-	, selectObject{ std::make_shared<Wall>(Vec2{ 100, 100 }, getData().world.effect, getData().world.player) }
+	, selectObject{ std::make_shared<Wall>(Vec2{ 100, 100 }, getData().world) }
 	, state{ E_EditState::PlacingObject }
 	, editBox{ RectF{ Vec2{ 850, 0 }, 430, 960 } }
 {
@@ -61,25 +61,25 @@ void Edit::createObject(Vec2 pos)
 	switch (selectObjectType)
 	{
 	case E_ObjectType::Wall:
-		getData().world.addObject(std::make_shared<Wall>(pos, getData().world.effect, getData().world.player));
+		getData().world.addObject(std::make_shared<Wall>(pos, getData().world));
 		break;
 	case E_ObjectType::Needle:
-		getData().world.addObject(std::make_shared<Needle>(pos, getData().world.effect, getData().world.player));
+		getData().world.addObject(std::make_shared<Needle>(pos, getData().world));
 		break;
 	case E_ObjectType::MiniNeedle:
-		getData().world.addObject(std::make_shared<MiniNeedle>(pos, getData().world.effect, getData().world.player));
+		getData().world.addObject(std::make_shared<MiniNeedle>(pos, getData().world));
 		break;
 	case E_ObjectType::GravityLineHorizontal:
-		getData().world.addObject(std::make_shared<GravityLineHorizontal>(pos, getData().world.effect, getData().world.player));
+		getData().world.addObject(std::make_shared<GravityLineHorizontal>(pos, getData().world));
 		break;
 	case E_ObjectType::GravityLineVertical:
-		getData().world.addObject(std::make_shared<GravityLineVertical>(pos, getData().world.effect, getData().world.player));
+		getData().world.addObject(std::make_shared<GravityLineVertical>(pos, getData().world));
 		break;
 	case E_ObjectType::JumpToggleWall:
-		getData().world.addObject(std::make_shared<JumpToggleWall>(pos, getData().world.effect, getData().world.player));
+		getData().world.addObject(std::make_shared<JumpToggleWall>(pos, getData().world));
 		break;
 	case E_ObjectType::JumpToggleNeedle:
-		getData().world.addObject(std::make_shared<JumpToggleNeedle>(pos, getData().world.effect, getData().world.player));
+		getData().world.addObject(std::make_shared<JumpToggleNeedle>(pos, getData().world));
 		break;
 	case E_ObjectType::MoveFloorHorizontal:
 		//getData().world.addObject(std::make_shared<MoveFloorHorizontal>(pos, getData().world.effect, getData().world.player));

@@ -36,14 +36,13 @@ enum class E_Direction : uint16
 };
 
 /// 前方宣言
-struct Player;
+struct World;
 
 /// @brief マップ上に配置されているオブジェクトの基底クラス
 struct Object
 {
 	Vec2 pos;               /// オブジェクトの位置
-	Effect& effect;         /// エフェクト参照
-	Player& player;         /// プレイヤー参照
+	World& world;         /// プレイヤー参照
 	E_ObjectType type;      /// オブジェクトの種類
 	String name;            /// オブジェクトの名前
 
@@ -55,10 +54,9 @@ struct Object
 	 * @param type オブジェクトの種類
 	 * @param name オブジェクトの名前
 	 */
-	Object(Vec2 pos, Effect& effect, Player& player, E_ObjectType type, String name)
+	Object(Vec2 pos, World& world, E_ObjectType type, String name)
 		: pos{ pos }
-		, effect{ effect }
-		, player{ player }
+		, world{ world }
 		, type{ type }
 		, name{ name }
 	{ }

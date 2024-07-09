@@ -2,6 +2,7 @@
 #include <Siv3D.hpp>
 #include "Object.hpp"
 #include "Player.hpp"
+#include "World.hpp"
 #include "Effect.hpp"
 
 /**
@@ -23,7 +24,7 @@ struct Needle : public Object
 	 * @param player プレイヤー参照
 	 * @param direction 針の向き（デフォルトは上向き）
 	 */
-	Needle(Vec2 pos, Effect& effect, Player& player, E_Direction direction = E_Direction::Up);
+	Needle(Vec2 pos, World& world, E_Direction direction = E_Direction::Up);
 
 	/**
 	 * @brief 針の向きを設定する
@@ -60,7 +61,7 @@ struct MiniNeedle : public Object
 	 * @param player プレイヤー参照
 	 * @param direction 針の向き（デフォルトは上向き）
 	 */
-	MiniNeedle(Vec2 pos, Effect& effect, Player& player, E_Direction direction = E_Direction::Up);
+	MiniNeedle(Vec2 pos, World& world, E_Direction direction = E_Direction::Up);
 
 	/**
 	 * @brief 針の向きを設定する
@@ -102,7 +103,7 @@ struct JumpToggleNeedle : public Object
 	 * @param init 初期状態
 	 * @param direction 針の向き（デフォルトは上向き）
 	 */
-	JumpToggleNeedle(Vec2 pos, Effect& effect, Player& player, bool init = true, E_Direction direction = E_Direction::Up);
+	JumpToggleNeedle(Vec2 pos, World& world, bool init = true, E_Direction direction = E_Direction::Up);
 
 	/**
 	 * @brief 針の向きを設定する

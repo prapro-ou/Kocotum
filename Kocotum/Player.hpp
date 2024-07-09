@@ -5,18 +5,32 @@
  /// @brief プレイヤーキャラクターを表す構造体
 struct Player
 {
-	RectF body;             /// プレイヤーの当たり判定用矩形
-	Vec2 pos;               /// プレイヤーの現在位置
-	Vec2 respawnPos;        /// リスポーン位置
-	Vec2 velocity;          /// 速度
-	Vec2 accelaration;      /// 加速度
-	uint8 jumpNum;          /// 現在のジャンプ回数
-	uint8 maxJumpNum;       /// 最大ジャンプ回数
-	int8 gravityDirection;  /// 重力の方向
-	bool isGravityReverse;  /// 重力反転フラグ
-	bool isAlive;           /// 生存フラグ
-	bool isOnGround;        /// 地面接地フラグ
-	bool isFacingRight;     /// 右向きフラグ
+	/// @brief プレイヤーの当たり判定用矩形
+	RectF body;
+	/// @brief プレイヤーの現在位置
+	Vec2 pos;
+	/// @brief プレイヤーのリスポーン位置
+	Vec2 respawnPos;
+	/// @brief プレイヤーの速度
+	Vec2 velocity;
+	/// @brief プレイヤーの加速度
+	Vec2 accelaration;
+	/// @brief 現在のジャンプ回数
+	uint8 jumpNum;
+	/// @brief 最大ジャンプ回数
+	uint8 maxJumpNum;
+	/// @brief 重力の方向
+	int8 gravityDirection;
+	/// @brief 重力反転フラグ
+	bool isGravityReverse;
+	/// @brief 生存フラグ
+	bool isAlive;
+	/// @brief 地面接地フラグ
+	bool isOnGround;
+	/// @brief 右向きフラグ
+	bool isFacingRight;
+	/// @brief ワープ発生フラグ
+	bool causeWarp;
 
 	/**
 	 * @brief コンストラクタ

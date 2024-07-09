@@ -3,29 +3,29 @@
 ObjectPutPalette::ObjectPutPalette(Vec2 pos, uint32 width, uint32 height)
     : pos{ pos }
     , body{ MSRenderTexture{width, height, Palette::Azure} }
-    , player{ Player{ pos } }
+	, world{ World{ Vec2{ 100, 100 } } }
 {
     // レイアウトウィンドウの作成
     SelectObjectWindow layout{ Vec2{ 0, 0 }, U"レイアウト" };
 
     // 床・足場ウィンドウの作成と初期化
     SelectObjectWindow floor{ Vec2{ 0, 0 }, U"床・足場" };
-    floor.addObject(std::make_shared<Wall>(pos, effect, player));
-    floor.addObject(std::make_shared<JumpToggleWall>(pos, effect, player));
+    floor.addObject(std::make_shared<Wall>(pos, world));
+    floor.addObject(std::make_shared<JumpToggleWall>(pos, world));
 
     // トラップウィンドウの作成と初期化
     SelectObjectWindow trap{ Vec2{ 0, 0 }, U"トラップ" };
-    trap.addObject(std::make_shared<Needle>(pos, effect, player));
-    trap.addObject(std::make_shared<MiniNeedle>(pos, effect, player));
-    trap.addObject(std::make_shared<JumpToggleNeedle>(pos, effect, player));
+    trap.addObject(std::make_shared<Needle>(pos, world));
+    trap.addObject(std::make_shared<MiniNeedle>(pos, world));
+    trap.addObject(std::make_shared<JumpToggleNeedle>(pos, world));
 
     // アイテムウィンドウの作成
     SelectObjectWindow item{ Vec2{ 0, 0 }, U"アイテム" };
 
     // 重力ウィンドウの作成と初期化
     SelectObjectWindow gravity{ Vec2{ 0, 0 }, U"重力" };
-    gravity.addObject(std::make_shared<GravityLineHorizontal>(pos, effect, player));
-    gravity.addObject(std::make_shared<GravityLineVertical>(pos, effect, player));
+    gravity.addObject(std::make_shared<GravityLineHorizontal>(pos, world));
+    gravity.addObject(std::make_shared<GravityLineVertical>(pos, world));
 
     // 作成したウィンドウをパレットに追加
     windows << layout << floor << trap << item << gravity;

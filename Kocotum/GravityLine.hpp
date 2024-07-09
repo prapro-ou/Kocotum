@@ -2,6 +2,7 @@
 #include <Siv3D.hpp>
 #include "Object.hpp"
 #include "Player.hpp"
+#include "World.hpp"
 #include "Effect.hpp"
 
 /**
@@ -21,7 +22,7 @@ struct GravityLineHorizontal : public Object
 	 * @param player プレイヤー参照
 	 * @param length 重力線の長さ（デフォルトはCHIP_SIZE.x）
 	 */
-	GravityLineHorizontal(Vec2 pos, Effect& effect, Player& player, double length = CHIP_SIZE.x);
+	GravityLineHorizontal(Vec2 pos, World& world, double length = CHIP_SIZE.x);
 
 	void restart() override;
 	bool intersectsPlayer() override;
@@ -50,7 +51,7 @@ struct GravityLineVertical : public Object
 	 * @param player プレイヤー参照
 	 * @param length 重力線の長さ（デフォルトはCHIP_SIZE.y）
 	 */
-	GravityLineVertical(Vec2 pos, Effect& effect, Player& player, double length = CHIP_SIZE.y);
+	GravityLineVertical(Vec2 pos, World& world, double length = CHIP_SIZE.y);
 
 	void restart() override;
 	bool intersectsPlayer() override;

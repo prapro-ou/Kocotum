@@ -41,44 +41,44 @@ void World::loadWorld(String fileName)
 			if (csv[row][1] == U"Wall")
 			{
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
-				addObject(std::make_shared<Wall>(pos, effect, player));
+				addObject(std::make_shared<Wall>(pos, *this));
 			}
 			else if (csv[row][1] == U"JumpToggleWall")
 			{
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
 				bool init = Parse<bool>(csv[row][3]);
-				addObject(std::make_shared<JumpToggleWall>(pos, effect, player, init));
+				addObject(std::make_shared<JumpToggleWall>(pos, *this, init));
 			}
 			else if (csv[row][1] == U"Needle")
 			{
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
 				uint16 direction = Parse<uint16>(csv[row][3]);
-				addObject(std::make_shared<Needle>(pos, effect, player, (E_Direction)direction));
+				addObject(std::make_shared<Needle>(pos, *this, (E_Direction)direction));
 			}
 			else if (csv[row][1] == U"MiniNeedle")
 			{
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
 				uint16 direction = Parse<uint16>(csv[row][3]);
-				addObject(std::make_shared<MiniNeedle>(pos, effect, player, (E_Direction)direction));
+				addObject(std::make_shared<MiniNeedle>(pos, *this, (E_Direction)direction));
 			}
 			else if (csv[row][1] == U"JumpToggleNeedle")
 			{
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
 				uint16 direction = Parse<uint16>(csv[row][3]);
 				bool init = Parse<bool>(csv[row][4]);
-				addObject(std::make_shared<JumpToggleNeedle>(pos, effect, player, init, (E_Direction)direction));
+				addObject(std::make_shared<JumpToggleNeedle>(pos, *this, init, (E_Direction)direction));
 			}
 			else if (csv[row][1] == U"GravityLineHorizontal")
 			{
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
 				double length = Parse<double>(csv[row][3]);
-				addObject(std::make_shared<GravityLineHorizontal>(pos, effect, player, length));
+				addObject(std::make_shared<GravityLineHorizontal>(pos, *this, length));
 			}
 			else if (csv[row][1] == U"GravityLineVertical")
 			{
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
 				double length = Parse<double>(csv[row][3]);
-				addObject(std::make_shared<GravityLineVertical>(pos, effect, player, length));
+				addObject(std::make_shared<GravityLineVertical>(pos, *this, length));
 			}
 
 		}

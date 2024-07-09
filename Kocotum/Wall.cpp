@@ -1,7 +1,7 @@
 ﻿#include "Wall.hpp"
 
-Wall::Wall(Vec2 pos, Effect& effect, Player& player)
-	: Object{ pos, effect, player, E_ObjectType::Wall, U"壁" }
+Wall::Wall(Vec2 pos, World& world)
+	: Object{ pos, world, E_ObjectType::Wall, U"壁" }
 	, body{ RectF{ pos, CHIP_SIZE } }
 {
 }
@@ -13,7 +13,7 @@ void Wall::restart()
 
 bool Wall::intersectsPlayer()
 {
-	return body.intersects(player.body);
+	return body.intersects(world.player.body);
 }
 
 bool Wall::mouseOver()
@@ -30,55 +30,55 @@ void Wall::setPos(Vec2 pos)
 void Wall::handleCollisionX()
 {
 	// プレイヤーとの水平方向の衝突処理
-	if (player.velocity.x > 0)
+	if (world.player.velocity.x > 0)
 	{
 		// 右方向に進行中の場合
-		player.pos.x = pos.x - player.body.w;
+		world.player.pos.x = pos.x - world.player.body.w;
 	}
 	else
 	{
 		// 左方向に進行中の場合
-		player.pos.x = pos.x + CHIP_SIZE.x;
+		world.player.pos.x = pos.x + CHIP_SIZE.x;
 	}
 
-	player.velocity.x = 0;
-	player.body.setPos(player.pos);
+	world.player.velocity.x = 0;
+	world.player.body.setPos(world.player.pos);
 }
 
 void Wall::handleCollisionY()
 {
 	// プレイヤーとの垂直方向の衝突処理
-	if (player.isGravityReverse)
+	if (world.player.isGravityReverse)
 	{
 		// 重力反転時の処理
-		if (player.velocity.y > 0)
+		if (world.player.velocity.y > 0)
 		{
-			player.pos.y = pos.y + CHIP_SIZE.y;
-			player.jumpNum = 0;
-			player.isOnGround = true;
+			world.player.pos.y = pos.y + CHIP_SIZE.y;
+			world.player.jumpNum = 0;
+			world.player.isOnGround = true;
 		}
 		else
 		{
-			player.pos.y = pos.y - player.body.h;
+			world.player.pos.y = pos.y - world.player.body.h;
 		}
 	}
 	else
 	{
 		// 通常重力時の処理
-		if (player.velocity.y > 0)
+		if (world.player.velocity.y > 0)
 		{
-			player.pos.y = pos.y - player.body.h;
-			player.jumpNum = 0;
-			player.isOnGround = true;
+			world.player.pos.y = pos.y - world.player.body.h;
+			world.player.jumpNum = 0;
+			world.player.isOnGround = true;
 		}
 		else
 		{
-			player.pos.y = pos.y + CHIP_SIZE.y;
+			world.player.pos.y = pos.y + CHIP_SIZE.y;
 		}
 	}
 
-	player.velocity.y = 0.01;
-	player.body.setPos(player.pos);
+	world.player.velocity.y = 0.01;
+	world.player.body.setPos(world.player.pos);
 }
 
 void Wall::update()
@@ -92,8 +92,8 @@ void Wall::draw() const
 	TextureAsset(U"Wall").resized(CHIP_SIZE).draw(pos);
 }
 
-JumpToggleWall::JumpToggleWall(Vec2 pos, Effect& effect, Player& player, bool init)
-	: Object{ pos, effect, player, E_ObjectType::JumpToggleWall, U"ジャンプで切り替わる壁" }
+JumpToggleWall::JumpToggleWall(Vec2 pos, World& world, bool init)
+	: Object{ pos, world, E_ObjectType::JumpToggleWall, U"ジャンプで切り替わる壁" }
 	, body{ RectF{ pos, CHIP_SIZE } }
 	, init{ init }
 	, isOn{ init }
@@ -108,7 +108,7 @@ void JumpToggleWall::restart()
 
 bool JumpToggleWall::intersectsPlayer()
 {
-	return body.intersects(player.body);
+	return body.intersects(world.player.body);
 }
 
 bool JumpToggleWall::mouseOver()
@@ -134,21 +134,21 @@ void JumpToggleWall::handleCollisionX()
 	if (isOn)
 	{
 		// プレイヤーとの水平方向の衝突処理
-		if (player.velocity.x > 0)
+		if (world.player.velocity.x > 0)
 		{
 			// 右方向に進行中の場合
-			player.pos.x = pos.x - player.body.w;
+			world.player.pos.x = pos.x - world.player.body.w;
 		}
 		else
 		{
 			// 左方向に進行中の場合
-			player.pos.x = pos.x + CHIP_SIZE.x;
+			world.player.pos.x = pos.x + CHIP_SIZE.x;
 		}
 
-		player.velocity.x = 0;
+		world.player.velocity.x = 0;
 	}
 
-	player.body.setPos(player.pos);
+	world.player.body.setPos(world.player.pos);
 }
 
 void JumpToggleWall::handleCollisionY()
@@ -157,45 +157,45 @@ void JumpToggleWall::handleCollisionY()
 	if (isOn)
 	{
 		// プレイヤーとの垂直方向の衝突処理
-		if (player.isGravityReverse)
+		if (world.player.isGravityReverse)
 		{
 			// 重力反転時の処理
-			if (player.velocity.y > 0)
+			if (world.player.velocity.y > 0)
 			{
-				player.pos.y = pos.y + CHIP_SIZE.y;
-				player.jumpNum = 0;
-				player.isOnGround = true;
+				world.player.pos.y = pos.y + CHIP_SIZE.y;
+				world.player.jumpNum = 0;
+				world.player.isOnGround = true;
 			}
 			else
 			{
-				player.pos.y = pos.y - player.body.h;
+				world.player.pos.y = pos.y - world.player.body.h;
 			}
 		}
 		else
 		{
 			// 通常重力時の処理
-			if (player.velocity.y > 0)
+			if (world.player.velocity.y > 0)
 			{
-				player.pos.y = pos.y - player.body.h;
-				player.jumpNum = 0;
-				player.isOnGround = true;
+				world.player.pos.y = pos.y - world.player.body.h;
+				world.player.jumpNum = 0;
+				world.player.isOnGround = true;
 			}
 			else
 			{
-				player.pos.y = pos.y + CHIP_SIZE.y;
+				world.player.pos.y = pos.y + CHIP_SIZE.y;
 			}
 		}
 
-		player.velocity.y = 0.01;
+		world.player.velocity.y = 0.01;
 	}
 
-	player.body.setPos(player.pos);
+	world.player.body.setPos(world.player.pos);
 }
 
 void JumpToggleWall::update()
 {
 	// プレイヤーがジャンプした時に壁の状態を切り替える
-	if (player.jumpNum < player.maxJumpNum && KeySpace.down() && player.isAlive)
+	if (world.player.jumpNum < world.player.maxJumpNum && KeySpace.down() && world.player.isAlive)
 	{
 		isOn = !isOn; // 状態を反転
 	}

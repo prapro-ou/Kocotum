@@ -1,7 +1,7 @@
 ﻿#include "GravityLine.hpp"
 
-GravityLineHorizontal::GravityLineHorizontal(Vec2 pos, Effect& effect, Player& player, double length)
-	: Object{ pos, effect, player, E_ObjectType::GravityLineHorizontal, U"重力線:横" }
+GravityLineHorizontal::GravityLineHorizontal(Vec2 pos, World& world, double length)
+	: Object{ pos, world, E_ObjectType::GravityLineHorizontal, U"重力線:横" }
 	, length{ length }
 	, mouseOverBody{ RectF{ pos, CHIP_SIZE } }
 	, body{ RectF{ pos + Vec2{ 0, CHIP_SIZE.y / 2 }, length, 5 } }
@@ -15,7 +15,7 @@ void GravityLineHorizontal::restart()
 
 bool GravityLineHorizontal::intersectsPlayer()
 {
-	return body.intersects(player.body);
+	return body.intersects(world.player.body);
 }
 
 bool GravityLineHorizontal::mouseOver()
@@ -35,9 +35,9 @@ void GravityLineHorizontal::handleCollisionX()
 	if (!isTouched)
 	{
 		// プレイヤーの重力を反転させる
-		player.velocity.y = 5;
-		player.gravityDirection *= -1;
-		player.isGravityReverse = !player.isGravityReverse;
+		world.player.velocity.y = 5;
+		world.player.gravityDirection *= -1;
+		world.player.isGravityReverse = !world.player.isGravityReverse;
 		isTouched = true;
 	}
 }
@@ -47,9 +47,9 @@ void GravityLineHorizontal::handleCollisionY()
 	if (!isTouched)
 	{
 		// プレイヤーの重力を反転させる
-		player.velocity.y = 5;
-		player.gravityDirection *= -1;
-		player.isGravityReverse = !player.isGravityReverse;
+		world.player.velocity.y = 5;
+		world.player.gravityDirection *= -1;
+		world.player.isGravityReverse = !world.player.isGravityReverse;
 		isTouched = true;
 	}
 }
@@ -71,8 +71,8 @@ void GravityLineHorizontal::draw() const
 	body.draw(ColorF(1, alpha));
 }
 
-GravityLineVertical::GravityLineVertical(Vec2 pos, Effect& effect, Player& player, double length)
-	: Object{ pos, effect, player, E_ObjectType::GravityLineVertical, U"重力線:縦" }
+GravityLineVertical::GravityLineVertical(Vec2 pos, World& world, double length)
+	: Object{ pos, world, E_ObjectType::GravityLineVertical, U"重力線:縦" }
 	, length{ length }
 	, mouseOverBody{ RectF{ pos, CHIP_SIZE } }
 	, body{ RectF{ pos + Vec2{ CHIP_SIZE.x / 2, 0 }, 5, length } }
@@ -86,7 +86,7 @@ void GravityLineVertical::restart()
 
 bool GravityLineVertical::intersectsPlayer()
 {
-	return body.intersects(player.body);
+	return body.intersects(world.player.body);
 }
 
 bool GravityLineVertical::mouseOver()
@@ -106,9 +106,9 @@ void GravityLineVertical::handleCollisionX()
 	if (!isTouched)
 	{
 		// プレイヤーの重力を反転させる
-		player.velocity.y = 5;
-		player.gravityDirection *= -1;
-		player.isGravityReverse = !player.isGravityReverse;
+		world.player.velocity.y = 5;
+		world.player.gravityDirection *= -1;
+		world.player.isGravityReverse = !world.player.isGravityReverse;
 		isTouched = true;
 	}
 }
@@ -118,9 +118,9 @@ void GravityLineVertical::handleCollisionY()
 	if (!isTouched)
 	{
 		// プレイヤーの重力を反転させる
-		player.velocity.y = 5;
-		player.gravityDirection *= -1;
-		player.isGravityReverse = !player.isGravityReverse;
+		world.player.velocity.y = 5;
+		world.player.gravityDirection *= -1;
+		world.player.isGravityReverse = !world.player.isGravityReverse;
 		isTouched = true;
 	}
 }

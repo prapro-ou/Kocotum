@@ -1,7 +1,7 @@
 ﻿#include "Needle.hpp"
 
-Needle::Needle(Vec2 pos, Effect& effect, Player& player, E_Direction direction)
-	: Object{ pos, effect, player, E_ObjectType::Needle, U"針" }
+Needle::Needle(Vec2 pos, World& world, E_Direction direction)
+	: Object{ pos, world, E_ObjectType::Needle, U"針" }
 	, direction{ direction }
 	, mouseOverBody{ RectF{ pos, CHIP_SIZE } }
 	, body{ Triangle{ Vec2{ 0, CHIP_SIZE.y }, Vec2{ CHIP_SIZE.x / 2, 0 }, Vec2{ CHIP_SIZE } } }
@@ -25,7 +25,7 @@ void Needle::restart()
 
 bool Needle::intersectsPlayer()
 {
-	return body.intersects(player.body);
+	return body.intersects(world.player.body);
 }
 
 bool Needle::mouseOver()
@@ -42,21 +42,21 @@ void Needle::setPos(Vec2 pos)
 
 void Needle::handleCollisionX()
 {
-	if (player.isAlive)
+	if (world.player.isAlive)
 	{
 		// プレイヤーが生きている場合、死亡エフェクトを追加し、プレイヤーを死亡状態にする
-		effect.add<DeathEffect>(player.body.center());
-		player.isAlive = false;
+		world.effect.add<DeathEffect>(world.player.body.center());
+		world.player.isAlive = false;
 	}
 }
 
 void Needle::handleCollisionY()
 {
-	if (player.isAlive)
+	if (world.player.isAlive)
 	{
 		// プレイヤーが生きている場合、死亡エフェクトを追加し、プレイヤーを死亡状態にする
-		effect.add<DeathEffect>(player.body.center());
-		player.isAlive = false;
+		world.effect.add<DeathEffect>(world.player.body.center());
+		world.player.isAlive = false;
 	}
 }
 
@@ -72,8 +72,8 @@ void Needle::draw() const
 }
 
 
-MiniNeedle::MiniNeedle(Vec2 pos, Effect& effect, Player& player, E_Direction direction)
-	: Object{ pos, effect, player, E_ObjectType::MiniNeedle, U"小さい針" }
+MiniNeedle::MiniNeedle(Vec2 pos, World& world, E_Direction direction)
+	: Object{ pos, world, E_ObjectType::MiniNeedle, U"小さい針" }
 	, mouseOverBody{ RectF{ pos, CHIP_SIZE } }
 	, direction{ direction }
 {
@@ -111,7 +111,7 @@ bool MiniNeedle::intersectsPlayer()
 	// いずれかの三角形とプレイヤーが交差しているか確認
 	for (auto& b : body)
 	{
-		if (b.intersects(player.body))
+		if (b.intersects(world.player.body))
 		{
 			return true;
 		}
@@ -136,21 +136,21 @@ void MiniNeedle::setPos(Vec2 pos)
 
 void MiniNeedle::handleCollisionX()
 {
-	if (player.isAlive)
+	if (world.player.isAlive)
 	{
 		// プレイヤーが生きている場合、死亡エフェクトを追加し、プレイヤーを死亡状態にする
-		effect.add<DeathEffect>(player.body.center());
-		player.isAlive = false;
+		world.effect.add<DeathEffect>(world.player.body.center());
+		world.player.isAlive = false;
 	}
 }
 
 void MiniNeedle::handleCollisionY()
 {
-	if (player.isAlive)
+	if (world.player.isAlive)
 	{
 		// プレイヤーが生きている場合、死亡エフェクトを追加し、プレイヤーを死亡状態にする
-		effect.add<DeathEffect>(player.body.center());
-		player.isAlive = false;
+		world.effect.add<DeathEffect>(world.player.body.center());
+		world.player.isAlive = false;
 	}
 }
 
@@ -168,8 +168,8 @@ void MiniNeedle::draw() const
 	}
 }
 
-JumpToggleNeedle::JumpToggleNeedle(Vec2 pos, Effect& effect, Player& player, bool init, E_Direction direction)
-	: Object{ pos, effect, player, E_ObjectType::JumpToggleNeedle, U"ジャンプで切り替わる針" }
+JumpToggleNeedle::JumpToggleNeedle(Vec2 pos, World& world, bool init, E_Direction direction)
+	: Object{ pos, world, E_ObjectType::JumpToggleNeedle, U"ジャンプで切り替わる針" }
 	, direction{ direction }
 	, mouseOverBody{ RectF{ pos, CHIP_SIZE } }
 	, body{ Triangle{ Vec2{ 0, CHIP_SIZE.y }, Vec2{ CHIP_SIZE.x / 2, 0 }, Vec2{ CHIP_SIZE } } }
@@ -195,7 +195,7 @@ void JumpToggleNeedle::restart()
 
 bool JumpToggleNeedle::intersectsPlayer()
 {
-	return body.intersects(player.body);
+	return body.intersects(world.player.body);
 }
 
 bool JumpToggleNeedle::mouseOver()
@@ -218,28 +218,28 @@ void JumpToggleNeedle::setInit(bool init)
 
 void JumpToggleNeedle::handleCollisionX()
 {
-	if (player.isAlive && isOn)
+	if (world.player.isAlive && isOn)
 	{
 		// プレイヤーが生きていて、針がオンの場合、死亡エフェクトを追加し、プレイヤーを死亡状態にする
-		effect.add<DeathEffect>(player.body.center());
-		player.isAlive = false;
+		world.effect.add<DeathEffect>(world.player.body.center());
+		world.player.isAlive = false;
 	}
 }
 
 void JumpToggleNeedle::handleCollisionY()
 {
-	if (player.isAlive && isOn)
+	if (world.player.isAlive && isOn)
 	{
 		// プレイヤーが生きていて、針がオンの場合、死亡エフェクトを追加し、プレイヤーを死亡状態にする
-		effect.add<DeathEffect>(player.body.center());
-		player.isAlive = false;
+		world.effect.add<DeathEffect>(world.player.body.center());
+		world.player.isAlive = false;
 	}
 }
 
 void JumpToggleNeedle::update()
 {
 	// プレイヤーがジャンプした時に針の状態を切り替える
-	if (player.jumpNum < player.maxJumpNum && KeySpace.down() && player.isAlive)
+	if (world.player.jumpNum < world.player.maxJumpNum && KeySpace.down() && world.player.isAlive)
 	{
 		isOn = !isOn; // 状態を反転
 	}

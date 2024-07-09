@@ -13,6 +13,7 @@ Player::Player(Vec2 pos)
 	, isAlive{ true }
 	, isOnGround{ false }
 	, isFacingRight{ true }
+	, causeWarp{ false }
 {
 	body.setPos(pos);
 }
