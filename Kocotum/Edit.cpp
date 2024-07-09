@@ -114,11 +114,22 @@ void Edit::updatePlacingObject()
 void Edit::placeOrRemoveObjects()
 {
 	const auto t = camera.createTransformer();
+
+	bool isMouseOverObject = false;
+
+	for (auto& object : getData().world.objects)
+	{
+		if (object->mouseOver())
+		{
+			isMouseOverObject = true;
+		}
+	}
+
 	for (int y = 0; y < grid.height(); y++)
 	{
 		for (int x = 0; x < grid.width(); x++)
 		{
-			if (grid[y][x].leftClicked())
+			if (grid[y][x].leftPressed() and not isMouseOverObject)
 			{
 				createObject(Vec2{ x * CHIP_SIZE.x, y * CHIP_SIZE.y });
 			}
