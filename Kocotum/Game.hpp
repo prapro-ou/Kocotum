@@ -22,7 +22,7 @@ public:
 	{
 		getData().world.update();
 
-		if (KeyR.down())
+		if (KeyR.down() or getData().world.deathSw.sF() > 0.75)
 		{
 			getData().world.restart();
 		}

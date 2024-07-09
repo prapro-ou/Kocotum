@@ -20,6 +20,7 @@ public:
 	Effect effect;
 	/// @brief カメラ
 	GameCamera camera;
+	Stopwatch deathSw;
 
 	/**
 	 * @brief Worldクラスのコンストラクタ
@@ -52,6 +53,16 @@ public:
 	 * @brief ワールドをリスタートする
 	 */
 	void restart();
+
+	void death()
+	{
+		if (player.isAlive)
+		{
+			player.isAlive = false;
+			deathSw.restart();
+			effect.add<DeathEffect>(player.body.center());
+		}
+	}
 
 	/**
 	 * @brief ワールドの状態を更新する

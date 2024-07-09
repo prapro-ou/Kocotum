@@ -166,6 +166,8 @@ void World::restart()
 	}
 
 	camera.restart();
+
+	deathSw.reset();
 }
 
 void World::update()
@@ -182,11 +184,6 @@ void World::update()
 		player.update(objects);
 	}
 
-	// リスタート処理
-	if (KeyR.down())
-	{
-		player.restart();
-	}
 
 	// カメラの更新
 	camera.update(player);

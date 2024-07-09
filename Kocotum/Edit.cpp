@@ -95,8 +95,6 @@ void Edit::createObject(Vec2 pos)
  */
 void Edit::update()
 {
-	Print << getData().world.camera.areas.size();
-
 	// カメラの更新
 	camera.update();
 

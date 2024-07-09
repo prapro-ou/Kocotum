@@ -42,22 +42,12 @@ void Needle::setPos(Vec2 pos)
 
 void Needle::handleCollisionX()
 {
-	if (world.player.isAlive)
-	{
-		// プレイヤーが生きている場合、死亡エフェクトを追加し、プレイヤーを死亡状態にする
-		world.effect.add<DeathEffect>(world.player.body.center());
-		world.player.isAlive = false;
-	}
+	world.death();
 }
 
 void Needle::handleCollisionY()
 {
-	if (world.player.isAlive)
-	{
-		// プレイヤーが生きている場合、死亡エフェクトを追加し、プレイヤーを死亡状態にする
-		world.effect.add<DeathEffect>(world.player.body.center());
-		world.player.isAlive = false;
-	}
+	world.death();
 }
 
 void Needle::update()
@@ -136,22 +126,12 @@ void MiniNeedle::setPos(Vec2 pos)
 
 void MiniNeedle::handleCollisionX()
 {
-	if (world.player.isAlive)
-	{
-		// プレイヤーが生きている場合、死亡エフェクトを追加し、プレイヤーを死亡状態にする
-		world.effect.add<DeathEffect>(world.player.body.center());
-		world.player.isAlive = false;
-	}
+	world.death();
 }
 
 void MiniNeedle::handleCollisionY()
 {
-	if (world.player.isAlive)
-	{
-		// プレイヤーが生きている場合、死亡エフェクトを追加し、プレイヤーを死亡状態にする
-		world.effect.add<DeathEffect>(world.player.body.center());
-		world.player.isAlive = false;
-	}
+	world.death();
 }
 
 void MiniNeedle::update()
@@ -218,22 +198,12 @@ void JumpToggleNeedle::setInit(bool init)
 
 void JumpToggleNeedle::handleCollisionX()
 {
-	if (world.player.isAlive && isOn)
-	{
-		// プレイヤーが生きていて、針がオンの場合、死亡エフェクトを追加し、プレイヤーを死亡状態にする
-		world.effect.add<DeathEffect>(world.player.body.center());
-		world.player.isAlive = false;
-	}
+	world.death();
 }
 
 void JumpToggleNeedle::handleCollisionY()
 {
-	if (world.player.isAlive && isOn)
-	{
-		// プレイヤーが生きていて、針がオンの場合、死亡エフェクトを追加し、プレイヤーを死亡状態にする
-		world.effect.add<DeathEffect>(world.player.body.center());
-		world.player.isAlive = false;
-	}
+	world.death();
 }
 
 void JumpToggleNeedle::update()
