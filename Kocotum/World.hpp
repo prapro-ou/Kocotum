@@ -54,7 +54,7 @@ public:
 	 */
 	void restart();
 
-	void death()
+	void killPlayer()
 	{
 		if (player.isAlive)
 		{

@@ -42,12 +42,12 @@ void Needle::setPos(Vec2 pos)
 
 void Needle::handleCollisionX()
 {
-	world.death();
+	world.killPlayer();
 }
 
 void Needle::handleCollisionY()
 {
-	world.death();
+	world.killPlayer();
 }
 
 void Needle::update()
@@ -126,12 +126,12 @@ void MiniNeedle::setPos(Vec2 pos)
 
 void MiniNeedle::handleCollisionX()
 {
-	world.death();
+	world.killPlayer();
 }
 
 void MiniNeedle::handleCollisionY()
 {
-	world.death();
+	world.killPlayer();
 }
 
 void MiniNeedle::update()
@@ -198,12 +198,12 @@ void JumpToggleNeedle::setInit(bool init)
 
 void JumpToggleNeedle::handleCollisionX()
 {
-	world.death();
+	world.killPlayer();
 }
 
 void JumpToggleNeedle::handleCollisionY()
 {
-	world.death();
+	world.killPlayer();
 }
 
 void JumpToggleNeedle::update()
