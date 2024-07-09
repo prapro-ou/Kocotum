@@ -5,6 +5,7 @@
 #include "Player.hpp"
 #include "World.hpp"
 #include "Objects.hpp"
+#include "ScrollBarV.hpp"
 #include "SelectObjectWindow.hpp"
 
 /// @brief オブジェクト配置用のパレットクラス
@@ -20,6 +21,13 @@ public:
 	/// @brief オブジェクト選択ウィンドウの配列
 	Array<SelectObjectWindow> windows;
 
+	/// @brief 縦スクロールバー
+	ScrollBarV scroll;
+
+	double scrollMax;
+	double targetScroll;
+
+	/// @brief オブジェクト用ワールド
 	World world;
 
 	/// @brief コンストラクタ
@@ -27,6 +35,10 @@ public:
 	/// @param width パレットの幅
 	/// @param height パレットの高さ
 	ObjectPutPalette(Vec2 pos, uint32 width = 490, uint32 height = 840);
+
+	/// @brief オブジェクト選択ウィンドウ全体の高さを取得する
+	/// @return オブジェクト選択ウィンドウ全体の高さ
+	double getWindowsHeight();
 
 	/// @brief クリックされたオブジェクトタイプを取得する
 	/// @return クリックされたオブジェクトタイプ（Optional）

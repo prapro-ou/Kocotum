@@ -89,7 +89,7 @@ void ScrollBarV::update()
 }
 
 /// @brief スクロールバーを描画します。
-void ScrollBarV::draw()
+void ScrollBarV::draw() const
 {
 	//Area.rounded(8).draw(Palette::Ghostwhite).drawFrame(1, ColorF(0.5));
 	//if ((isMouseOver() && !MouseL.pressed()) || grabbed) Area.rounded(8).draw(ColorF(0.65, 0.65, 0.85, 0.15));

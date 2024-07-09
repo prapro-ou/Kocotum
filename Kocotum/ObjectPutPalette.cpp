@@ -3,6 +3,9 @@
 ObjectPutPalette::ObjectPutPalette(Vec2 pos, uint32 width, uint32 height)
     : pos{ pos }
     , body{ MSRenderTexture{width, height, Palette::Azure} }
+	, scroll{ ScrollBarV{ Vec2{ width - 89, -1 }, 28, (double)height - 2, 0, (double)height - 2 } }
+	, scrollMax{ 2.0 }
+	, targetScroll{ 0.0 }
 	, world{ World{ Vec2{ 100, 100 } } }
 {
     // レイアウトウィンドウの作成
@@ -31,6 +34,17 @@ ObjectPutPalette::ObjectPutPalette(Vec2 pos, uint32 width, uint32 height)
     windows << layout << floor << trap << item << gravity;
 }
 
+double ObjectPutPalette::getWindowsHeight()
+{
+	double result = 0;
+	for (auto& window : windows)
+	{
+		result += window.getHeight();
+	}
+
+	return result;
+}
+
 Optional<E_ObjectType> ObjectPutPalette::getClickedType()
 {
     Optional<E_ObjectType> result;
@@ -57,12 +71,24 @@ void ObjectPutPalette::update()
     {
         // パレットの位置に合わせて座標変換
         const Transformer2D transformer{ Mat3x2::Identity(), Mat3x2::Translate(pos) };
-        double height = 0;
+
+		scroll.setInfo(0, scrollMax, -1 * targetScroll);
+		scroll.update();
+
+		targetScroll = -1 * scroll.getNow();
+		targetScroll -= Mouse::Wheel() * 25;
+
+		scrollMax = getWindowsHeight();
+
+		targetScroll = Clamp(targetScroll, -1 * scrollMax, 0.0);
+
+
+		double height = 0;
 
         // 各ウィンドウの位置を更新
         for (auto& window : windows)
         {
-            window.pos = Vec2{ 0, height };
+            window.pos = Vec2{ 0, height + targetScroll };
             height += window.getHeight();
 
             window.update();
@@ -85,6 +111,8 @@ void ObjectPutPalette::draw() const
         {
             window.draw();
         }
+
+		scroll.draw();
     }
 
     // 描画内容を確定

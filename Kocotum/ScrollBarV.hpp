@@ -70,6 +70,6 @@ public:
 	void update();
 
 	/// @brief スクロールバーを描画します。
-	void draw();
+	void draw() const;
 
 };
