@@ -87,6 +87,9 @@ void Edit::createObject(Vec2 pos)
 	case E_ObjectType::MoveFloorVertical:
 		//getData().world.addObject(std::make_shared<MoveFloorVertical>(pos, getData().world.effect, getData().world.player));
 		break;
+	case E_ObjectType::StartPoint:
+		getData().world.addObject(std::make_shared<StartPoint>(pos, getData().world));
+		break;
 	}
 }
 

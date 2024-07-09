@@ -79,6 +79,11 @@ void World::loadWorld(String fileName)
 				double length = Parse<double>(csv[row][3]);
 				addObject(std::make_shared<GravityLineVertical>(pos, *this, length));
 			}
+			else if (csv[row][1] == U"StartPoint")
+			{
+				Vec2 pos = Parse<Vec2>(csv[row][2]);
+				addObject(std::make_shared<StartPoint>(pos, *this));
+			}
 
 		}
 	}
@@ -143,6 +148,11 @@ void World::saveWorld(String fileName)
 			csv.write(gravityLineHorizontal->pos.asPoint());
 			csv.write(gravityLineHorizontal->length);
 		}
+		else if (auto startPoint = std::dynamic_pointer_cast<StartPoint>(object))
+		{
+			csv.write(U"StartPoint");
+			csv.write(startPoint->pos.asPoint());
+		}
 
 		csv.newLine();
 	}
@@ -157,12 +167,17 @@ void World::addObject(std::shared_ptr<Object> object)
 
 void World::restart()
 {
-	player.restart();
-
 	for (auto& object : objects)
 	{
 		object->restart();
+
+		if (auto startPoint = std::dynamic_pointer_cast<StartPoint>(object))
+		{
+			player.respawnPos = startPoint->pos;
+		}
 	}
+
+	player.restart();
 
 	camera.restart();
 

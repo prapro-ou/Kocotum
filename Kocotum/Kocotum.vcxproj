@@ -360,6 +360,7 @@
     <ClInclude Include="ScrollBarV.hpp" />
     <ClInclude Include="SelectObjectWindow.hpp" />
     <ClInclude Include="SpinBox.hpp" />
+    <ClInclude Include="StartPoint.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="TextBox.hpp" />
     <ClInclude Include="Wall.hpp" />

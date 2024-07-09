@@ -24,6 +24,10 @@ enum class E_ObjectType : uint16
 	GravityLineVertical		= 0b00100001, /// 垂直重力線
 	MoveFloorHorizontal		= 0b01100000, /// 水平移動床
 	MoveFloorVertical		= 0b01100001, /// 垂直移動床
+	StartPoint				= 0b10000000, /// スタート地点
+	SavePoint				= 0b10000001, /// セーブポイント
+	Text					= 0b10000010, /// ゲーム内に表示するテキスト
+	Image					= 0b10000011, /// ゲーム内に表示する画像
 };
 
 /// @brief 方向を表す列挙型
@@ -36,7 +40,7 @@ enum class E_Direction : uint16
 };
 
 /// 前方宣言
-struct World;
+class World;
 
 /// @brief マップ上に配置されているオブジェクトの基底クラス
 struct Object

@@ -953,5 +953,8 @@
     <ClInclude Include="ScrollBarV.hpp">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
+    <ClInclude Include="StartPoint.hpp">
+      <Filter>Header Files\Object</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
