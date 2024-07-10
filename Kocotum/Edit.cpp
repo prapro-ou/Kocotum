@@ -93,6 +93,9 @@ void Edit::createObject(Vec2 pos)
 	case E_ObjectType::SavePoint:
 		getData().world.addObject(std::make_shared<SavePoint>(pos, getData().world));
 		break;
+	case E_ObjectType::Text:
+		getData().world.addObject(std::make_shared<Text>(pos, getData().world, U"Text"));
+		break;
 	}
 }
 
@@ -345,8 +348,8 @@ void Edit::updatePaletteButtons()
  */
 void Edit::checkSceneTransition()
 {
-	// Enterキーが押された場合、ゲームシーンに遷移
-	if (KeyEnter.down())
+	// Ctrlキーが押された場合、ゲームシーンに遷移
+	if (KeyControl.down())
 	{
 		changeScene(U"Game");
 	}

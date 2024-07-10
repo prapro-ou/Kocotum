@@ -6,6 +6,7 @@
 #include "Objects.hpp"
 #include "RadioButtons.hpp"
 #include "SpinBox.hpp"
+#include "TextBox.hpp"
 
 /// @brief オブジェクト設定用のパレットクラス
 class ObjectSetPalette
@@ -31,6 +32,9 @@ public:
 
 	/// @brief 長さ設定用のSpinBox
 	SpinBox length;
+
+	/// @brief テキスト設定用のTextBox
+	TextBox text;
 
 	/// @brief コンストラクタ
 	/// @param pos パレットの位置

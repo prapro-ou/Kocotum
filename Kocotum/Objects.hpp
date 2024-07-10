@@ -5,3 +5,4 @@
 # include "GravityLine.hpp"
 # include "StartPoint.hpp"
 # include "SavePoint.hpp"
+# include "Text.hpp"

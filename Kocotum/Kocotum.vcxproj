@@ -136,6 +136,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Text.cpp" />
     <ClCompile Include="TextBox.cpp" />
     <ClCompile Include="Wall.cpp" />
     <ClCompile Include="World.cpp" />
@@ -365,6 +366,7 @@
     <ClInclude Include="SpinBox.hpp" />
     <ClInclude Include="StartPoint.hpp" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Text.hpp" />
     <ClInclude Include="TextBox.hpp" />
     <ClInclude Include="Wall.hpp" />
     <ClInclude Include="World.hpp" />

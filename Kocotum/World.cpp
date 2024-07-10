@@ -89,6 +89,12 @@ void World::loadWorld(String fileName)
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
 				addObject(std::make_shared<SavePoint>(pos, *this));
 			}
+			else if (csv[row][1] == U"Text")
+			{
+				Vec2 pos = Parse<Vec2>(csv[row][2]);
+				String text = csv[row][3];
+				addObject(std::make_shared<Text>(pos, *this, text));
+			}
 
 		}
 	}
@@ -162,6 +168,12 @@ void World::saveWorld(String fileName)
 		{
 			csv.write(U"SavePoint");
 			csv.write(savePoint->pos.asPoint());
+		}
+		else if (auto text = std::dynamic_pointer_cast<Text>(object))
+		{
+			csv.write(U"Text");
+			csv.write(text->pos.asPoint());
+			csv.write(text->text);
 		}
 
 		csv.newLine();

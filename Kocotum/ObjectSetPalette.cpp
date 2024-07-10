@@ -8,6 +8,7 @@ ObjectSetPalette::ObjectSetPalette(Vec2 pos, uint32 width, uint32 height)
 	, direction{ RadioButtons{ pos + Vec2{ 120, 100 }, { U"上", U"右", U"下", U"左" }, indexDirection} }
 	, jumpToggle{ RadioButtons{ pos + Vec2{ 240, 200 }, { U"出現", U"消滅" }, indexJumpToggle } }
 	, length{ SpinBox(pos + Vec2{ 120, 300 }, 150, 40, 5, U"64") }
+	, text{ TextBox(pos + Vec2{ 120, 350 }, 400, 20, U"Text") }
 {
 	// コンストラクタの初期化
 }
@@ -55,6 +56,11 @@ void ObjectSetPalette::loadSettings(std::shared_ptr<Object>& object)
 		{
 			length.setValue((int)gravityLineVertical->length / CHIP_SIZE.y);
 		}
+	}
+
+	if (auto objectText = std::dynamic_pointer_cast<Text>(object))
+	{
+		text.setText(objectText->text);
 	}
 }
 
@@ -113,6 +119,14 @@ void ObjectSetPalette::update(std::shared_ptr<Object>& object)
 			gravityLineVertical->update();
 		}
 	}
+
+	text.update();
+
+	if (auto objectText = std::dynamic_pointer_cast<Text>(object))
+	{
+		objectText->text = text.getText();
+		objectText->update();
+	}
 }
 
 void ObjectSetPalette::draw() const
@@ -127,4 +141,6 @@ void ObjectSetPalette::draw() const
 	jumpToggle.draw();
 	SimpleGUI::GetFont()(U"長さ").draw(pos + Vec2{ 0, 300 }, Palette::Black);
 	length.draw();
+	SimpleGUI::GetFont()(U"テキスト").draw(pos + Vec2{ 0, 400 }, Palette::Black);
+	text.draw();
 }

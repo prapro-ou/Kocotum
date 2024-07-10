@@ -231,6 +231,9 @@
     <ClCompile Include="SavePoint.cpp">
       <Filter>Source Files\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -963,6 +966,9 @@
       <Filter>Header Files\Object</Filter>
     </ClInclude>
     <ClInclude Include="SavePoint.hpp">
+      <Filter>Header Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.hpp">
       <Filter>Header Files\Object</Filter>
     </ClInclude>
   </ItemGroup>

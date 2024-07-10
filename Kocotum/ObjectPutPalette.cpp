@@ -32,8 +32,11 @@ ObjectPutPalette::ObjectPutPalette(Vec2 pos, uint32 width, uint32 height)
     gravity.addObject(std::make_shared<GravityLineHorizontal>(pos, world));
     gravity.addObject(std::make_shared<GravityLineVertical>(pos, world));
 
+	SelectObjectWindow textImage{ Vec2{ 0, 0 }, U"テキスト・画像" };
+	textImage.addObject(std::make_shared<Text>(pos, world, U"T"));
+
     // 作成したウィンドウをパレットに追加
-    windows << layout << floor << trap << item << gravity;
+    windows << layout << floor << trap << item << gravity << textImage;
 }
 
 double ObjectPutPalette::getWindowsHeight()
