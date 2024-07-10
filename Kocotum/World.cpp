@@ -84,6 +84,11 @@ void World::loadWorld(String fileName)
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
 				addObject(std::make_shared<StartPoint>(pos, *this));
 			}
+			else if (csv[row][1] == U"SavePoint")
+			{
+				Vec2 pos = Parse<Vec2>(csv[row][2]);
+				addObject(std::make_shared<SavePoint>(pos, *this));
+			}
 
 		}
 	}
@@ -153,6 +158,11 @@ void World::saveWorld(String fileName)
 			csv.write(U"StartPoint");
 			csv.write(startPoint->pos.asPoint());
 		}
+		else if (auto savePoint = std::dynamic_pointer_cast<SavePoint>(object))
+		{
+			csv.write(U"SavePoint");
+			csv.write(savePoint->pos.asPoint());
+		}
 
 		csv.newLine();
 	}
@@ -166,6 +176,20 @@ void World::addObject(std::shared_ptr<Object> object)
 }
 
 void World::restart()
+{
+	for (auto& object : objects)
+	{
+		object->restart();
+	}
+
+	player.restart();
+
+	camera.restart();
+
+	deathSw.reset();
+}
+
+void World::init()
 {
 	for (auto& object : objects)
 	{

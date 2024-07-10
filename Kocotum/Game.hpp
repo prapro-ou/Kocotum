@@ -14,7 +14,8 @@ public:
 	Game(const InitData& init)
 		:IScene{ init }
 	{
-		getData().world.restart();
+		getData().world.init();
+		getData().world.camera.camera.setCenter(getData().world.camera.activeArea->cameraTargetPos);
 	}
 
 

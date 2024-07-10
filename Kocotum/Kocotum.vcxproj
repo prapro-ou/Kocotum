@@ -127,6 +127,7 @@
     <ClCompile Include="RadioButtons.cpp" />
     <ClCompile Include="RadioButtons.hpp" />
     <ClCompile Include="RadioButton.cpp" />
+    <ClCompile Include="SavePoint.cpp" />
     <ClCompile Include="ScrollBarV.cpp" />
     <ClCompile Include="SelectObjectWindow.cpp" />
     <ClCompile Include="SpinBox.cpp" />
@@ -358,6 +359,7 @@
     <ClInclude Include="ObjectSetPalette.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="RadioButton.hpp" />
+    <ClInclude Include="SavePoint.hpp" />
     <ClInclude Include="ScrollBarV.hpp" />
     <ClInclude Include="SelectObjectWindow.hpp" />
     <ClInclude Include="SpinBox.hpp" />

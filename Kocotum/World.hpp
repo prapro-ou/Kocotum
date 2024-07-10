@@ -54,6 +54,8 @@ public:
 	 */
 	void restart();
 
+	void init();
+
 	void killPlayer()
 	{
 		if (player.isAlive)
@@ -62,6 +64,11 @@ public:
 			deathSw.restart();
 			effect.add<DeathEffect>(player.body.center());
 		}
+	}
+
+	void savePlayer(Vec2 pos)
+	{
+		player.respawnPos = pos;;
 	}
 
 	/**
