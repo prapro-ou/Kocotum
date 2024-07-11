@@ -10,6 +10,7 @@ struct WarpPoint : public Object
 {
 	RectF body; ///< 壁の当たり判定用の矩形
 	String fileName;
+	bool isTouched;
 
 	WarpPoint(Vec2 pos, World& world, String fileName = U"");
 

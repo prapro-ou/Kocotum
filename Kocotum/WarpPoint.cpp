@@ -4,6 +4,7 @@ WarpPoint::WarpPoint(Vec2 pos, World& world, String fileName)
 	:Object{ pos, world, E_ObjectType::WarpPoint, U"ワープポイント" }
 	, body{ RectF{ pos, CHIP_SIZE } }
 	, fileName{ fileName }
+	, isTouched{ false }
 { }
 
 
@@ -31,18 +32,34 @@ void WarpPoint::setPos(Vec2 pos)
 
 void WarpPoint::handleCollisionX()
 {
-	world.loadWorld(fileName);
-	world.init();
+	if (not isTouched)
+	{
+		world.loadWorld(fileName);
+		System::Sleep(100ms);
+		world.init();
+
+		isTouched = true;
+	}
 }
 
 void WarpPoint::handleCollisionY()
 {
-	world.loadWorld(fileName);
-	world.init();
+	if (not isTouched)
+	{
+		world.loadWorld(fileName);
+		System::Sleep(100ms);
+		world.init();
+
+		isTouched = true;
+	}
 }
 
 void WarpPoint::update()
 {
+	if (not intersectsPlayer())
+	{
+		isTouched = false;
+	}
 }
 
 void WarpPoint::draw() const

@@ -104,7 +104,6 @@ void World::loadWorld(String fileName)
 				String fileName = csv[row][3];
 				addObject(std::make_shared<WarpPoint>(pos, *this, fileName));
 			}
-
 		}
 	}
 }
@@ -224,16 +223,12 @@ void World::restart()
 
 void World::init()
 {
-	if (not objects.isEmpty())
+	for (auto& object : objects)
 	{
-		for (auto& object : objects)
+		object->restart();
+		if (auto startPoint = std::dynamic_pointer_cast<StartPoint>(object))
 		{
-			object->restart();
-
-			if (auto startPoint = std::dynamic_pointer_cast<StartPoint>(object))
-			{
-				player.respawnPos = startPoint->pos;
-			}
+			player.respawnPos = startPoint->pos;
 		}
 	}
 
