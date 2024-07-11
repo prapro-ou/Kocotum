@@ -96,6 +96,9 @@ void Edit::createObject(Vec2 pos)
 	case E_ObjectType::Text:
 		getData().world.addObject(std::make_shared<Text>(pos, getData().world, U"Text"));
 		break;
+	case E_ObjectType::WarpPoint:
+		getData().world.addObject(std::make_shared<WarpPoint>(pos, getData().world));
+		break;
 	}
 }
 

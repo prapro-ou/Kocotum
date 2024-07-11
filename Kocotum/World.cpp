@@ -13,9 +13,12 @@ void World::clear()
 
 void World::loadWorld(String fileName)
 {
+	clear();
+
 	const CSV csv{ fileName };
 	if (!csv)
 	{
+		Console << fileName;
 		return;
 	}
 
@@ -95,6 +98,12 @@ void World::loadWorld(String fileName)
 				String text = csv[row][3];
 				addObject(std::make_shared<Text>(pos, *this, text));
 			}
+			else if (csv[row][1] == U"WarpPoint")
+			{
+				Vec2 pos = Parse<Vec2>(csv[row][2]);
+				String fileName = csv[row][3];
+				addObject(std::make_shared<WarpPoint>(pos, *this, fileName));
+			}
 
 		}
 	}
@@ -159,6 +168,12 @@ void World::saveWorld(String fileName)
 			csv.write(gravityLineHorizontal->pos.asPoint());
 			csv.write(gravityLineHorizontal->length);
 		}
+		else if (auto gravityLineVertical = std::dynamic_pointer_cast<GravityLineVertical>(object))
+		{
+			csv.write(U"GravityLineVertical");
+			csv.write(gravityLineVertical->pos.asPoint());
+			csv.write(gravityLineVertical->length);
+		}
 		else if (auto startPoint = std::dynamic_pointer_cast<StartPoint>(object))
 		{
 			csv.write(U"StartPoint");
@@ -174,6 +189,12 @@ void World::saveWorld(String fileName)
 			csv.write(U"Text");
 			csv.write(text->pos.asPoint());
 			csv.write(text->text);
+		}
+		else if (auto warpPoint = std::dynamic_pointer_cast<WarpPoint>(object))
+		{
+			csv.write(U"WarpPoint");
+			csv.write(warpPoint->pos.asPoint());
+			csv.write(warpPoint->fileName);
 		}
 
 		csv.newLine();
@@ -203,13 +224,16 @@ void World::restart()
 
 void World::init()
 {
-	for (auto& object : objects)
+	if (not objects.isEmpty())
 	{
-		object->restart();
-
-		if (auto startPoint = std::dynamic_pointer_cast<StartPoint>(object))
+		for (auto& object : objects)
 		{
-			player.respawnPos = startPoint->pos;
+			object->restart();
+
+			if (auto startPoint = std::dynamic_pointer_cast<StartPoint>(object))
+			{
+				player.respawnPos = startPoint->pos;
+			}
 		}
 	}
 

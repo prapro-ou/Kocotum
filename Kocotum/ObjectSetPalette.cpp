@@ -9,6 +9,7 @@ ObjectSetPalette::ObjectSetPalette(Vec2 pos, uint32 width, uint32 height)
 	, jumpToggle{ RadioButtons{ pos + Vec2{ 240, 200 }, { U"出現", U"消滅" }, indexJumpToggle } }
 	, length{ SpinBox(pos + Vec2{ 120, 300 }, 150, 40, 5, U"64") }
 	, text{ TextBox(pos + Vec2{ 120, 350 }, 400, 20, U"Text") }
+	, fileName{ U"" }
 {
 	// コンストラクタの初期化
 }
@@ -53,6 +54,11 @@ void ObjectSetPalette::loadSettings(std::shared_ptr<Object>& object)
 	if (auto objectText = std::dynamic_pointer_cast<Text>(object))
 	{
 		text.setText(objectText->text);
+	}
+
+	if (auto warpPoint = std::dynamic_pointer_cast<WarpPoint>(object))
+	{
+		fileName = warpPoint->fileName;
 	}
 }
 
@@ -112,6 +118,21 @@ void ObjectSetPalette::update(std::shared_ptr<Object>& object)
 		objectText->text = text.getText();
 		objectText->update();
 	}
+
+	if (SimpleGUI::Button(U"ファイル読み込み", pos + Vec2{ 50, 400 }))
+	{
+		// ファイル選択ダイアログを開く
+		Optional<FilePath> path = Dialog::OpenFile({ FileFilter::CSV() });
+
+		if (path.has_value())
+		{
+			if (auto warpPoint = std::dynamic_pointer_cast<WarpPoint>(object))
+			{
+				warpPoint->fileName = FileSystem::FileName(*path);
+				fileName = FileSystem::FileName(*path);
+			}
+		}
+	}
 }
 
 void ObjectSetPalette::draw() const
@@ -126,6 +147,8 @@ void ObjectSetPalette::draw() const
 	jumpToggle.draw();
 	SimpleGUI::GetFont()(U"長さ").draw(pos + Vec2{ 0, 300 }, Palette::Black);
 	length.draw();
-	SimpleGUI::GetFont()(U"テキスト").draw(pos + Vec2{ 0, 400 }, Palette::Black);
+	SimpleGUI::GetFont()(U"テキスト").draw(pos + Vec2{ 0, 350 }, Palette::Black);
 	text.draw();
+	SimpleGUI::Button(U"ファイル読み込み", pos + Vec2{ 50, 400 });
+	SimpleGUI::GetFont()(U"ファイル:" + fileName).draw(pos + Vec2{ 0, 450 }, Palette::Black);
 }

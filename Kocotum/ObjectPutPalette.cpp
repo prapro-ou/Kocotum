@@ -12,6 +12,7 @@ ObjectPutPalette::ObjectPutPalette(Vec2 pos, uint32 width, uint32 height)
     SelectObjectWindow layout{ Vec2{ 0, 0 }, U"レイアウト" };
 	layout.addObject(std::make_shared<StartPoint>(pos, world));
 	layout.addObject(std::make_shared<SavePoint>(pos, world));
+	layout.addObject(std::make_shared<WarpPoint>(pos, world));
 
     // 床・足場ウィンドウの作成と初期化
     SelectObjectWindow floor{ Vec2{ 0, 0 }, U"床・足場" };

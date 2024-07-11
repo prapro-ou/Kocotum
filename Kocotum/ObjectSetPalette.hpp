@@ -36,6 +36,9 @@ public:
 	/// @brief テキスト設定用のTextBox
 	TextBox text;
 
+	/// @brief ワープポイント用のファイル名
+	String fileName;
+
 	/// @brief コンストラクタ
 	/// @param pos パレットの位置
 	/// @param width パレットの幅

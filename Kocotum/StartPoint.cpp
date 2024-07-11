@@ -46,5 +46,5 @@ void StartPoint::update()
 
 void StartPoint::draw() const
 {
-	body.draw(ColorF(0.25, 0.5, 0.5, 0.25));
+	TextureAsset(U"StartPoint").resized(CHIP_SIZE).draw(pos);
 }

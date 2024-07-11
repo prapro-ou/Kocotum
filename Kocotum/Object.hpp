@@ -21,6 +21,7 @@ enum class E_ObjectType : uint16
 	SavePoint, /// セーブポイント
 	Text, /// ゲーム内に表示するテキスト
 	Image, /// ゲーム内に表示する画像
+	WarpPoint, /// ワープポイント
 };
 
 

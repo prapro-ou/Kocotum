@@ -34,7 +34,6 @@ Object,Wall,"(0, 192)"
 Object,Wall,"(0, 128)"
 Object,Wall,"(0, 64)"
 Object,Wall,"(0, 0)"
-Object,StartPoint,"(192, 640)"
 Object,Wall,"(1344, 832)"
 Object,Wall,"(1408, 832)"
 Object,Wall,"(1472, 832)"
@@ -1640,3 +1639,6 @@ Object,Text,"(4480, 384)",ジャンプ力が変わる
 Object,Text,"(3392, 896)",↓↓↓↓↓↓↓
 Object,Needle,"(5760, 1088)",0
 Object,Needle,"(5184, 1088)",0
+Object,StartPoint,"(192, 768)"
+Object,WarpPoint,"(6144, 256)",test.csv
+Object,WarpPoint,"(448, 768)",test.csv

@@ -139,6 +139,7 @@
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="TextBox.cpp" />
     <ClCompile Include="Wall.cpp" />
+    <ClCompile Include="WarpPoint.cpp" />
     <ClCompile Include="World.cpp" />
     <ClCompile Include="WorldEditPalette.cpp" />
   </ItemGroup>
@@ -369,6 +370,7 @@
     <ClInclude Include="Text.hpp" />
     <ClInclude Include="TextBox.hpp" />
     <ClInclude Include="Wall.hpp" />
+    <ClInclude Include="WarpPoint.hpp" />
     <ClInclude Include="World.hpp" />
     <ClInclude Include="WorldEditPalette.hpp" />
   </ItemGroup>

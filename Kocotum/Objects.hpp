@@ -6,3 +6,4 @@
 # include "StartPoint.hpp"
 # include "SavePoint.hpp"
 # include "Text.hpp"
+# include "WarpPoint.hpp"
