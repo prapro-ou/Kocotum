@@ -4,31 +4,25 @@
  /// オブジェクトのサイズを定義
 const Vec2 CHIP_SIZE = Vec2{ 64, 64 };
 
-/// @name オブジェクトの属性を表すビットフラグ
-///@{
-const uint16 isWall = 0b00000100;
-const uint16 isNeedle = 0b00001000;
-const uint16 isJumpToggle = 0b00010000;
-const uint16 hasLength = 0b00100000;
-///@}
 
 /// @brief オブジェクトの種類を表す列挙型
 enum class E_ObjectType : uint16
 {
-	Wall					= 0b00000100, /// 壁
-	JumpToggleWall			= 0b00010100, /// ジャンプで切り替わる壁
-	Needle					= 0b00001000, /// 針
-	MiniNeedle				= 0b00001001, /// 小さい針
-	JumpToggleNeedle		= 0b00011000, /// ジャンプで切り替わる針
-	GravityLineHorizontal	= 0b00100000, /// 水平重力線
-	GravityLineVertical		= 0b00100001, /// 垂直重力線
-	MoveFloorHorizontal		= 0b01100000, /// 水平移動床
-	MoveFloorVertical		= 0b01100001, /// 垂直移動床
-	StartPoint				= 0b10000000, /// スタート地点
-	SavePoint				= 0b10000001, /// セーブポイント
-	Text					= 0b10000010, /// ゲーム内に表示するテキスト
-	Image					= 0b10000011, /// ゲーム内に表示する画像
+	Wall, /// 壁
+	JumpToggleWall, /// ジャンプで切り替わる壁
+	Needle, /// 針
+	MiniNeedle, /// 小さい針
+	JumpToggleNeedle, /// ジャンプで切り替わる針
+	GravityLineHorizontal, /// 水平重力線
+	GravityLineVertical, /// 垂直重力線
+	MoveFloorHorizontal, /// 水平移動床
+	MoveFloorVertical, /// 垂直移動床
+	StartPoint, /// スタート地点
+	SavePoint, /// セーブポイント
+	Text, /// ゲーム内に表示するテキスト
+	Image, /// ゲーム内に表示する画像
 };
+
 
 /// @brief 方向を表す列挙型
 enum class E_Direction : uint16
@@ -46,7 +40,7 @@ class World;
 struct Object
 {
 	Vec2 pos;               /// オブジェクトの位置
-	World& world;         /// プレイヤー参照
+	World& world;			/// プレイヤー参照
 	E_ObjectType type;      /// オブジェクトの種類
 	String name;            /// オブジェクトの名前
 

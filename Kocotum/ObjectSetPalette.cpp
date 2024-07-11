@@ -16,46 +16,38 @@ ObjectSetPalette::ObjectSetPalette(Vec2 pos, uint32 width, uint32 height)
 void ObjectSetPalette::loadSettings(std::shared_ptr<Object>& object)
 {
 	// 針オブジェクトの設定を読み込む
-	if ((uint16)object->type & isNeedle)
+	if (auto needle = std::dynamic_pointer_cast<Needle>(object))
 	{
-		if (auto needle = std::dynamic_pointer_cast<Needle>(object))
-		{
-			indexDirection = (size_t)needle->direction;
-		}
-		else if (auto miniNeedle = std::dynamic_pointer_cast<MiniNeedle>(object))
-		{
-			indexDirection = (size_t)miniNeedle->direction;
-		}
-		else if (auto jumpToggleNeedle = std::dynamic_pointer_cast<JumpToggleNeedle>(object))
-		{
-			indexDirection = (size_t)jumpToggleNeedle->direction;
-		}
+		indexDirection = (size_t)needle->direction;
+	}
+	else if (auto miniNeedle = std::dynamic_pointer_cast<MiniNeedle>(object))
+	{
+		indexDirection = (size_t)miniNeedle->direction;
+	}
+	else if (auto jumpToggleNeedle = std::dynamic_pointer_cast<JumpToggleNeedle>(object))
+	{
+		indexDirection = (size_t)jumpToggleNeedle->direction;
 	}
 
 	// ジャンプ切り替えオブジェクトの設定を読み込む
-	if ((uint16)object->type & isJumpToggle)
+	if (auto jumpToggleWall = std::dynamic_pointer_cast<JumpToggleWall>(object))
 	{
-		if (auto jumpToggleWall = std::dynamic_pointer_cast<JumpToggleWall>(object))
-		{
-			indexJumpToggle = not jumpToggleWall->init;
-		}
-		else if (auto jumpToggleNeedle = std::dynamic_pointer_cast<JumpToggleNeedle>(object))
-		{
-			indexJumpToggle = not jumpToggleNeedle->init;
-		}
+		indexJumpToggle = not jumpToggleWall->init;
+	}
+	else if (auto jumpToggleNeedle = std::dynamic_pointer_cast<JumpToggleNeedle>(object))
+	{
+		indexJumpToggle = not jumpToggleNeedle->init;
 	}
 
+
 	// 長さを持つオブジェクトの設定を読み込む
-	if ((uint16)object->type & hasLength)
+	if (auto gravityLineHorizontal = std::dynamic_pointer_cast<GravityLineHorizontal>(object))
 	{
-		if (auto gravityLineHorizontal = std::dynamic_pointer_cast<GravityLineHorizontal>(object))
-		{
-			length.setValue((int)gravityLineHorizontal->length / CHIP_SIZE.x);
-		}
-		else if (auto gravityLineVertical = std::dynamic_pointer_cast<GravityLineVertical>(object))
-		{
-			length.setValue((int)gravityLineVertical->length / CHIP_SIZE.y);
-		}
+		length.setValue((int)gravityLineHorizontal->length / CHIP_SIZE.x);
+	}
+	else if (auto gravityLineVertical = std::dynamic_pointer_cast<GravityLineVertical>(object))
+	{
+		length.setValue((int)gravityLineVertical->length / CHIP_SIZE.y);
 	}
 
 	if (auto objectText = std::dynamic_pointer_cast<Text>(object))
@@ -67,57 +59,50 @@ void ObjectSetPalette::loadSettings(std::shared_ptr<Object>& object)
 void ObjectSetPalette::update(std::shared_ptr<Object>& object)
 {
 	// 針オブジェクトの更新
-	direction.setEnable((uint16)object->type & isNeedle);
+	direction.setEnable(true);
 	direction.update();
 
-	if ((uint16)object->type & isNeedle)
+	if (auto needle = std::dynamic_pointer_cast<Needle>(object))
 	{
-		if (auto needle = std::dynamic_pointer_cast<Needle>(object))
-		{
-			needle->setDirection((E_Direction)indexDirection);
-		}
-		else if (auto miniNeedle = std::dynamic_pointer_cast<MiniNeedle>(object))
-		{
-			miniNeedle->setDirection((E_Direction)indexDirection);
-		}
-		else if (auto jumpToggleNeedle = std::dynamic_pointer_cast<JumpToggleNeedle>(object))
-		{
-			jumpToggleNeedle->setDirection((E_Direction)indexDirection);
-		}
+		needle->setDirection((E_Direction)indexDirection);
 	}
+	else if (auto miniNeedle = std::dynamic_pointer_cast<MiniNeedle>(object))
+	{
+		miniNeedle->setDirection((E_Direction)indexDirection);
+	}
+	else if (auto jumpToggleNeedle = std::dynamic_pointer_cast<JumpToggleNeedle>(object))
+	{
+		jumpToggleNeedle->setDirection((E_Direction)indexDirection);
+	}
+
 
 	// ジャンプ切り替えオブジェクトの更新
-	jumpToggle.setEnable((uint16)object->type & isJumpToggle);
+	jumpToggle.setEnable(true);
 	jumpToggle.update();
 
-	if ((uint16)object->type & isJumpToggle)
+	if (auto jumpToggleWall = std::dynamic_pointer_cast<JumpToggleWall>(object))
 	{
-		if (auto jumpToggleWall = std::dynamic_pointer_cast<JumpToggleWall>(object))
-		{
-			jumpToggleWall->setInit(not (bool)indexJumpToggle);
-		}
-		else if (auto jumpToggleNeedle = std::dynamic_pointer_cast<JumpToggleNeedle>(object))
-		{
-			jumpToggleNeedle->setInit(not (bool)indexJumpToggle);
-		}
+		jumpToggleWall->setInit(not (bool)indexJumpToggle);
+	}
+	else if (auto jumpToggleNeedle = std::dynamic_pointer_cast<JumpToggleNeedle>(object))
+	{
+		jumpToggleNeedle->setInit(not (bool)indexJumpToggle);
 	}
 
+
 	// 長さを持つオブジェクトの更新
-	length.setEnable((uint16)object->type & hasLength);
+	length.setEnable(true);
 	length.update();
 
-	if ((uint16)object->type & hasLength)
+	if (auto gravityLineHorizontal = std::dynamic_pointer_cast<GravityLineHorizontal>(object))
 	{
-		if (auto gravityLineHorizontal = std::dynamic_pointer_cast<GravityLineHorizontal>(object))
-		{
-			gravityLineHorizontal->length = length.getValue() * CHIP_SIZE.x;
-			gravityLineHorizontal->update();
-		}
-		else if (auto gravityLineVertical = std::dynamic_pointer_cast<GravityLineVertical>(object))
-		{
-			gravityLineVertical->length = length.getValue() * CHIP_SIZE.y;
-			gravityLineVertical->update();
-		}
+		gravityLineHorizontal->length = length.getValue() * CHIP_SIZE.x;
+		gravityLineHorizontal->update();
+	}
+	else if (auto gravityLineVertical = std::dynamic_pointer_cast<GravityLineVertical>(object))
+	{
+		gravityLineVertical->length = length.getValue() * CHIP_SIZE.y;
+		gravityLineVertical->update();
 	}
 
 	text.update();
