@@ -22,6 +22,7 @@ enum class E_ObjectType : uint16
 	Text, /// ゲーム内に表示するテキスト
 	Image, /// ゲーム内に表示する画像
 	WarpPoint, /// ワープポイント
+	OneWayFloor, /// 足場
 };
 
 

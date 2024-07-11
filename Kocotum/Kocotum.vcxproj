@@ -117,6 +117,7 @@
   <ItemGroup>
     <ClCompile Include="CameraSetPalette.cpp" />
     <ClCompile Include="Edit.cpp" />
+    <ClCompile Include="OneWayFloor.cpp" />
     <ClCompile Include="GameCamera.cpp" />
     <ClCompile Include="GravityLine.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -350,6 +351,7 @@
     <ClInclude Include="CameraSetPalette.hpp" />
     <ClInclude Include="Edit.hpp" />
     <ClInclude Include="Effect.hpp" />
+    <ClInclude Include="OneWayFloor.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GameCamera.hpp" />
     <ClInclude Include="GameData.hpp" />

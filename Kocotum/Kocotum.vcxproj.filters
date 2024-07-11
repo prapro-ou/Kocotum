@@ -237,6 +237,9 @@
     <ClCompile Include="WarpPoint.cpp">
       <Filter>Source Files\Object</Filter>
     </ClCompile>
+    <ClCompile Include="OneWayFloor.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -975,6 +978,9 @@
       <Filter>Header Files\Object</Filter>
     </ClInclude>
     <ClInclude Include="WarpPoint.hpp">
+      <Filter>Header Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="OneWayFloor.hpp">
       <Filter>Header Files\Object</Filter>
     </ClInclude>
   </ItemGroup>

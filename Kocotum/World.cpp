@@ -106,6 +106,11 @@ void World::loadWorld(String fileName)
 				String fileName = csv[row][3];
 				addObject(std::make_shared<WarpPoint>(pos, *this, fileName));
 			}
+			else if (csv[row][1] == U"OneWayFloor")
+			{
+				Vec2 pos = Parse<Vec2>(csv[row][2]);
+				addObject(std::make_shared<OneWayFloor>(pos, *this));
+			}
 		}
 	}
 }
@@ -196,6 +201,11 @@ void World::saveWorld(String fileName)
 			csv.write(U"WarpPoint");
 			csv.write(warpPoint->pos.asPoint());
 			csv.write(warpPoint->fileName);
+		}
+		else if (auto oneWayFloor = std::dynamic_pointer_cast<OneWayFloor>(object))
+		{
+			csv.write(U"OneWayFloor");
+			csv.write(oneWayFloor->pos.asPoint());
 		}
 
 		csv.newLine();

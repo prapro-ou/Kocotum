@@ -5,7 +5,7 @@ ObjectSetPalette::ObjectSetPalette(Vec2 pos, uint32 width, uint32 height)
 	, body{ RectF{pos, width, height} }
 	, indexDirection{ size_t(0) }
 	, indexJumpToggle{ size_t(0) }
-	, direction{ RadioButtons{ pos + Vec2{ 120, 100 }, { U"上", U"右", U"下", U"左" }, indexDirection} }
+	, direction{ RadioButtons{ pos + Vec2{ 120, 100 }, { U"↑", U"→", U"↓", U"←" }, indexDirection} }
 	, jumpToggle{ RadioButtons{ pos + Vec2{ 240, 200 }, { U"出現", U"消滅" }, indexJumpToggle } }
 	, length{ SpinBox(pos + Vec2{ 120, 300 }, 150, 40, 5, U"64") }
 	, text{ TextBox(pos + Vec2{ 120, 350 }, 400, 20, U"Text") }

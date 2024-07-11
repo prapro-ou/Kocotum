@@ -22,7 +22,8 @@ void Main()
 	TextureAsset::Register(U"JumpToggleNeedle", U"JumpToggleNeedle.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"JumpToggleNeedleAlpha", U"JumpToggleNeedleAlpha.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"StartPoint", U"StartPoint.png", TextureDesc::Mipped);
-	TextureAsset::Register(U"WarpPoint", U"WarpPoint.gif");
+	TextureAsset::Register(U"OneWayFloor", U"OneWayFloor.png", TextureDesc::Mipped);
+
 
 
 	App manager;

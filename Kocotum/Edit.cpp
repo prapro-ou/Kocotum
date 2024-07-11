@@ -99,6 +99,9 @@ void Edit::createObject(Vec2 pos)
 	case E_ObjectType::WarpPoint:
 		getData().world.addObject(std::make_shared<WarpPoint>(pos, getData().world));
 		break;
+	case E_ObjectType::OneWayFloor:
+		getData().world.addObject(std::make_shared<OneWayFloor>(pos, getData().world));
+		break;
 	}
 }
 
