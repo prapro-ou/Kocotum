@@ -2,6 +2,8 @@
 
 World::World(Vec2 pos)
 	: player{ Player{ pos } }
+	, causeWarp{ false }
+	, warpFileName{ U"" }
 { }
 
 
@@ -239,6 +241,13 @@ void World::init()
 	deathSw.reset();
 }
 
+void World::warp()
+{
+	loadWorld(warpFileName);
+	update();
+	init();
+}
+
 void World::update()
 {
 	// オブジェクトの更新
@@ -256,6 +265,12 @@ void World::update()
 
 	// カメラの更新
 	camera.update(player);
+
+	if (causeWarp)
+	{
+		causeWarp = false;
+		warp();
+	}
 }
 
 void World::draw() const

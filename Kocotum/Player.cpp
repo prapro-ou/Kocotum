@@ -63,6 +63,7 @@ void Player::updatePositionX(Array<std::shared_ptr<Object>>& objects)
 		if (object->intersectsPlayer())
 		{
 			object->handleCollisionX();
+			if (object->type == E_ObjectType::WarpPoint) return;
 		}
 	}
 }
@@ -80,6 +81,7 @@ void Player::updatePositionY(Array<std::shared_ptr<Object>>& objects)
 		if (object->intersectsPlayer())
 		{
 			object->handleCollisionY();
+			if (object->type == E_ObjectType::WarpPoint) return;
 		}
 	}
 }

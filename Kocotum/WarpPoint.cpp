@@ -34,9 +34,8 @@ void WarpPoint::handleCollisionX()
 {
 	if (not isTouched)
 	{
-		world.loadWorld(fileName);
-		System::Sleep(100ms);
-		world.init();
+		world.causeWarp = true;
+		world.warpFileName = fileName;
 
 		isTouched = true;
 	}
@@ -46,9 +45,8 @@ void WarpPoint::handleCollisionY()
 {
 	if (not isTouched)
 	{
-		world.loadWorld(fileName);
-		System::Sleep(100ms);
-		world.init();
+		world.causeWarp = true;
+		world.warpFileName = fileName;
 
 		isTouched = true;
 	}
@@ -64,5 +62,5 @@ void WarpPoint::update()
 
 void WarpPoint::draw() const
 {
-	body.draw(ColorF(0.25, 0.5, 0.5, 0.25));
+	TextureAsset(U"WarpPoint").resized(CHIP_SIZE).draw(pos);
 }

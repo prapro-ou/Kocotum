@@ -21,6 +21,8 @@ public:
 	/// @brief カメラ
 	GameCamera camera;
 	Stopwatch deathSw;
+	bool causeWarp;
+	String warpFileName;
 
 	/**
 	 * @brief Worldクラスのコンストラクタ
@@ -55,6 +57,8 @@ public:
 	void restart();
 
 	void init();
+
+	void warp();
 
 	void killPlayer()
 	{
