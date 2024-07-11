@@ -12,6 +12,11 @@ struct WarpPoint : public Object
 	String fileName;
 	bool isTouched;
 
+	AnimatedGIFReader gif;
+	Array<Image> images;
+	Array<int32> delays;
+	Array<Texture> textures;
+
 	WarpPoint(Vec2 pos, World& world, String fileName = U"");
 
 	void restart() override;

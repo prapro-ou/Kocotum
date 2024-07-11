@@ -5,7 +5,15 @@ WarpPoint::WarpPoint(Vec2 pos, World& world, String fileName)
 	, body{ RectF{ pos, CHIP_SIZE } }
 	, fileName{ fileName }
 	, isTouched{ false }
-{ }
+	, gif{ AnimatedGIFReader{ U"WarpPoint.gif" } }
+{
+	gif.read(images, delays);
+	for (const auto& image : images)
+	{
+		textures << Texture{ image };
+	}
+	images.clear();
+}
 
 
 void WarpPoint::restart()
@@ -62,5 +70,6 @@ void WarpPoint::update()
 
 void WarpPoint::draw() const
 {
-	TextureAsset(U"WarpPoint").resized(CHIP_SIZE).draw(pos);
+	const size_t frameIndex = AnimatedGIFReader::GetFrameIndex(Scene::Time(), delays);
+	if (textures) textures[frameIndex].resized(CHIP_SIZE).draw(pos);
 }
