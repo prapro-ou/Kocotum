@@ -19,7 +19,7 @@ Edit::Edit(const InitData& init)
 {
 	// グリッドの初期化
 	grid.clear();
-	grid.resize(100, 100);
+	grid.resize(200, 200);
 
 	for (int y = 0; y < grid.height(); y++)
 	{
@@ -199,7 +199,7 @@ void Edit::placeOrRemoveObjects()
 	}
 
 	// マウス右ボタンが押された場合、オブジェクトを削除
-	getData().world.objects.remove_if([](std::shared_ptr<Object> n) { return n->mouseOver() and MouseR.down(); });
+	getData().world.objects.remove_if([](std::shared_ptr<Object> n) { return n->mouseOver() and MouseR.pressed(); });
 }
 
 /**
@@ -235,7 +235,7 @@ void Edit::selectAndUpdateObject()
 	}
 
 	// マウス右ボタンが押された場合、オブジェクトを削除
-	getData().world.objects.remove_if([](std::shared_ptr<Object> n) { return n->mouseOver() and MouseR.down(); });
+	getData().world.objects.remove_if([](std::shared_ptr<Object> n) { return n->mouseOver() and MouseR.pressed(); });
 }
 
 /**
