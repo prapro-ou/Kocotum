@@ -52,9 +52,9 @@ double ObjectPutPalette::getWindowsHeight()
 	return result;
 }
 
-Optional<E_ObjectType> ObjectPutPalette::getClickedType()
+Optional<std::shared_ptr<Object>> ObjectPutPalette::getClickedType()
 {
-    Optional<E_ObjectType> result;
+    Optional<std::shared_ptr<Object>> result;
 
     {
         // パレットの位置に合わせて座標変換

@@ -5,27 +5,6 @@
 const Vec2 CHIP_SIZE = Vec2{ 64, 64 };
 
 
-/// @brief オブジェクトの種類を表す列挙型
-enum class E_ObjectType : uint16
-{
-	Wall, /// 壁
-	JumpToggleWall, /// ジャンプで切り替わる壁
-	Needle, /// 針
-	MiniNeedle, /// 小さい針
-	JumpToggleNeedle, /// ジャンプで切り替わる針
-	GravityLineHorizontal, /// 水平重力線
-	GravityLineVertical, /// 垂直重力線
-	MoveFloorHorizontal, /// 水平移動床
-	MoveFloorVertical, /// 垂直移動床
-	StartPoint, /// スタート地点
-	SavePoint, /// セーブポイント
-	Text, /// ゲーム内に表示するテキスト
-	Image, /// ゲーム内に表示する画像
-	WarpPoint, /// ワープポイント
-	OneWayFloor, /// 足場
-};
-
-
 /// @brief 方向を表す列挙型
 enum class E_Direction : uint16
 {
@@ -43,7 +22,6 @@ struct Object
 {
 	Vec2 pos;               /// オブジェクトの位置
 	World& world;			/// プレイヤー参照
-	E_ObjectType type;      /// オブジェクトの種類
 	String name;            /// オブジェクトの名前
 
 	/**
@@ -54,10 +32,9 @@ struct Object
 	 * @param type オブジェクトの種類
 	 * @param name オブジェクトの名前
 	 */
-	Object(Vec2 pos, World& world, E_ObjectType type, String name)
+	Object(Vec2 pos, World& world, String name)
 		: pos{ pos }
 		, world{ world }
-		, type{ type }
 		, name{ name }
 	{ }
 

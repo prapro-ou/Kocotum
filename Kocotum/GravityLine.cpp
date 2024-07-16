@@ -1,7 +1,7 @@
 ﻿#include "GravityLine.hpp"
 
 GravityLineHorizontal::GravityLineHorizontal(Vec2 pos, World& world, double length)
-	: Object{ pos, world, E_ObjectType::GravityLineHorizontal, U"重力線:横" }
+	: Object{ pos, world, U"重力線:横" }
 	, length{ length }
 	, mouseOverBody{ RectF{ pos, CHIP_SIZE } }
 	, body{ RectF{ pos + Vec2{ 0, CHIP_SIZE.y / 2 }, length, 5 } }
@@ -72,7 +72,7 @@ void GravityLineHorizontal::draw() const
 }
 
 GravityLineVertical::GravityLineVertical(Vec2 pos, World& world, double length)
-	: Object{ pos, world, E_ObjectType::GravityLineVertical, U"重力線:縦" }
+	: Object{ pos, world, U"重力線:縦" }
 	, length{ length }
 	, mouseOverBody{ RectF{ pos, CHIP_SIZE } }
 	, body{ RectF{ pos + Vec2{ CHIP_SIZE.x / 2, 0 }, 5, length } }

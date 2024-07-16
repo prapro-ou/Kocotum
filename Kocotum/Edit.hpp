@@ -96,7 +96,7 @@ private:
 	Camera2D camera;
 
 	/// @brief 選択されているオブジェクトタイプ
-	E_ObjectType selectObjectType;
+	std::shared_ptr<Object> selectObjectType;
 
 	/// @brief オブジェクト配置パレット
 	ObjectPutPalette putPalette;

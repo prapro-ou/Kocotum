@@ -1,7 +1,7 @@
 ﻿#include "StartPoint.hpp"
 
 StartPoint::StartPoint(Vec2 pos, World& world)
-	:Object{ pos, world, E_ObjectType::StartPoint, U"スタート位置" }
+	:Object{ pos, world, U"スタート位置" }
 	, body{ RectF{ pos, CHIP_SIZE } }
 { }
 

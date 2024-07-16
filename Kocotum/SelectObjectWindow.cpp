@@ -28,9 +28,9 @@ void SelectObjectWindow::addObject(std::shared_ptr<Object> object)
 	contentBox.h = 12 + 96 * ((int)objectBox.size() / 4 + 1);
 }
 
-Optional<E_ObjectType> SelectObjectWindow::getClickedType()
+Optional<std::shared_ptr<Object>> SelectObjectWindow::getClickedType()
 {
-	Optional<E_ObjectType> result;
+	Optional<std::shared_ptr<Object>> result;
 
 	if (isExpanded)
 	{
@@ -38,7 +38,7 @@ Optional<E_ObjectType> SelectObjectWindow::getClickedType()
 		{
 			if (objectBox[i].leftClicked())
 			{
-				result = objects[i]->type;
+				result = objects[i];
 			}
 		}
 	}

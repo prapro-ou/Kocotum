@@ -1,7 +1,7 @@
 ﻿#include "Text.hpp"
 
 Text::Text(Vec2 pos, World& world, String text)
-	:Object{ pos, world, E_ObjectType::Text, U"テキスト" }
+	:Object{ pos, world, U"テキスト" }
 	, body{ RectF{ pos, CHIP_SIZE } }
 	, text{ text }
 { }

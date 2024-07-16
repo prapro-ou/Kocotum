@@ -1,7 +1,7 @@
 ﻿#include "Wall.hpp"
 
 Wall::Wall(Vec2 pos, World& world)
-	: Object{ pos, world, E_ObjectType::Wall, U"壁" }
+	: Object{ pos, world, U"壁" }
 	, body{ RectF{ pos, CHIP_SIZE } }
 {
 }
@@ -93,7 +93,7 @@ void Wall::draw() const
 }
 
 JumpToggleWall::JumpToggleWall(Vec2 pos, World& world, bool init)
-	: Object{ pos, world, E_ObjectType::JumpToggleWall, U"ジャンプで切り替わる壁" }
+	: Object{ pos, world, U"ジャンプで切り替わる壁" }
 	, body{ RectF{ pos, CHIP_SIZE } }
 	, init{ init }
 	, isOn{ init }

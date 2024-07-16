@@ -1,7 +1,7 @@
 ﻿#include "OneWayFloor.hpp"
 
 OneWayFloor::OneWayFloor(Vec2 pos, World& world)
-	: Object{ pos, world, E_ObjectType::OneWayFloor, U"下から通れる足場" }
+	: Object{ pos, world, U"下から通れる足場" }
 	, body{ RectF{ pos, CHIP_SIZE.x, CHIP_SIZE.y / 4 } }
 	, mouseOverBody{ RectF{ pos, CHIP_SIZE } }
 {

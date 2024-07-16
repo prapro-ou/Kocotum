@@ -8,7 +8,7 @@
 Edit::Edit(const InitData& init)
 	: IScene{ init }
 	, camera{ Camera2D{ Scene::Center(), 1.0, CameraControl::Keyboard } }
-	, selectObjectType{ E_ObjectType::Wall }
+	, selectObjectType{ std::make_shared<Wall>(Vec2{ 100, 100 }, getData().world) }
 	, putPalette{ ObjectPutPalette{ Vec2{ 850, 120 } } }
 	, setPalette{ ObjectSetPalette{ Vec2{ 850, 120 } } }
 	, cameraPalette{ CameraSetPalette{ Vec2{ 850, 120 } } }
@@ -58,50 +58,53 @@ Edit::Edit(const InitData& init)
 void Edit::createObject(Vec2 pos)
 {
 	// 選択されたオブジェクトタイプに応じてオブジェクトを作成
-	switch (selectObjectType)
+	if (auto wall = std::dynamic_pointer_cast<Wall>(selectObjectType))
 	{
-	case E_ObjectType::Wall:
 		getData().world.addObject(std::make_shared<Wall>(pos, getData().world));
-		break;
-	case E_ObjectType::Needle:
-		getData().world.addObject(std::make_shared<Needle>(pos, getData().world));
-		break;
-	case E_ObjectType::MiniNeedle:
-		getData().world.addObject(std::make_shared<MiniNeedle>(pos, getData().world));
-		break;
-	case E_ObjectType::GravityLineHorizontal:
-		getData().world.addObject(std::make_shared<GravityLineHorizontal>(pos, getData().world));
-		break;
-	case E_ObjectType::GravityLineVertical:
-		getData().world.addObject(std::make_shared<GravityLineVertical>(pos, getData().world));
-		break;
-	case E_ObjectType::JumpToggleWall:
+	}
+	else if (auto jumpToggleWall = std::dynamic_pointer_cast<JumpToggleWall>(selectObjectType))
+	{
 		getData().world.addObject(std::make_shared<JumpToggleWall>(pos, getData().world));
-		break;
-	case E_ObjectType::JumpToggleNeedle:
+	}
+	else if (auto needle = std::dynamic_pointer_cast<Needle>(selectObjectType))
+	{
+		getData().world.addObject(std::make_shared<Needle>(pos, getData().world));
+	}
+	else if (auto miniNeedle = std::dynamic_pointer_cast<MiniNeedle>(selectObjectType))
+	{
+		getData().world.addObject(std::make_shared<MiniNeedle>(pos, getData().world));
+	}
+	else if (auto jumpToggleNeedle = std::dynamic_pointer_cast<JumpToggleNeedle>(selectObjectType))
+	{
 		getData().world.addObject(std::make_shared<JumpToggleNeedle>(pos, getData().world));
-		break;
-	case E_ObjectType::MoveFloorHorizontal:
-		//getData().world.addObject(std::make_shared<MoveFloorHorizontal>(pos, getData().world.effect, getData().world.player));
-		break;
-	case E_ObjectType::MoveFloorVertical:
-		//getData().world.addObject(std::make_shared<MoveFloorVertical>(pos, getData().world.effect, getData().world.player));
-		break;
-	case E_ObjectType::StartPoint:
+	}
+	else if (auto gravityLineHorizontal = std::dynamic_pointer_cast<GravityLineHorizontal>(selectObjectType))
+	{
+		getData().world.addObject(std::make_shared<GravityLineHorizontal>(pos, getData().world));
+	}
+	else if (auto gravityLineVertical = std::dynamic_pointer_cast<GravityLineVertical>(selectObjectType))
+	{
+		getData().world.addObject(std::make_shared<GravityLineVertical>(pos, getData().world));
+	}
+	else if (auto startPoint = std::dynamic_pointer_cast<StartPoint>(selectObjectType))
+	{
 		getData().world.addObject(std::make_shared<StartPoint>(pos, getData().world));
-		break;
-	case E_ObjectType::SavePoint:
+	}
+	else if (auto savePoint = std::dynamic_pointer_cast<SavePoint>(selectObjectType))
+	{
 		getData().world.addObject(std::make_shared<SavePoint>(pos, getData().world));
-		break;
-	case E_ObjectType::Text:
-		getData().world.addObject(std::make_shared<Text>(pos, getData().world, U"Text"));
-		break;
-	case E_ObjectType::WarpPoint:
+	}
+	else if (auto text = std::dynamic_pointer_cast<Text>(selectObjectType))
+	{
+		getData().world.addObject(std::make_shared<Text>(pos, getData().world));
+	}
+	else if (auto warpPoint = std::dynamic_pointer_cast<WarpPoint>(selectObjectType))
+	{
 		getData().world.addObject(std::make_shared<WarpPoint>(pos, getData().world));
-		break;
-	case E_ObjectType::OneWayFloor:
+	}
+	else if (auto oneWayFloor = std::dynamic_pointer_cast<OneWayFloor>(selectObjectType))
+	{
 		getData().world.addObject(std::make_shared<OneWayFloor>(pos, getData().world));
-		break;
 	}
 }
 

@@ -42,7 +42,7 @@ public:
 
 	/// @brief クリックされたオブジェクトタイプを取得する
 	/// @return クリックされたオブジェクトタイプ（Optional）
-	Optional<E_ObjectType> getClickedType();
+	Optional<std::shared_ptr<Object>> getClickedType();
 
 	/// @brief パレットの状態を更新する
 	void update();

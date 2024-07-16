@@ -1,7 +1,7 @@
 ﻿#include "Needle.hpp"
 
 Needle::Needle(Vec2 pos, World& world, E_Direction direction)
-	: Object{ pos, world, E_ObjectType::Needle, U"針" }
+	: Object{ pos, world, U"針" }
 	, direction{ direction }
 	, mouseOverBody{ RectF{ pos, CHIP_SIZE } }
 	, body{ Triangle{ Vec2{ 0, CHIP_SIZE.y }, Vec2{ CHIP_SIZE.x / 2, 0 }, Vec2{ CHIP_SIZE } } }
@@ -63,7 +63,7 @@ void Needle::draw() const
 
 
 MiniNeedle::MiniNeedle(Vec2 pos, World& world, E_Direction direction)
-	: Object{ pos, world, E_ObjectType::MiniNeedle, U"小さい針" }
+	: Object{ pos, world, U"小さい針" }
 	, mouseOverBody{ RectF{ pos, CHIP_SIZE } }
 	, direction{ direction }
 {
@@ -149,7 +149,7 @@ void MiniNeedle::draw() const
 }
 
 JumpToggleNeedle::JumpToggleNeedle(Vec2 pos, World& world, bool init, E_Direction direction)
-	: Object{ pos, world, E_ObjectType::JumpToggleNeedle, U"ジャンプで切り替わる針" }
+	: Object{ pos, world, U"ジャンプで切り替わる針" }
 	, direction{ direction }
 	, mouseOverBody{ RectF{ pos, CHIP_SIZE } }
 	, body{ Triangle{ Vec2{ 0, CHIP_SIZE.y }, Vec2{ CHIP_SIZE.x / 2, 0 }, Vec2{ CHIP_SIZE } } }

@@ -1,7 +1,7 @@
 ﻿#include "SavePoint.hpp"
 
 SavePoint::SavePoint(Vec2 pos, World& world)
-	:Object{ pos, world, E_ObjectType::SavePoint, U"セーブポイント" }
+	:Object{ pos, world, U"セーブポイント" }
 	, body{ RectF{ pos, CHIP_SIZE } }
 	, isTouched{ false }
 { }

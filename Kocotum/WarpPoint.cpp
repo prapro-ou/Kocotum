@@ -1,7 +1,7 @@
 ﻿#include "WarpPoint.hpp"
 
 WarpPoint::WarpPoint(Vec2 pos, World& world, String fileName)
-	:Object{ pos, world, E_ObjectType::WarpPoint, U"ワープポイント" }
+	:Object{ pos, world, U"ワープポイント" }
 	, body{ RectF{ pos, CHIP_SIZE } }
 	, fileName{ fileName }
 	, isTouched{ false }
