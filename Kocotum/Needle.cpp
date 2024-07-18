@@ -4,7 +4,7 @@ Needle::Needle(Vec2 pos, World& world, E_Direction direction)
 	: Object{ pos, world, U"針" }
 	, direction{ direction }
 	, mouseOverBody{ RectF{ pos, CHIP_SIZE } }
-	, body{ Triangle{ Vec2{ 0, CHIP_SIZE.y }, Vec2{ CHIP_SIZE.x / 2, 0 }, Vec2{ CHIP_SIZE } } }
+	, body{ Triangle{ Vec2{ 0.1, CHIP_SIZE.y }, Vec2{ CHIP_SIZE.x / 2, 0 }, Vec2{ CHIP_SIZE.x - 0.1, CHIP_SIZE.y } } }
 {
 	body.moveBy(pos);
 	body = body.rotatedAt(pos + CHIP_SIZE / 2, (uint8)direction * 90_deg);
@@ -68,10 +68,10 @@ MiniNeedle::MiniNeedle(Vec2 pos, World& world, E_Direction direction)
 	, direction{ direction }
 {
 	// 4つの小さな三角形を作成
-	body << Triangle{ Vec2{ 0, CHIP_SIZE.y }, Vec2{ CHIP_SIZE.x / 8.0, CHIP_SIZE.y * 3.0 / 4.0 }, Vec2{ CHIP_SIZE.x / 4.0, CHIP_SIZE.y } };
+	body << Triangle{ Vec2{ 0.1, CHIP_SIZE.y }, Vec2{ CHIP_SIZE.x / 8.0, CHIP_SIZE.y * 3.0 / 4.0 }, Vec2{ CHIP_SIZE.x / 4.0, CHIP_SIZE.y } };
 	body << Triangle{ Vec2{ CHIP_SIZE.x / 4.0, CHIP_SIZE.y }, Vec2{ CHIP_SIZE.x * 3.0 / 8.0, CHIP_SIZE.y * 3.0 / 4.0 }, Vec2{ CHIP_SIZE.x / 2.0, CHIP_SIZE.y } };
 	body << Triangle{ Vec2{ CHIP_SIZE.x / 2.0, CHIP_SIZE.y }, Vec2{ CHIP_SIZE.x * 5.0 / 8.0, CHIP_SIZE.y * 3.0 / 4.0 }, Vec2{ CHIP_SIZE.x * 3 / 4.0, CHIP_SIZE.y } };
-	body << Triangle{ Vec2{ CHIP_SIZE.x * 3.0 / 4.0, CHIP_SIZE.y }, Vec2{ CHIP_SIZE.x * 7.0 / 8.0, CHIP_SIZE.y * 3.0 / 4.0 }, Vec2{ CHIP_SIZE } };
+	body << Triangle{ Vec2{ CHIP_SIZE.x * 3.0 / 4.0, CHIP_SIZE.y }, Vec2{ CHIP_SIZE.x * 7.0 / 8.0, CHIP_SIZE.y * 3.0 / 4.0 }, Vec2{ CHIP_SIZE.x - 0.1, CHIP_SIZE.y } };
 
 	for (auto& b : body)
 	{
@@ -152,7 +152,7 @@ JumpToggleNeedle::JumpToggleNeedle(Vec2 pos, World& world, bool init, E_Directio
 	: Object{ pos, world, U"ジャンプで切り替わる針" }
 	, direction{ direction }
 	, mouseOverBody{ RectF{ pos, CHIP_SIZE } }
-	, body{ Triangle{ Vec2{ 0, CHIP_SIZE.y }, Vec2{ CHIP_SIZE.x / 2, 0 }, Vec2{ CHIP_SIZE } } }
+	, body{ Triangle{ Vec2{ 0.1, CHIP_SIZE.y }, Vec2{ CHIP_SIZE.x / 2, 0 }, Vec2{ CHIP_SIZE.x - 0.1, CHIP_SIZE.y } } }
 	, init{ init }
 	, isOn{ init }
 {

@@ -2,7 +2,7 @@
 
 OneWayFloor::OneWayFloor(Vec2 pos, World& world)
 	: Object{ pos, world, U"下から通れる足場" }
-	, body{ RectF{ pos, CHIP_SIZE.x, CHIP_SIZE.y / 4 } }
+	, body{ RectF{ pos, CHIP_SIZE.x, CHIP_SIZE.y / 2 } }
 	, mouseOverBody{ RectF{ pos, CHIP_SIZE } }
 {
 }
