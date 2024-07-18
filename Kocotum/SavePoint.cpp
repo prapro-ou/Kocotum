@@ -34,6 +34,8 @@ void SavePoint::handleCollisionX()
 	if (not isTouched)
 	{
 		world.savePlayer(pos);
+		world.effect.add<EXEffect>(body.center());
+		world.effect.add<SavedEffect>(world.player.body.center());
 		isTouched = true;
 	}
 }
@@ -43,6 +45,8 @@ void SavePoint::handleCollisionY()
 	if (not isTouched)
 	{
 		world.savePlayer(pos);
+		world.effect.add<EXEffect>(body.center());
+		world.effect.add<SavedEffect>(world.player.body.center());
 		isTouched = true;
 	}
 }
@@ -57,5 +61,5 @@ void SavePoint::update()
 
 void SavePoint::draw() const
 {
-	TextureAsset(U"SavePoint").resized(CHIP_SIZE).draw(pos + Vec2{ 0, Periodic::Sine1_1(2s) * CHIP_SIZE.y / 16 }, (isTouched ? Palette::Mediumspringgreen : Palette::Lightskyblue));
+	TextureAsset(U"SavePoint").resized(CHIP_SIZE.x, CHIP_SIZE.y * 1.5).draw(pos + Vec2{0, Periodic::Sine1_1(2s) * CHIP_SIZE.y / 16 - CHIP_SIZE.y / 4}, (isTouched ? Palette::Mediumspringgreen : Palette::Lightskyblue));
 }

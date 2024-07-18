@@ -59,7 +59,7 @@ void MoveFloor::handleCollisionY()
 			world.player.jumpNum = 0;
 			world.player.isOnGround = true;
 
-			world.player.pos += diff;
+			world.player.pos.x += diff.x;
 
 			world.player.velocity.y = 0.01;
 		}
@@ -73,7 +73,7 @@ void MoveFloor::handleCollisionY()
 			world.player.jumpNum = 0;
 			world.player.isOnGround = true;
 
-			world.player.pos += diff;
+			world.player.pos.x += diff.x;
 
 			world.player.velocity.y = 0.01;
 		}
@@ -94,6 +94,12 @@ void MoveFloor::update()
 	{
 		move.x = Periodic::Sine0_1(4s) * length * ((uint16)direction >= 2 ? -1 : 1);
 	}
+	// 偶数の時(上か下)
+	else
+	{
+		move.y = Periodic::Sine0_1(4s) * length * ((uint16)direction <= 2 ? -1 : 1);
+	}
+
 	pos = basePos + move;
 	body.setPos(pos);
 

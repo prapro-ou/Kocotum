@@ -1641,4 +1641,4 @@ Object,Needle,"(5760, 1088)",0
 Object,Needle,"(5184, 1088)",0
 Object,StartPoint,"(192, 768)"
 Object,WarpPoint,"(6144, 256)",test.csv
-Object,OneWayFloor,"(6144, 320)"
+Object,MoveFloor,"(6144, 320)",0,0
