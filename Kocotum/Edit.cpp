@@ -106,6 +106,10 @@ void Edit::createObject(Vec2 pos)
 	{
 		getData().world.addObject(std::make_shared<OneWayFloor>(pos, getData().world));
 	}
+	else if (auto moveFloor = std::dynamic_pointer_cast<MoveFloor>(selectObjectType))
+	{
+		getData().world.addObject(std::make_shared<MoveFloor>(pos, getData().world));
+	}
 }
 
 /**

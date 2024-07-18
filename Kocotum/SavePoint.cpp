@@ -57,5 +57,5 @@ void SavePoint::update()
 
 void SavePoint::draw() const
 {
-	body.draw(ColorF(0.5, 0.5, 0.25, 0.25));
+	TextureAsset(U"SavePoint").resized(CHIP_SIZE).draw(pos + Vec2{ 0, Periodic::Sine1_1(2s) * CHIP_SIZE.y / 16 }, (isTouched ? Palette::Mediumspringgreen : Palette::Lightskyblue));
 }

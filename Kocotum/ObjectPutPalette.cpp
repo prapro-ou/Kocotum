@@ -19,6 +19,7 @@ ObjectPutPalette::ObjectPutPalette(Vec2 pos, uint32 width, uint32 height)
     floor.addObject(std::make_shared<Wall>(pos, world));
     floor.addObject(std::make_shared<JumpToggleWall>(pos, world));
 	floor.addObject(std::make_shared<OneWayFloor>(pos, world));
+	floor.addObject(std::make_shared<MoveFloor>(pos, world));
 
     // トラップウィンドウの作成と初期化
     SelectObjectWindow trap{ Vec2{ 0, 0 }, U"トラップ" };
