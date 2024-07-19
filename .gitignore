@@ -380,3 +380,6 @@ FodyWeavers.xsd
 /Kocotum/App/concat.exe
 /Kocotum/App/result.txt
 /Kocotum/App/IceWall.png
+/Kocotum/App/idle.gif
+/Kocotum/App/jumpDown.gif
+/Kocotum/App/move.gif
