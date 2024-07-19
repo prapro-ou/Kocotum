@@ -306,3 +306,101 @@ void IceWall::draw() const
 	// 壁のテクスチャを描画
 	TextureAsset(U"IceWall").resized(CHIP_SIZE).draw(pos);
 }
+
+SpeedWall::SpeedWall(Vec2 pos, World& world)
+	: Object{ pos, world, U"乗ると加速する壁" }
+	, body{ RectF{ pos, CHIP_SIZE } }
+{
+}
+
+void SpeedWall::restart()
+{
+	// 再起動時の処理（現在は何もしない）
+}
+
+bool SpeedWall::intersectsPlayer()
+{
+	return body.intersects(world.player.body);
+}
+
+bool SpeedWall::mouseOver()
+{
+	return body.mouseOver();
+}
+
+void SpeedWall::setPos(Vec2 pos)
+{
+	this->pos = pos;
+	body.setPos(pos);
+}
+
+void SpeedWall::handleCollisionX()
+{
+	// プレイヤーとの水平方向の衝突処理
+	if (world.player.velocity.x > 0)
+	{
+		// 右方向に進行中の場合
+		world.player.pos.x = pos.x - world.player.body.w;
+	}
+	else
+	{
+		// 左方向に進行中の場合
+		world.player.pos.x = pos.x + CHIP_SIZE.x;
+	}
+
+	world.player.maxSpeed = 700;
+	world.player.friction = 0.01;
+	world.player.velocity.x = 0;
+	world.player.body.setPos(world.player.pos);
+}
+
+void SpeedWall::handleCollisionY()
+{
+	// プレイヤーとの垂直方向の衝突処理
+	if (world.player.isGravityReverse)
+	{
+		// 重力反転時の処理
+		if (world.player.velocity.y > 0)
+		{
+			world.player.pos.y = pos.y + CHIP_SIZE.y;
+			world.player.jumpNum = 0;
+			world.player.isOnGround = true;
+		}
+		else
+		{
+			world.player.pos.y = pos.y - world.player.body.h;
+		}
+	}
+	else
+	{
+		// 通常重力時の処理
+		if (world.player.velocity.y > 0)
+		{
+			world.player.pos.y = pos.y - world.player.body.h;
+			world.player.jumpNum = 0;
+			world.player.isOnGround = true;
+		}
+		else
+		{
+			world.player.pos.y = pos.y + CHIP_SIZE.y;
+		}
+	}
+
+	world.player.gif.setActiveKey(U"move");
+	world.player.maxSpeed = 700;
+	world.player.friction = 0.01;
+	world.player.velocity.x = (world.player.isFacingRight ? 1 : -1) * 700;
+	world.player.velocity.y = 0.01;
+	world.player.body.setPos(world.player.pos);
+}
+
+void SpeedWall::update()
+{
+	// 更新処理（現在は何もしない）
+}
+
+void SpeedWall::draw() const
+{
+	// 壁のテクスチャを描画
+	TextureAsset(U"SpeedWall").resized(CHIP_SIZE).draw(pos);
+}

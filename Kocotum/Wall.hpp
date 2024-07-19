@@ -89,3 +89,28 @@ struct IceWall : public Object
 	void update() override;
 	void draw() const override;
 };
+
+/**
+ * @brief 加速する壁オブジェクトを表すクラス
+ */
+struct SpeedWall : public Object
+{
+	RectF body; ///< 壁の当たり判定用の矩形
+
+	/**
+	 * @brief Wallクラスのコンストラクタ
+	 * @param pos 壁の位置
+	 * @param effect エフェクト参照
+	 * @param player プレイヤー参照
+	 */
+	SpeedWall(Vec2 pos, World& world);
+
+	void restart() override;
+	bool intersectsPlayer() override;
+	bool mouseOver() override;
+	void setPos(Vec2 pos) override;
+	void handleCollisionX() override;
+	void handleCollisionY() override;
+	void update() override;
+	void draw() const override;
+};

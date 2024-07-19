@@ -19,6 +19,7 @@ ObjectPutPalette::ObjectPutPalette(Vec2 pos, uint32 width, uint32 height)
     floor.addObject(std::make_shared<Wall>(pos, world));
     floor.addObject(std::make_shared<JumpToggleWall>(pos, world));
     floor.addObject(std::make_shared<IceWall>(pos, world));
+    floor.addObject(std::make_shared<SpeedWall>(pos, world));
 	floor.addObject(std::make_shared<OneWayFloor>(pos, world));
 	floor.addObject(std::make_shared<IceFloor>(pos, world));
 	floor.addObject(std::make_shared<MoveFloor>(pos, world));

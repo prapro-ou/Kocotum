@@ -66,6 +66,11 @@ void World::loadWorld(String fileName)
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
 				addObject(std::make_shared<IceWall>(pos, *this));
 			}
+			else if (csv[row][1] == U"SpeedWall")
+			{
+				Vec2 pos = Parse<Vec2>(csv[row][2]);
+				addObject(std::make_shared<SpeedWall>(pos, *this));
+			}
 			else if (csv[row][1] == U"Needle")
 			{
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
@@ -183,6 +188,11 @@ void World::saveWorld(String fileName)
 		{
 			csv.write(U"IceWall");
 			csv.write(iceWall->pos.asPoint());
+		}
+		else if (auto speedWall = std::dynamic_pointer_cast<SpeedWall>(object))
+		{
+			csv.write(U"SpeedWall");
+			csv.write(speedWall->pos.asPoint());
 		}
 		else if (auto needle = std::dynamic_pointer_cast<Needle>(object))
 		{
