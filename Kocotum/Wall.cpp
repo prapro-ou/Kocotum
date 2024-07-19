@@ -210,3 +210,97 @@ void JumpToggleWall::draw() const
 	// 壁の状態に応じたテクスチャを描画
 	TextureAsset((isOn ? U"JumpToggleWall" : U"JumpToggleWallAlpha")).resized(CHIP_SIZE).draw(pos);
 }
+
+IceWall::IceWall(Vec2 pos, World& world)
+	: Object{ pos, world, U"氷の壁" }
+	, body{ RectF{ pos, CHIP_SIZE } }
+{
+}
+
+void IceWall::restart()
+{
+	// 再起動時の処理（現在は何もしない）
+}
+
+bool IceWall::intersectsPlayer()
+{
+	return body.intersects(world.player.body);
+}
+
+bool IceWall::mouseOver()
+{
+	return body.mouseOver();
+}
+
+void IceWall::setPos(Vec2 pos)
+{
+	this->pos = pos;
+	body.setPos(pos);
+}
+
+void IceWall::handleCollisionX()
+{
+	// プレイヤーとの水平方向の衝突処理
+	if (world.player.velocity.x > 0)
+	{
+		// 右方向に進行中の場合
+		world.player.pos.x = pos.x - world.player.body.w;
+	}
+	else
+	{
+		// 左方向に進行中の場合
+		world.player.pos.x = pos.x + CHIP_SIZE.x;
+	}
+
+	world.player.friction = 0.2;
+	world.player.velocity.x = 0;
+	world.player.body.setPos(world.player.pos);
+}
+
+void IceWall::handleCollisionY()
+{
+	// プレイヤーとの垂直方向の衝突処理
+	if (world.player.isGravityReverse)
+	{
+		// 重力反転時の処理
+		if (world.player.velocity.y > 0)
+		{
+			world.player.pos.y = pos.y + CHIP_SIZE.y;
+			world.player.jumpNum = 0;
+			world.player.isOnGround = true;
+		}
+		else
+		{
+			world.player.pos.y = pos.y - world.player.body.h;
+		}
+	}
+	else
+	{
+		// 通常重力時の処理
+		if (world.player.velocity.y > 0)
+		{
+			world.player.pos.y = pos.y - world.player.body.h;
+			world.player.jumpNum = 0;
+			world.player.isOnGround = true;
+		}
+		else
+		{
+			world.player.pos.y = pos.y + CHIP_SIZE.y;
+		}
+	}
+
+	world.player.friction = 0.2;
+	world.player.velocity.y = 0.01;
+	world.player.body.setPos(world.player.pos);
+}
+
+void IceWall::update()
+{
+	// 更新処理（現在は何もしない）
+}
+
+void IceWall::draw() const
+{
+	// 壁のテクスチャを描画
+	TextureAsset(U"IceWall").resized(CHIP_SIZE).draw(pos);
+}

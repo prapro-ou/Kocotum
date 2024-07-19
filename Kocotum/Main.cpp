@@ -16,6 +16,7 @@ void Main()
 
 	TextureAsset::Register(U"Player", U"player.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"Wall", U"Wall.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"IceWall", U"IceWall.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"JumpToggleWall", U"JumpToggleWall.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"JumpToggleWallAlpha", U"JumpToggleWallAlpha.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"Needle", U"Needle.png", TextureDesc::Mipped);

@@ -66,6 +66,10 @@ void Edit::createObject(Vec2 pos)
 	{
 		getData().world.addObject(std::make_shared<JumpToggleWall>(pos, getData().world));
 	}
+	else if (auto iceWall = std::dynamic_pointer_cast<IceWall>(selectObjectType))
+	{
+		getData().world.addObject(std::make_shared<IceWall>(pos, getData().world));
+	}
 	else if (auto needle = std::dynamic_pointer_cast<Needle>(selectObjectType))
 	{
 		getData().world.addObject(std::make_shared<Needle>(pos, getData().world));

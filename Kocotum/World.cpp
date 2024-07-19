@@ -53,6 +53,11 @@ void World::loadWorld(String fileName)
 				bool init = Parse<bool>(csv[row][3]);
 				addObject(std::make_shared<JumpToggleWall>(pos, *this, init));
 			}
+			else if (csv[row][1] == U"IceWall")
+			{
+				Vec2 pos = Parse<Vec2>(csv[row][2]);
+				addObject(std::make_shared<IceWall>(pos, *this));
+			}
 			else if (csv[row][1] == U"Needle")
 			{
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
@@ -155,6 +160,11 @@ void World::saveWorld(String fileName)
 			csv.write(U"JumpToggleWall");
 			csv.write(jumpToggleWall->pos.asPoint());
 			csv.write(jumpToggleWall->init);
+		}
+		else if (auto iceWall = std::dynamic_pointer_cast<IceWall>(object))
+		{
+			csv.write(U"IceWall");
+			csv.write(iceWall->pos.asPoint());
 		}
 		else if (auto needle = std::dynamic_pointer_cast<Needle>(object))
 		{
