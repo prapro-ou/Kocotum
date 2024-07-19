@@ -995,5 +995,11 @@
     <ClInclude Include="IceFloor.hpp">
       <Filter>Header Files\Object</Filter>
     </ClInclude>
+    <ClInclude Include="GIF.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PieMenu.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
