@@ -181,6 +181,11 @@ void Player::update(Array<std::shared_ptr<Object>>& objects)
 		}
 	}
 
+	if (isOnGround)
+	{
+		maxSpeed = 350;
+	}
+
 	// X軸とY軸の位置更新を実行
 	updatePositionX(objects);
 	updatePositionY(objects);

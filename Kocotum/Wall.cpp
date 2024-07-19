@@ -252,6 +252,7 @@ void IceWall::handleCollisionX()
 		world.player.pos.x = pos.x + CHIP_SIZE.x;
 	}
 
+	world.player.maxSpeed = 500;
 	world.player.friction = 0.2;
 	world.player.velocity.x = 0;
 	world.player.body.setPos(world.player.pos);
@@ -289,6 +290,7 @@ void IceWall::handleCollisionY()
 		}
 	}
 
+	world.player.maxSpeed = 500;
 	world.player.friction = 0.2;
 	world.player.velocity.y = 0.01;
 	world.player.body.setPos(world.player.pos);
