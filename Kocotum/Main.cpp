@@ -13,6 +13,7 @@ void Main()
 	FontAsset::Register(U"SelectObjectWindow", 35);
 	FontAsset::Register(U"ObjectName", 15);
 	FontAsset::Register(U"ObjectText", 40, Typeface::Bold);
+	FontAsset::Register(U"SaveFont", 15, Typeface::Heavy);
 
 	TextureAsset::Register(U"Player", U"player.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"Wall", U"Wall.png", TextureDesc::Mipped);

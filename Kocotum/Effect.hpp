@@ -30,7 +30,7 @@ struct SavedEffect : IEffect
 		double e = EaseOutQuint(t);
 		double a = EaseInCirc(t);
 
-		SimpleGUI::GetFont()(U"SAVED!").drawAt(m_pos + Vec2{ 0, e * -64 }, Palette::Yellow.withAlpha(255 - a * 255));
+		FontAsset(U"SaveFont")(U"SAVED!").drawAt(m_pos + Vec2{0, e * -64}, Palette::Yellow.withAlpha(255 - a * 255));
 
 		return t < 1.0;
 	}
