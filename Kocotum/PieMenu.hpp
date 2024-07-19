@@ -1,4 +1,5 @@
-﻿# include <Siv3D.hpp>
+﻿# pragma once
+# include <Siv3D.hpp>
 
 /// @brief パイメニュー用のアイコン
 class PieMenuIcon
