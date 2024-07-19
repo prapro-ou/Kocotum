@@ -117,7 +117,7 @@ void Player::update(Array<std::shared_ptr<Object>>& objects)
 
 		if (velocity.y <= 0)
 		{
-
+			//gif.setActiveKey(U"jumpUp");
 		}
 		else
 		{

@@ -4,7 +4,15 @@ World::World(Vec2 pos)
 	: player{ Player{ pos } }
 	, causeWarp{ false }
 	, warpFileName{ U"" }
-{ }
+{
+	icons =
+	{
+		PieMenuIcon{ Texture{ 0xF08EA_icon, 60 }, ColorF{ 0.86, 0.98, 0.80 }},
+		PieMenuIcon{ Texture{ 0xF05B7_icon, 60 }, ColorF{ 0.60, 0.98, 0.60 }},
+		PieMenuIcon{ Texture{ 0xF0485_icon, 60 }, ColorF{ 0.50, 1.00, 0.83 }},
+		PieMenuIcon{ Texture{ 0xF033E_icon, 60 }, ColorF{ 1.00, 0.65, 0.00 }},
+	};
+}
 
 
 void World::clear()
@@ -128,6 +136,11 @@ void World::loadWorld(String fileName)
 				double length = Parse<double>(csv[row][4]);
 				addObject(std::make_shared<MoveFloor>(pos, *this, (E_Direction)direction, length));
 			}
+			else if (csv[row][1] == U"Spring")
+			{
+				Vec2 pos = Parse<Vec2>(csv[row][2]);
+				addObject(std::make_shared<Spring>(pos, *this));
+			}
 		}
 	}
 }
@@ -240,6 +253,11 @@ void World::saveWorld(String fileName)
 			csv.write(moveFloor->pos.asPoint());
 			csv.write((uint16)moveFloor->direction);
 			csv.write(moveFloor->length);
+		}
+		else if (auto spring = std::dynamic_pointer_cast<Spring>(object))
+		{
+			csv.write(U"Spring");
+			csv.write(spring->pos.asPoint());
 		}
 
 		csv.newLine();

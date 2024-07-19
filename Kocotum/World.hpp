@@ -5,6 +5,7 @@
 #include "Effect.hpp"
 #include "Objects.hpp"
 #include "GameCamera.hpp"
+#include "PieMenu.hpp"
 
 /**
  * @brief ゲームワールドを管理するクラス
@@ -23,6 +24,8 @@ public:
 	Stopwatch deathSw;
 	bool causeWarp;
 	String warpFileName;
+	Array<PieMenuIcon> icons;
+	std::unique_ptr<PieMenu> pieMenu;
 
 	/**
 	 * @brief Worldクラスのコンストラクタ

@@ -134,6 +134,7 @@
     <ClCompile Include="ScrollBarV.cpp" />
     <ClCompile Include="SelectObjectWindow.cpp" />
     <ClCompile Include="SpinBox.cpp" />
+    <ClCompile Include="Spring.cpp" />
     <ClCompile Include="StartPoint.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -373,6 +374,7 @@
     <ClInclude Include="ScrollBarV.hpp" />
     <ClInclude Include="SelectObjectWindow.hpp" />
     <ClInclude Include="SpinBox.hpp" />
+    <ClInclude Include="Spring.hpp" />
     <ClInclude Include="StartPoint.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Text.hpp" />

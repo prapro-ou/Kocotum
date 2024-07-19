@@ -3,8 +3,6 @@
 # include "Edit.hpp"
 # include "Game.hpp"
 
-# include "PieMenu.hpp"
-
 
 
 void Main()
@@ -38,47 +36,14 @@ void Main()
 	manager.add<Game>(U"Game");
 
 
-	const Array<PieMenuIcon> icons =
-	{
-		PieMenuIcon{ Texture{ 0xF08EA_icon, 60 }, ColorF{ 0.86, 0.98, 0.80 }},
-		PieMenuIcon{ Texture{ 0xF05B7_icon, 60 }, ColorF{ 0.60, 0.98, 0.60 }},
-		PieMenuIcon{ Texture{ 0xF0485_icon, 60 }, ColorF{ 0.50, 1.00, 0.83 }},
-		PieMenuIcon{ Texture{ 0xF033E_icon, 60 }, ColorF{ 1.00, 0.65, 0.00 }},
-	};
-
-	std::unique_ptr<PieMenu> pieMenu;
-
-
 
 	while (System::Update())
 	{
 		ClearPrint();
 
-		// 右クリックされたらパイメニューを登場させる
-		if (MouseL.down())
+		if (not manager.update())
 		{
-			pieMenu = std::make_unique<PieMenu>(icons, Scene::CenterF());
+			break;
 		}
-
-		// パイメニューがあれば
-		if (pieMenu)
-		{
-			const Optional<int32> selected = pieMenu->update();
-
-			pieMenu->draw();
-
-			// 右クリックが離されたら、選択されたアイテムを表示する
-			if (MouseL.up())
-			{
-				ClearPrint();
-				Print << selected;
-				pieMenu.reset();
-			}
-		}
-
-		//if (not manager.update())
-		//{
-		//	break;
-		//}
 	}
 }

@@ -246,6 +246,9 @@
     <ClCompile Include="IceFloor.cpp">
       <Filter>Source Files\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Spring.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -998,8 +1001,11 @@
     <ClInclude Include="GIF.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Spring.hpp">
+      <Filter>Header Files\Object</Filter>
+    </ClInclude>
     <ClInclude Include="PieMenu.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
