@@ -20,6 +20,11 @@ Player::Player(Vec2 pos)
 	, velocityClamp{ 0 }
 {
 	body.setPos(pos);
+	gif.addGIF(U"idle", GIF(U"idle.gif"));
+	//gif.addGIF(U"jumpUp", U"jumpUp.gif");
+	gif.addGIF(U"jumpDown", GIF(U"jumpDown.gif"));
+	gif.addGIF(U"move", GIF(U"move.gif"));
+	gif.setActiveKey(U"idle");
 }
 
 void Player::printInfo()
@@ -109,12 +114,26 @@ void Player::update(Array<std::shared_ptr<Object>>& objects)
 		{
 			velocity.x = Math::SmoothDamp(velocity.x, 0.0, velocityFriction, 0.5);
 		}
+
+		if (velocity.y <= 0)
+		{
+
+		}
+		else
+		{
+			gif.setActiveKey(U"jumpDown");
+		}
 	}
 	else
 	{
 		if (xInput == 0)
 		{
 			velocity.x = Math::SmoothDamp(velocity.x, 0.0, velocityFriction, 1.01 - friction);
+			gif.setActiveKey(U"idle");
+		}
+		else
+		{
+			gif.setActiveKey(U"move");
 		}
 	}
 
@@ -170,5 +189,5 @@ void Player::update(Array<std::shared_ptr<Object>>& objects)
 void Player::draw() const
 {
 	// プレイヤーの向きと重力の反転状態に応じてテクスチャを描画
-	TextureAsset(U"Player").mirrored(not isFacingRight).flipped(isGravityReverse).resized(body.size).draw(pos);
+	gif.getTexture().mirrored(not isFacingRight).flipped(isGravityReverse).resized(body.size).draw(pos);
 }

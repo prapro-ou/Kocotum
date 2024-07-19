@@ -1,6 +1,7 @@
 ﻿# pragma once
 # include <Siv3D.hpp>
 # include "Object.hpp"
+# include "GIF.hpp"
 
  /// @brief プレイヤーキャラクターを表す構造体
 struct Player
@@ -39,6 +40,8 @@ struct Player
 	double velocityFriction;
 	/// @brief 最大スピードに抑える用のdouble
 	double velocityClamp;
+
+	GIFManager gif;
 
 	/**
 	 * @brief コンストラクタ
