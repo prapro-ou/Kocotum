@@ -6,6 +6,7 @@ Player::Player(Vec2 pos)
 	, respawnPos{ pos }
 	, velocity{ Vec2{ 0, 0 } }
 	, accelaration{ Vec2{ 0, 2000 } }
+	, maxSpeed{ 350 }
 	, jumpNum{ 0 }
 	, maxJumpNum{ 2 }
 	, gravityDirection{ 1 }
@@ -14,6 +15,9 @@ Player::Player(Vec2 pos)
 	, isOnGround{ false }
 	, isFacingRight{ true }
 	, causeWarp{ false }
+	, friction{ 0.2 }
+	, velocityFriction{ 0 }
+	, velocityClamp{ 0 }
 {
 	body.setPos(pos);
 }
@@ -48,12 +52,13 @@ void Player::restart()
 	isAlive = true;
 	isOnGround = false;
 	isFacingRight = true;
+	velocityFriction = 0;
+	velocityClamp = 0;
 }
 
 void Player::updatePositionX(Array<std::shared_ptr<Object>>& objects)
 {
 	// X軸方向の速度と位置を更新
-	velocity.x += accelaration.x * Scene::DeltaTime();
 	pos.x += velocity.x * Scene::DeltaTime();
 	body.setPos(pos);
 
@@ -87,32 +92,55 @@ void Player::updatePositionY(Array<std::shared_ptr<Object>>& objects)
 void Player::update(Array<std::shared_ptr<Object>>& objects)
 {
 	// 重力加速度を設定
+	accelaration.x = 2100;
 	accelaration.y = 2500;
 
-	// 空中にいる場合、重力の影響を受ける
+	// 横方向の入力
+	// 右:1 左:-1 両方押されてるか両方押されてない:0
+	int xInput = KeyD.pressed() - KeyA.pressed();
+
+	// 空中にいる場合
 	if (not isOnGround)
 	{
 		velocity.y += accelaration.y * Scene::DeltaTime();
+		friction = 1.0;
+
+		if (xInput == 0)
+		{
+			velocity.x = Math::SmoothDamp(velocity.x, 0.0, velocityFriction, 0.5);
+		}
+	}
+	else
+	{
+		if (xInput == 0)
+		{
+			velocity.x = Math::SmoothDamp(velocity.x, 0.0, velocityFriction, 1.01 - friction);
+		}
 	}
 
-	// 左右の移動処理
+	// キー入力されているとき速度変更
+	if (xInput != 0)
+	{
+		double rate = 1.0;
+		if ((xInput >= 0) == !(velocity.x >= 0))
+		{
+			rate = 2.0;
+		}
+		velocity.x += xInput * accelaration.x * Scene::DeltaTime() * friction * rate;
+	}
+
+	velocity.x = Clamp(velocity.x, -maxSpeed, maxSpeed);
+
 	if (KeyA.pressed())
 	{
-		velocity.x = Min(velocity.x, -350.0);
 		isFacingRight = false;
 	}
 
 	if (KeyD.pressed())
 	{
-		velocity.x = Max(velocity.x, 350.0);
 		isFacingRight = true;
 	}
 
-	// 左右のキーが押されていない場合、X軸方向の速度をゼロにする
-	if (not KeyA.pressed() and not KeyD.pressed())
-	{
-		velocity.x = 0;
-	}
 
 	// ジャンプ処理
 	if (KeySpace.down() and jumpNum < maxJumpNum)

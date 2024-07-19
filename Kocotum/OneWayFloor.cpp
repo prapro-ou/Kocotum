@@ -2,7 +2,7 @@
 
 OneWayFloor::OneWayFloor(Vec2 pos, World& world)
 	: Object{ pos, world, U"下から通れる足場" }
-	, body{ RectF{ pos, CHIP_SIZE.x, CHIP_SIZE.y / 4 } }
+	, body{ RectF{ pos, CHIP_SIZE.x, CHIP_SIZE.y / 2 } }
 	, mouseOverBody{ RectF{ pos, CHIP_SIZE } }
 {
 }
@@ -46,6 +46,7 @@ void OneWayFloor::handleCollisionY()
 			world.player.jumpNum = 0;
 			world.player.isOnGround = true;
 
+			world.player.friction = 1.0;
 			world.player.velocity.y = 0.01;
 		}
 	}
@@ -58,6 +59,7 @@ void OneWayFloor::handleCollisionY()
 			world.player.jumpNum = 0;
 			world.player.isOnGround = true;
 
+			world.player.friction = 1.0;
 			world.player.velocity.y = 0.01;
 		}
 	}

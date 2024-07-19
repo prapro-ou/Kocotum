@@ -5,7 +5,7 @@ MoveFloor::MoveFloor(Vec2 pos, World& world, E_Direction direction, double lengt
 	, direction{ direction }
 	, length{ length }
 	, mouseOverBody{ RectF{ pos, CHIP_SIZE } }
-	, body{ RectF{ pos, CHIP_SIZE.x, CHIP_SIZE.y / 4 } }
+	, body{ RectF{ pos, CHIP_SIZE.x, CHIP_SIZE.y / 2 } }
 	, previousPos{ pos }
 	, basePos{ pos }
 	, diff{ Vec2{ 0, 0 } }
@@ -61,6 +61,7 @@ void MoveFloor::handleCollisionY()
 
 			world.player.pos.x += diff.x;
 
+			world.player.friction = 1.0;
 			world.player.velocity.y = 0.01;
 		}
 	}
@@ -75,6 +76,7 @@ void MoveFloor::handleCollisionY()
 
 			world.player.pos.x += diff.x;
 
+			world.player.friction = 1.0;
 			world.player.velocity.y = 0.01;
 		}
 	}

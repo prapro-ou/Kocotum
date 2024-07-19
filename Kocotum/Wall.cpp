@@ -41,6 +41,7 @@ void Wall::handleCollisionX()
 		world.player.pos.x = pos.x + CHIP_SIZE.x;
 	}
 
+	world.player.friction = 1.0;
 	world.player.velocity.x = 0;
 	world.player.body.setPos(world.player.pos);
 }
@@ -77,6 +78,7 @@ void Wall::handleCollisionY()
 		}
 	}
 
+	world.player.friction = 1.0;
 	world.player.velocity.y = 0.01;
 	world.player.body.setPos(world.player.pos);
 }
@@ -145,6 +147,7 @@ void JumpToggleWall::handleCollisionX()
 			world.player.pos.x = pos.x + CHIP_SIZE.x;
 		}
 
+		world.player.friction = 1.0;
 		world.player.velocity.x = 0;
 	}
 
@@ -186,6 +189,7 @@ void JumpToggleWall::handleCollisionY()
 			}
 		}
 
+		world.player.friction = 1.0;
 		world.player.velocity.y = 0.01;
 	}
 
