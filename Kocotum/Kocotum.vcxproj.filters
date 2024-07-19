@@ -243,6 +243,9 @@
     <ClCompile Include="MoveFloor.cpp">
       <Filter>Source Files\Object</Filter>
     </ClCompile>
+    <ClCompile Include="IceFloor.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -987,6 +990,9 @@
       <Filter>Header Files\Object</Filter>
     </ClInclude>
     <ClInclude Include="MoveFloor.hpp">
+      <Filter>Header Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="IceFloor.hpp">
       <Filter>Header Files\Object</Filter>
     </ClInclude>
   </ItemGroup>
