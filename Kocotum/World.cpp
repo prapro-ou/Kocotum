@@ -119,6 +119,16 @@ void World::loadWorld(String fileName)
 		}
 	}
 }
+			else if (csv[row][1] == U"MoveFloor")
+			{
+				Vec2 pos = Parse<Vec2>(csv[row][2]);
+				uint16 direction = Parse<uint16>(csv[row][3]);
+				double length = Parse<double>(csv[row][4]);
+				addObject(std::make_shared<MoveFloor>(pos, *this, (E_Direction)direction, length));
+			}
+		}
+	}
+}
 
 void World::saveWorld(String fileName)
 {
@@ -216,6 +226,13 @@ void World::saveWorld(String fileName)
 		{
 			csv.write(U"IceFloor");
 			csv.write(iceFloor->pos.asPoint());
+		}
+		else if (auto moveFloor = std::dynamic_pointer_cast<MoveFloor>(object))
+		{
+			csv.write(U"MoveFloor");
+			csv.write(moveFloor->pos.asPoint());
+			csv.write((uint16)moveFloor->direction);
+			csv.write(moveFloor->length);
 		}
 
 		csv.newLine();

@@ -374,3 +374,8 @@ FodyWeavers.xsd
 /Kocotum/App/Kocotum(debug).exe
 /Kocotum/App/WarpPoint.gif
 /Kocotum/App/OneWayFloor.png
+/Kocotum/App/MoveFloor.png
+/Kocotum/App/SavePoint.png
+/Kocotum/App/concat.c
+/Kocotum/App/concat.exe
+/Kocotum/App/result.txt

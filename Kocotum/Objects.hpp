@@ -9,3 +9,4 @@
 # include "WarpPoint.hpp"
 # include "OneWayFloor.hpp"
 # include "IceFloor.hpp"
+# include "MoveFloor.hpp"

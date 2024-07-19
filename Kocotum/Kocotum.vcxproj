@@ -118,6 +118,7 @@
     <ClCompile Include="CameraSetPalette.cpp" />
     <ClCompile Include="Edit.cpp" />
     <ClCompile Include="IceFloor.cpp" />
+    <ClCompile Include="MoveFloor.cpp" />
     <ClCompile Include="OneWayFloor.cpp" />
     <ClCompile Include="GameCamera.cpp" />
     <ClCompile Include="GravityLine.cpp" />
@@ -353,6 +354,7 @@
     <ClInclude Include="Edit.hpp" />
     <ClInclude Include="Effect.hpp" />
     <ClInclude Include="IceFloor.hpp" />
+    <ClInclude Include="MoveFloor.hpp" />
     <ClInclude Include="OneWayFloor.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GameCamera.hpp" />

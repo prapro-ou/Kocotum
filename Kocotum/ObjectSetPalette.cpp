@@ -29,6 +29,10 @@ void ObjectSetPalette::loadSettings(std::shared_ptr<Object>& object)
 	{
 		indexDirection = (size_t)jumpToggleNeedle->direction;
 	}
+	else if (auto moveFloor = std::dynamic_pointer_cast<MoveFloor>(object))
+	{
+		indexDirection = (size_t)moveFloor->direction;
+	}
 
 	// ジャンプ切り替えオブジェクトの設定を読み込む
 	if (auto jumpToggleWall = std::dynamic_pointer_cast<JumpToggleWall>(object))
@@ -49,6 +53,10 @@ void ObjectSetPalette::loadSettings(std::shared_ptr<Object>& object)
 	else if (auto gravityLineVertical = std::dynamic_pointer_cast<GravityLineVertical>(object))
 	{
 		length.setValue((int)gravityLineVertical->length / CHIP_SIZE.y);
+	}
+	else if (auto moveFloor = std::dynamic_pointer_cast<MoveFloor>(object))
+	{
+		length.setValue((int)moveFloor->length / CHIP_SIZE.x);
 	}
 
 	if (auto objectText = std::dynamic_pointer_cast<Text>(object))
@@ -80,6 +88,10 @@ void ObjectSetPalette::update(std::shared_ptr<Object>& object)
 	{
 		jumpToggleNeedle->setDirection((E_Direction)indexDirection);
 	}
+	else if (auto moveFloor = std::dynamic_pointer_cast<MoveFloor>(object))
+	{
+		moveFloor->setDirection((E_Direction)indexDirection);
+	}
 
 
 	// ジャンプ切り替えオブジェクトの更新
@@ -109,6 +121,10 @@ void ObjectSetPalette::update(std::shared_ptr<Object>& object)
 	{
 		gravityLineVertical->length = length.getValue() * CHIP_SIZE.y;
 		gravityLineVertical->update();
+	}
+	else if (auto moveFloor = std::dynamic_pointer_cast<MoveFloor>(object))
+	{
+		moveFloor->length = length.getValue() * CHIP_SIZE.x;
 	}
 
 	text.update();
