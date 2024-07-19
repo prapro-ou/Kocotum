@@ -8,3 +8,4 @@
 # include "Text.hpp"
 # include "WarpPoint.hpp"
 # include "OneWayFloor.hpp"
+# include "IceFloor.hpp"

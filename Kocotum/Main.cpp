@@ -23,6 +23,7 @@ void Main()
 	TextureAsset::Register(U"JumpToggleNeedleAlpha", U"JumpToggleNeedleAlpha.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"StartPoint", U"StartPoint.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"OneWayFloor", U"OneWayFloor.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"IceFloor", U"IceFloor.png", TextureDesc::Mipped);
 
 
 
