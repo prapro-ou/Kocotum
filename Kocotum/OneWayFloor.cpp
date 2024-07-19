@@ -46,6 +46,7 @@ void OneWayFloor::handleCollisionY()
 			world.player.jumpNum = 0;
 			world.player.isOnGround = true;
 
+			world.player.friction = 1.0;
 			world.player.velocity.y = 0.01;
 		}
 	}
@@ -58,6 +59,7 @@ void OneWayFloor::handleCollisionY()
 			world.player.jumpNum = 0;
 			world.player.isOnGround = true;
 
+			world.player.friction = 1.0;
 			world.player.velocity.y = 0.01;
 		}
 	}

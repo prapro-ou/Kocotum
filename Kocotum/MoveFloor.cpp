@@ -61,6 +61,7 @@ void MoveFloor::handleCollisionY()
 
 			world.player.pos.x += diff.x;
 
+			world.player.friction = 1.0;
 			world.player.velocity.y = 0.01;
 		}
 	}
@@ -75,6 +76,7 @@ void MoveFloor::handleCollisionY()
 
 			world.player.pos.x += diff.x;
 
+			world.player.friction = 1.0;
 			world.player.velocity.y = 0.01;
 		}
 	}

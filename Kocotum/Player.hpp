@@ -15,6 +15,8 @@ struct Player
 	Vec2 velocity;
 	/// @brief プレイヤーの加速度
 	Vec2 accelaration;
+	/// @brief プレイヤーの横方向の最大速度
+	double maxSpeed;
 	/// @brief 現在のジャンプ回数
 	uint8 jumpNum;
 	/// @brief 最大ジャンプ回数
@@ -31,6 +33,12 @@ struct Player
 	bool isFacingRight;
 	/// @brief ワープ発生フラグ
 	bool causeWarp;
+	/// @brief 摩擦係数
+	double friction;
+	/// @brief 摩擦で止まる動作用のdouble
+	double velocityFriction;
+	/// @brief 最大スピードに抑える用のdouble
+	double velocityClamp;
 
 	/**
 	 * @brief コンストラクタ
