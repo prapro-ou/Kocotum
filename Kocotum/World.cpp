@@ -116,9 +116,6 @@ void World::loadWorld(String fileName)
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
 				addObject(std::make_shared<IceFloor>(pos, *this));
 			}
-		}
-	}
-}
 			else if (csv[row][1] == U"MoveFloor")
 			{
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
