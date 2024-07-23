@@ -42,6 +42,9 @@ void Main()
 	{
 		ClearPrint();
 
+		Print << U"Draw call の数: " << Profiler::GetStat().drawCalls;
+		Print << U"三角形の描画回数: " << Profiler::GetStat().triangleCount;
+
 		if (not manager.update())
 		{
 			break;

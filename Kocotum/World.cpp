@@ -352,7 +352,22 @@ void World::draw() const
 	// オブジェクトの描画
 	for (auto& object : objects)
 	{
-		object->draw();
+		if (auto obj = std::dynamic_pointer_cast<Text>(object))
+		{
+
+		}
+		else
+		{
+			object->draw();
+		}
+	}
+
+	for (auto& object : objects)
+	{
+		if (auto obj = std::dynamic_pointer_cast<Text>(object))
+		{
+			object->draw();
+		}
 	}
 
 	// プレイヤーの描画
