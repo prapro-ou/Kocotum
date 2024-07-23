@@ -1642,3 +1642,4 @@ Object,Needle,"(5184, 1088)",0
 Object,StartPoint,"(192, 768)"
 Object,WarpPoint,"(6144, 256)",test.csv
 Object,MoveFloor,"(6144, 320)",0,0
+Object,Text,"(1088, 896)",LICENSES:F1

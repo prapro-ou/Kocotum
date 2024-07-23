@@ -19,7 +19,7 @@ Edit::Edit(const InitData& init)
 {
 	// グリッドの初期化
 	grid.clear();
-	grid.resize(200, 200);
+	grid.resize(500, 500);
 
 	for (int y = 0; y < grid.height(); y++)
 	{
@@ -392,11 +392,17 @@ void Edit::draw() const
 	// グリッドの描画
 	{
 		const auto t = camera.createTransformer();
+
+		for (size_t i = 0; i <= grid.width(); ++i)
+		{
+			RectF{ -1, (-1 + (i * CHIP_SIZE.y)), (grid.width() * CHIP_SIZE.y + 2), 2 }.draw(Palette::Black);
+			RectF{ (-1 + (i * CHIP_SIZE.x)), -1, 2, (grid.height() * CHIP_SIZE.x + 2) }.draw(Palette::Black);
+		}
+
 		for (int y = 0; y < grid.height(); y++)
 		{
 			for (int x = 0; x < grid.width(); x++)
 			{
-				grid[y][x].drawFrame(2, Palette::Black);
 				if (grid[y][x].mouseOver())
 				{
 					grid[y][x].draw(ColorF(1, 1, 0, 0.25));
