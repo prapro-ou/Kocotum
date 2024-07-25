@@ -176,7 +176,12 @@ void JumpToggleNeedle::restart()
 
 bool JumpToggleNeedle::intersectsPlayer()
 {
-	return body.intersects(world.player.body);
+	if (isOn)
+	{
+		return body.intersects(world.player.body);
+	}
+
+	return false;
 }
 
 bool JumpToggleNeedle::mouseOver()

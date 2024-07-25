@@ -29,6 +29,7 @@ void Main()
 	TextureAsset::Register(U"OneWayFloor", U"OneWayFloor.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"IceFloor", U"IceFloor.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"MoveFloor", U"MoveFloor.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"Spring", U"Spring.png", TextureDesc::Mipped);
 
 
 

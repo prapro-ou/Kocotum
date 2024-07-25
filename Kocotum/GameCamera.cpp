@@ -74,7 +74,7 @@ void GameCamera::addArea(std::shared_ptr<CameraArea> area)
 
 bool GameCamera::isPlayerOutOfScreen(const Player& player)
 {
-	RectF cameraTargetArea = RectF{ Arg::center(activeArea->cameraTargetPos), Scene::Size() * activeArea->scale };
+	RectF cameraTargetArea = RectF{ Arg::center(activeArea->cameraTargetPos), Scene::Size() * (1 / activeArea->scale) };
 
 	return not cameraTargetArea.stretched(CHIP_SIZE * 3).intersects(player.body);
 }
@@ -88,6 +88,7 @@ void GameCamera::init()
 {
 	activeArea->restart();
 	camera.setCenter(activeArea->cameraTargetPos);
+	camera.setScale(activeArea->scale);
 }
 
 void GameCamera::update(const Player& player)
