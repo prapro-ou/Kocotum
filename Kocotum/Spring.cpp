@@ -4,6 +4,7 @@
 Spring::Spring(Vec2 pos, World& world)
 	:Object{ pos, world, U"ばね" }
 	, body{ RectF{ pos, CHIP_SIZE } }
+	, stretch{ 0 }
 { }
 
 
@@ -44,6 +45,7 @@ void Spring::handleCollisionX()
 		world.player.pos.x = pos.x + CHIP_SIZE.x;
 	}
 
+	stretch = CHIP_SIZE.x / 4;
 	world.player.body.setPos(world.player.pos);
 }
 
@@ -86,10 +88,11 @@ void Spring::handleCollisionY()
 
 void Spring::update()
 {
-
+	stretch -= CHIP_SIZE.x * Scene::DeltaTime();
+	stretch = Math::Max(stretch, 0.0);
 }
 
 void Spring::draw() const
 {
-	body.draw(Palette::Aqua);
+	TextureAsset(U"Spring").resized(CHIP_SIZE.x + stretch, CHIP_SIZE.y).draw(pos.x - stretch / 2, pos.y);
 }
