@@ -308,7 +308,9 @@ void World::init()
 
 	player.restart();
 
-	camera.restart();
+	camera.update(player);
+
+	camera.init();
 
 	deathSw.reset();
 }
