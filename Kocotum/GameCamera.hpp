@@ -39,7 +39,7 @@ struct CameraArea
 	void setPos(Vec2 pos);
 	void setWidth(double width);
 	void setHeight(double height);
-	void init();
+	void restart();
 	void update(const Player& player);
 	void drawArea() const;
 };
@@ -75,6 +75,8 @@ struct GameCamera
 	 * @brief カメラをリスタートする
 	 */
 	void restart();
+
+	void init();
 
 	/**
 	 * @brief カメラの状態を更新する

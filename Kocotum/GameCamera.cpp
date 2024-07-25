@@ -31,7 +31,7 @@ void CameraArea::setHeight(double height)
 	area.setSize(this->width, height);
 }
 
-void CameraArea::init()
+void CameraArea::restart()
 {
 	cameraTargetPos = initPos;
 }
@@ -80,7 +80,13 @@ bool GameCamera::isPlayerOutOfScreen(const Player& player)
 
 void GameCamera::restart()
 {
-	activeArea->init();
+	activeArea->restart();
+}
+
+void GameCamera::init()
+{
+	activeArea->restart();
+	camera.setCenter(activeArea->cameraTargetPos);
 }
 
 void GameCamera::update(const Player& player)
