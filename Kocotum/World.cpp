@@ -340,6 +340,11 @@ void World::update()
 	// カメラの更新
 	camera.update(player);
 
+	if (camera.activeArea->isScroll and camera.isPlayerOutOfScreen(player))
+	{
+		killPlayer();
+	}
+
 	if (causeWarp)
 	{
 		causeWarp = false;
