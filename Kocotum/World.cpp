@@ -318,7 +318,6 @@ void World::init()
 void World::warp()
 {
 	loadWorld(warpFileName);
-	update();
 	init();
 }
 

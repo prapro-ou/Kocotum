@@ -276,7 +276,6 @@ Object,Wall,"(6144, 128)"
 Object,Wall,"(6080, 128)"
 Object,Wall,"(6016, 128)"
 Object,Wall,"(5952, 128)"
-Object,WarpPoint,"(6208, 256)",title.csv
 Object,Needle,"(3776, 448)",0
 Object,Needle,"(3712, 448)",0
 Object,Needle,"(3776, 0)",2
@@ -305,3 +304,4 @@ Object,Wall,"(4288, 448)"
 Object,Wall,"(4224, 448)"
 Object,Wall,"(4224, 0)"
 Object,Wall,"(4288, 0)"
+Object,WarpPoint,"(6208, 256)",title.csv
