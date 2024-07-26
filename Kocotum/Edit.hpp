@@ -124,4 +124,7 @@ private:
 
 	/// @brief 編集ボックス
 	RectF editBox;
+
+	/// @brief オブジェクトを置く際のテクスチャ番号
+	size_t textureIndex;
 };

@@ -12,6 +12,9 @@ World::World(Vec2 pos)
 		PieMenuIcon{ Texture{ 0xF0485_icon, 60 }, ColorF{ 0.50, 1.00, 0.83 }},
 		PieMenuIcon{ Texture{ 0xF033E_icon, 60 }, ColorF{ 1.00, 0.65, 0.00 }},
 	};
+
+	trojanEnable = Array<bool>(4, false);
+	trojanIndex = none;
 }
 
 

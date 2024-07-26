@@ -16,6 +16,7 @@ Edit::Edit(const InitData& init)
 	, selectObject{ std::make_shared<Wall>(Vec2{ 100, 100 }, getData().world) }
 	, state{ E_EditState::PlacingObject }
 	, editBox{ RectF{ Vec2{ 850, 0 }, 430, 960 } }
+	, textureIndex{ size_t(1) }
 {
 	// グリッドの初期化
 	grid.clear();
@@ -60,7 +61,7 @@ void Edit::createObject(Vec2 pos)
 	// 選択されたオブジェクトタイプに応じてオブジェクトを作成
 	if (auto wall = std::dynamic_pointer_cast<Wall>(selectObjectType))
 	{
-		getData().world.addObject(std::make_shared<Wall>(pos, getData().world));
+		getData().world.addObject(std::make_shared<Wall>(pos, getData().world, textureIndex));
 	}
 	else if (auto jumpToggleWall = std::dynamic_pointer_cast<JumpToggleWall>(selectObjectType))
 	{
@@ -112,7 +113,7 @@ void Edit::createObject(Vec2 pos)
 	}
 	else if (auto oneWayFloor = std::dynamic_pointer_cast<OneWayFloor>(selectObjectType))
 	{
-		getData().world.addObject(std::make_shared<OneWayFloor>(pos, getData().world));
+		getData().world.addObject(std::make_shared<OneWayFloor>(pos, getData().world, textureIndex));
 	}
 	else if (auto iceFloor = std::dynamic_pointer_cast<IceFloor>(selectObjectType))
 	{
@@ -253,6 +254,8 @@ void Edit::selectAndUpdateObject()
 			setPalette.loadSettings(object);
 		}
 	}
+
+	textureIndex = (size_t)setPalette.texture.getValue();
 
 	// マウス右ボタンが押された場合、オブジェクトを削除
 	getData().world.objects.remove_if([](std::shared_ptr<Object> n) { return n->mouseOver() and MouseR.pressed(); });

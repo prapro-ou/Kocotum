@@ -23,20 +23,35 @@ public:
 	{
 		getData().world.update();
 
-		if (KeyL.down())
+		if (MouseM.down())
 		{
 			getData().world.pieMenu = std::make_unique<PieMenu>(getData().world.icons, Scene::CenterF());
+			getData().world.pieMenu->setEnabled((size_t)TrojanIndex::Destroy, getData().world.trojanEnable[(size_t)TrojanIndex::Destroy])
+				.setEnabled((size_t)TrojanIndex::Transparent, getData().world.trojanEnable[(size_t)TrojanIndex::Transparent])
+				.setEnabled((size_t)TrojanIndex::Small, getData().world.trojanEnable[(size_t)TrojanIndex::Small])
+				.setEnabled((size_t)TrojanIndex::JumpPlus, getData().world.trojanEnable[(size_t)TrojanIndex::JumpPlus]);
 		}
 
 		if (getData().world.pieMenu)
 		{
-			if (KeyL.up())
+			const Optional<int32> selected = getData().world.pieMenu->update();
+
+			if (MouseM.up())
 			{
+				if (selected)
+				{
+					getData().world.trojanIndex.value() = (TrojanIndex)*selected;
+				}
 				getData().world.pieMenu.reset();
 			}
 		}
 
-		if (KeyR.down() or getData().world.deathSw.sF() > 0.75)
+		if (KeyR.down() and getData().world.player.isAlive)
+		{
+			getData().world.killPlayer();
+		}
+
+		if (getData().world.deathSw.sF() > 0.75)
 		{
 			getData().world.restart();
 		}
@@ -57,7 +72,7 @@ public:
 
 		if (getData().world.pieMenu)
 		{
-
+			getData().world.pieMenu->draw();
 		}
 	}
 };
