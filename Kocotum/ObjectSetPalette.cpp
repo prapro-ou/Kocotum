@@ -72,11 +72,11 @@ void ObjectSetPalette::loadSettings(std::shared_ptr<Object>& object)
 
 	if (auto wall = std::dynamic_pointer_cast<Wall>(object))
 	{
-		texture.setValue((int)(wall->textureIndex - 1));
+		texture.setValue((int)(wall->textureIndex));
 	}
 	else if (auto oneWayFloor = std::dynamic_pointer_cast<OneWayFloor>(object))
 	{
-		texture.setValue((int)(oneWayFloor->textureIndex - 1));
+		texture.setValue((int)(oneWayFloor->textureIndex));
 	}
 }
 
