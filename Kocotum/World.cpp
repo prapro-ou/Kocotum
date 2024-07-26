@@ -53,7 +53,8 @@ void World::loadWorld(String fileName)
 			if (csv[row][1] == U"Wall")
 			{
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
-				addObject(std::make_shared<Wall>(pos, *this));
+				size_t textureIndex = ParseOr<size_t>(csv[row][3], 1);
+				addObject(std::make_shared<Wall>(pos, *this, textureIndex));
 			}
 			else if (csv[row][1] == U"JumpToggleWall")
 			{
@@ -127,7 +128,8 @@ void World::loadWorld(String fileName)
 			else if (csv[row][1] == U"OneWayFloor")
 			{
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
-				addObject(std::make_shared<OneWayFloor>(pos, *this));
+				size_t textureIndex = ParseOr<size_t>(csv[row][3], 1);
+				addObject(std::make_shared<OneWayFloor>(pos, *this, textureIndex));
 			}
 			else if (csv[row][1] == U"IceFloor")
 			{
