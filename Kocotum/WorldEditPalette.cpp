@@ -31,7 +31,7 @@ void WorldEditPalette::update(World& world)
 
 	if (SimpleGUI::Button(U"ファイル保存", pos + Vec2{ 250, 70 }))
 	{
-		world.saveWorld(fileName.getText());
+		world.saveWorld(U"data/map/" + fileName.getText());
 	}
 }
 
