@@ -18,7 +18,7 @@ struct Wall : public Object
 	 * @param effect エフェクト参照
 	 * @param player プレイヤー参照
 	 */
-	Wall(Vec2 pos, World& world);
+	Wall(Vec2 pos, World& world, size_t textureIndex = 1);
 
 	void restart() override;
 	bool intersectsPlayer() override;

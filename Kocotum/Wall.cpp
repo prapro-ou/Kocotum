@@ -1,7 +1,7 @@
 ﻿#include "Wall.hpp"
 
-Wall::Wall(Vec2 pos, World& world)
-	: Object{ pos, world, U"壁" }
+Wall::Wall(Vec2 pos, World& world, size_t textureIndex)
+	: Object{ pos, world, U"壁", textureIndex }
 	, body{ RectF{ pos, CHIP_SIZE } }
 {
 }
@@ -91,7 +91,7 @@ void Wall::update()
 void Wall::draw() const
 {
 	// 壁のテクスチャを描画
-	TextureAsset(U"Wall").resized(CHIP_SIZE).draw(pos);
+	TextureAsset(U"Wall" + Format(textureIndex)).resized(CHIP_SIZE).draw(pos);
 }
 
 JumpToggleWall::JumpToggleWall(Vec2 pos, World& world, bool init)
