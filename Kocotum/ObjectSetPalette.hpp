@@ -39,6 +39,9 @@ public:
 	/// @brief ワープポイント用のファイル名
 	String fileName;
 
+	/// @brief テクスチャ番号設定用のSpinBox
+	SpinBox texture;
+
 	/// @brief コンストラクタ
 	/// @param pos パレットの位置
 	/// @param width パレットの幅

@@ -56,7 +56,8 @@ struct EXEffect : IEffect
 		{
 			offset << RandomVec2(50);
 			trails << TrailMotion{}
-			.setPositionFunction([this, i](double t) { return m_pos + offset[i] - Vec2{ 0, Scene::Height() * 10 * Max(t - i * 0.015, 0.0) } + Vec2{ 0, 100 }; })
+				.setLifeTime(LifeTime)
+				.setPositionFunction([this, i](double t) { return m_pos + offset[i] - Vec2{ 0, Scene::Height() * 10 * Max(t - i * 0.015, 0.0) } + Vec2{ 0, 100 }; })
 				.setSizeFunction([i](double t) { return 40 * Sin(Max(t - i * 0.015, 0.0) * Math::Pi); })
 				.setColor(Palette::Lime.withAlpha(150));
 		}

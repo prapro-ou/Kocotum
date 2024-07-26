@@ -1,7 +1,7 @@
 ﻿#include "OneWayFloor.hpp"
 
-OneWayFloor::OneWayFloor(Vec2 pos, World& world)
-	: Object{ pos, world, U"下から通れる足場" }
+OneWayFloor::OneWayFloor(Vec2 pos, World& world, size_t textureIndex)
+	: Object{ pos, world, U"下から通れる足場", textureIndex }
 	, body{ RectF{ pos, CHIP_SIZE.x, CHIP_SIZE.y / 2 } }
 	, mouseOverBody{ RectF{ pos, CHIP_SIZE } }
 {
@@ -75,5 +75,5 @@ void OneWayFloor::update()
 void OneWayFloor::draw() const
 {
 	// 壁のテクスチャを描画
-	TextureAsset(U"OneWayFloor").resized(CHIP_SIZE).draw(pos);
+	TextureAsset(U"OneWayFloor" + Format(textureIndex)).resized(CHIP_SIZE).draw(pos);
 }

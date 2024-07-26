@@ -53,7 +53,8 @@ void World::loadWorld(String fileName)
 			if (csv[row][1] == U"Wall")
 			{
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
-				addObject(std::make_shared<Wall>(pos, *this));
+				//size_t textureIndex = ParseOr<size_t>(csv[row][3], 1);
+				addObject(std::make_shared<Wall>(pos, *this, 1));
 			}
 			else if (csv[row][1] == U"JumpToggleWall")
 			{
@@ -127,7 +128,8 @@ void World::loadWorld(String fileName)
 			else if (csv[row][1] == U"OneWayFloor")
 			{
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
-				addObject(std::make_shared<OneWayFloor>(pos, *this));
+				//size_t textureIndex = ParseOr<size_t>(csv[row][3], 1);
+				addObject(std::make_shared<OneWayFloor>(pos, *this, 1));
 			}
 			else if (csv[row][1] == U"IceFloor")
 			{
@@ -177,6 +179,7 @@ void World::saveWorld(String fileName)
 		{
 			csv.write(U"Wall");
 			csv.write(wall->pos.asPoint());
+			csv.write(wall->textureIndex);
 		}
 		else if (auto jumpToggleWall = std::dynamic_pointer_cast<JumpToggleWall>(object))
 		{
@@ -251,6 +254,7 @@ void World::saveWorld(String fileName)
 		{
 			csv.write(U"OneWayFloor");
 			csv.write(oneWayFloor->pos.asPoint());
+			csv.write(oneWayFloor->textureIndex);
 		}
 		else if (auto iceFloor = std::dynamic_pointer_cast<IceFloor>(object))
 		{
@@ -308,7 +312,9 @@ void World::init()
 
 	player.restart();
 
-	camera.restart();
+	camera.update(player);
+
+	camera.init();
 
 	deathSw.reset();
 }
@@ -316,7 +322,6 @@ void World::init()
 void World::warp()
 {
 	loadWorld(warpFileName);
-	update();
 	init();
 }
 
@@ -338,6 +343,11 @@ void World::update()
 	// カメラの更新
 	camera.update(player);
 
+	if (camera.activeArea->isScroll and camera.isPlayerOutOfScreen(player))
+	{
+		killPlayer();
+	}
+
 	if (causeWarp)
 	{
 		causeWarp = false;
@@ -352,7 +362,22 @@ void World::draw() const
 	// オブジェクトの描画
 	for (auto& object : objects)
 	{
-		object->draw();
+		if (auto obj = std::dynamic_pointer_cast<Text>(object))
+		{
+
+		}
+		else
+		{
+			object->draw();
+		}
+	}
+
+	for (auto& object : objects)
+	{
+		if (auto obj = std::dynamic_pointer_cast<Text>(object))
+		{
+			object->draw();
+		}
 	}
 
 	// プレイヤーの描画

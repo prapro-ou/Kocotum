@@ -23,6 +23,7 @@ struct Object
 	Vec2 pos;               /// オブジェクトの位置
 	World& world;			/// プレイヤー参照
 	String name;            /// オブジェクトの名前
+	size_t textureIndex;	/// 描画するテクスチャの番号
 
 	/**
 	 * @brief コンストラクタ
@@ -32,10 +33,11 @@ struct Object
 	 * @param type オブジェクトの種類
 	 * @param name オブジェクトの名前
 	 */
-	Object(Vec2 pos, World& world, String name)
+	Object(Vec2 pos, World& world, String name, size_t textureIndex = 1)
 		: pos{ pos }
 		, world{ world }
 		, name{ name }
+		, textureIndex{ textureIndex }
 	{ }
 
 	/// @brief オブジェクトのリスタート

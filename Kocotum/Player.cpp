@@ -20,10 +20,10 @@ Player::Player(Vec2 pos)
 	, velocityClamp{ 0 }
 {
 	body.setPos(pos);
-	gif.addGIF(U"idle", GIF(U"idle.gif"));
-	//gif.addGIF(U"jumpUp", U"jumpUp.gif");
-	gif.addGIF(U"jumpDown", GIF(U"jumpDown.gif"));
-	gif.addGIF(U"move", GIF(U"move.gif"));
+	gif.addGIF(U"idle", GIF(U"Idle.gif"));
+	gif.addGIF(U"jumpUp", GIF(U"JumpUp.gif"));
+	gif.addGIF(U"jumpDown", GIF(U"JumpDown.gif"));
+	gif.addGIF(U"move", GIF(U"Move.gif"));
 	gif.setActiveKey(U"idle");
 }
 
@@ -117,7 +117,7 @@ void Player::update(Array<std::shared_ptr<Object>>& objects)
 
 		if (velocity.y <= 0)
 		{
-			//gif.setActiveKey(U"jumpUp");
+			gif.setActiveKey(U"jumpUp");
 		}
 		else
 		{
@@ -174,9 +174,9 @@ void Player::update(Array<std::shared_ptr<Object>>& objects)
 	// ジャンプの高さ調整（スペースキーを押し続けた場合）
 	if (KeySpace.pressed() and jumpNum == 1)
 	{
-		if (KeySpace.pressedDuration() < 0.13s)
+		if (KeySpace.pressedDuration() < 0.20s)
 		{
-			velocity.y = -600;
+			velocity.y = -500;
 			isOnGround = false;
 		}
 	}

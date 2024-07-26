@@ -31,7 +31,7 @@ void CameraArea::setHeight(double height)
 	area.setSize(this->width, height);
 }
 
-void CameraArea::init()
+void CameraArea::restart()
 {
 	cameraTargetPos = initPos;
 }
@@ -74,13 +74,21 @@ void GameCamera::addArea(std::shared_ptr<CameraArea> area)
 
 bool GameCamera::isPlayerOutOfScreen(const Player& player)
 {
-	// プレイヤーが画面外にいるかどうかのチェック処理を実装する
-	return false;
+	RectF cameraTargetArea = RectF{ Arg::center(activeArea->cameraTargetPos), Scene::Size() * (1 / activeArea->scale) };
+
+	return not cameraTargetArea.stretched(CHIP_SIZE * 3).intersects(player.body);
 }
 
 void GameCamera::restart()
 {
-	activeArea->init();
+	activeArea->restart();
+}
+
+void GameCamera::init()
+{
+	activeArea->restart();
+	camera.setCenter(activeArea->cameraTargetPos);
+	camera.setScale(activeArea->scale);
 }
 
 void GameCamera::update(const Player& player)

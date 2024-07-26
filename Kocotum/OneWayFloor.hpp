@@ -11,7 +11,7 @@ struct OneWayFloor : public Object
 	RectF body; /// 当たり判定用の矩形
 	RectF mouseOverBody;
 
-	OneWayFloor(Vec2 pos, World& world);
+	OneWayFloor(Vec2 pos, World& world, size_t textureIndex = 1);
 
 	void restart() override;
 	bool intersectsPlayer() override;

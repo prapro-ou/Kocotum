@@ -9,6 +9,8 @@
 struct Spring : public Object
 {
 	RectF body; /// 当たり判定用の矩形
+	double stretch;
+	
 
 	Spring(Vec2 pos, World& world);
 

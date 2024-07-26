@@ -23,6 +23,19 @@ public:
 	{
 		getData().world.update();
 
+		if (KeyL.down())
+		{
+			getData().world.pieMenu = std::make_unique<PieMenu>(getData().world.icons, Scene::CenterF());
+		}
+
+		if (getData().world.pieMenu)
+		{
+			if (KeyL.up())
+			{
+				getData().world.pieMenu.reset();
+			}
+		}
+
 		if (KeyR.down() or getData().world.deathSw.sF() > 0.75)
 		{
 			getData().world.restart();
@@ -40,6 +53,11 @@ public:
 		{
 			const Transformer2D cameraTransformer = getData().world.camera.createTransformer();
 			getData().world.draw();
+		}
+
+		if (getData().world.pieMenu)
+		{
+
 		}
 	}
 };

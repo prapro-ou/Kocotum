@@ -5,11 +5,12 @@ ObjectSetPalette::ObjectSetPalette(Vec2 pos, uint32 width, uint32 height)
 	, body{ RectF{pos, width, height} }
 	, indexDirection{ size_t(0) }
 	, indexJumpToggle{ size_t(0) }
-	, direction{ RadioButtons{ pos + Vec2{ 120, 100 }, { U"↑", U"→", U"↓", U"←" }, indexDirection} }
+	, direction{ RadioButtons{ pos + Vec2{ 120, 100 }, { U"↑", U"→", U"↓", U"←" }, indexDirection } }
 	, jumpToggle{ RadioButtons{ pos + Vec2{ 240, 200 }, { U"出現", U"消滅" }, indexJumpToggle } }
 	, length{ SpinBox(pos + Vec2{ 120, 300 }, 150, 40, 5, U"64") }
 	, text{ TextBox(pos + Vec2{ 120, 350 }, 400, 20, U"Text") }
 	, fileName{ U"" }
+	, texture{ SpinBox{ pos + Vec2{ 2, 550 }, 150, 40, 5, U"1"} }
 {
 	// コンストラクタの初期化
 }
@@ -67,6 +68,15 @@ void ObjectSetPalette::loadSettings(std::shared_ptr<Object>& object)
 	if (auto warpPoint = std::dynamic_pointer_cast<WarpPoint>(object))
 	{
 		fileName = warpPoint->fileName;
+	}
+
+	if (auto wall = std::dynamic_pointer_cast<Wall>(object))
+	{
+		texture.setValue((int)(wall->textureIndex));
+	}
+	else if (auto oneWayFloor = std::dynamic_pointer_cast<OneWayFloor>(object))
+	{
+		texture.setValue((int)(oneWayFloor->textureIndex));
 	}
 }
 
@@ -149,6 +159,16 @@ void ObjectSetPalette::update(std::shared_ptr<Object>& object)
 			}
 		}
 	}
+
+	texture.update();
+	if (auto wall = std::dynamic_pointer_cast<Wall>(object))
+	{
+		wall->textureIndex = (size_t)texture.getValue();
+	}
+	else if (auto oneWayFloor = std::dynamic_pointer_cast<OneWayFloor>(object))
+	{
+		oneWayFloor->textureIndex = (size_t)texture.getValue();
+	}
 }
 
 void ObjectSetPalette::draw() const
@@ -167,4 +187,6 @@ void ObjectSetPalette::draw() const
 	text.draw();
 	SimpleGUI::Button(U"ファイル読み込み", pos + Vec2{ 50, 400 });
 	SimpleGUI::GetFont()(U"ファイル:" + fileName).draw(pos + Vec2{ 0, 450 }, Palette::Black);
+	SimpleGUI::GetFont()(U"テクスチャ番号").draw(pos + Vec2{ 0, 500 }, Palette::Black);
+	texture.draw();
 }
