@@ -5,7 +5,7 @@ WarpPoint::WarpPoint(Vec2 pos, World& world, String fileName)
 	, body{ RectF{ pos, CHIP_SIZE } }
 	, fileName{ fileName }
 	, isTouched{ false }
-	, gif{ AnimatedGIFReader{ U"WarpPoint.gif" } }
+	, gif{ AnimatedGIFReader{ U"data/img/object/WarpPoint.gif" } }
 {
 	gif.read(images, delays);
 	for (const auto& image : images)

@@ -20,10 +20,10 @@ Player::Player(Vec2 pos)
 	, velocityClamp{ 0 }
 {
 	body.setPos(pos);
-	gif.addGIF(U"idle", GIF(U"Idle.gif"));
-	gif.addGIF(U"jumpUp", GIF(U"JumpUp.gif"));
-	gif.addGIF(U"jumpDown", GIF(U"JumpDown.gif"));
-	gif.addGIF(U"move", GIF(U"Move.gif"));
+	gif.addGIF(U"idle", GIF(U"data/img/player/Idle.gif"));
+	gif.addGIF(U"jumpUp", GIF(U"data/img/player/JumpUp.gif"));
+	gif.addGIF(U"jumpDown", GIF(U"data/img/player/JumpDown.gif"));
+	gif.addGIF(U"move", GIF(U"data/img/player/Move.gif"));
 	gif.setActiveKey(U"idle");
 }
 
