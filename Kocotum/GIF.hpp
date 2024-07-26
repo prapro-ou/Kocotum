@@ -23,7 +23,15 @@ public:
 		double t = Scene::Time();
 		const size_t frameIndex = AnimatedGIFReader::GetFrameIndex(t, delays);
 
-		return textures[frameIndex];
+		if (not textures.isEmpty())
+		{
+			return textures[frameIndex];
+		}
+		else
+		{
+			Texture texture;
+			return texture;
+		}
 	}
 };
 
