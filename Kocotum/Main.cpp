@@ -16,7 +16,17 @@ void Main()
 	FontAsset::Register(U"SaveFont", 15, Typeface::Heavy);
 
 	TextureAsset::Register(U"Player", U"player.png", TextureDesc::Mipped);
-	TextureAsset::Register(U"Wall", U"Wall.png", TextureDesc::Mipped);
+
+	TextureAsset::Register(U"Wall1", U"Wall1.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"Wall2", U"Wall2.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"Wall3", U"Wall3.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"Wall4", U"Wall4.png", TextureDesc::Mipped);
+
+	TextureAsset::Register(U"OneWayFloor1", U"OneWayFloor1.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"OneWayFloor2", U"OneWayFloor2.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"OneWayFloor3", U"OneWayFloor3.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"OneWayFloor4", U"OneWayFloor4.png", TextureDesc::Mipped);
+
 	TextureAsset::Register(U"IceWall", U"IceWall.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"SpeedWall", U"SpeedWall.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"JumpToggleWall", U"JumpToggleWall.png", TextureDesc::Mipped);
@@ -26,7 +36,6 @@ void Main()
 	TextureAsset::Register(U"JumpToggleNeedleAlpha", U"JumpToggleNeedleAlpha.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"StartPoint", U"StartPoint.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"SavePoint", U"SavePoint.png", TextureDesc::Mipped);
-	TextureAsset::Register(U"OneWayFloor", U"OneWayFloor.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"IceFloor", U"IceFloor.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"MoveFloor", U"MoveFloor.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"Spring", U"Spring.png", TextureDesc::Mipped);

@@ -39,6 +39,12 @@ public:
 	/// @brief ワープポイント用のファイル名
 	String fileName;
 
+	/// @brief テクスチャ番号選択インデックス
+	size_t indexTexture;
+
+	/// @brief テクスチャ選択用のラジオボタン
+	RadioButtons texture;
+
 	/// @brief コンストラクタ
 	/// @param pos パレットの位置
 	/// @param width パレットの幅
