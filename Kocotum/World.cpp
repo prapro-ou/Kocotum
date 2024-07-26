@@ -53,8 +53,8 @@ void World::loadWorld(String fileName)
 			if (csv[row][1] == U"Wall")
 			{
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
-				size_t textureIndex = ParseOr<size_t>(csv[row][3], 1);
-				addObject(std::make_shared<Wall>(pos, *this, textureIndex));
+				//size_t textureIndex = ParseOr<size_t>(csv[row][3], 1);
+				addObject(std::make_shared<Wall>(pos, *this, 1));
 			}
 			else if (csv[row][1] == U"JumpToggleWall")
 			{
@@ -128,8 +128,8 @@ void World::loadWorld(String fileName)
 			else if (csv[row][1] == U"OneWayFloor")
 			{
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
-				size_t textureIndex = ParseOr<size_t>(csv[row][3], 1);
-				addObject(std::make_shared<OneWayFloor>(pos, *this, textureIndex));
+				//size_t textureIndex = ParseOr<size_t>(csv[row][3], 1);
+				addObject(std::make_shared<OneWayFloor>(pos, *this, 1));
 			}
 			else if (csv[row][1] == U"IceFloor")
 			{
@@ -179,6 +179,7 @@ void World::saveWorld(String fileName)
 		{
 			csv.write(U"Wall");
 			csv.write(wall->pos.asPoint());
+			csv.write(wall->textureIndex);
 		}
 		else if (auto jumpToggleWall = std::dynamic_pointer_cast<JumpToggleWall>(object))
 		{
@@ -253,6 +254,7 @@ void World::saveWorld(String fileName)
 		{
 			csv.write(U"OneWayFloor");
 			csv.write(oneWayFloor->pos.asPoint());
+			csv.write(oneWayFloor->textureIndex);
 		}
 		else if (auto iceFloor = std::dynamic_pointer_cast<IceFloor>(object))
 		{
