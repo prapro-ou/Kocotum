@@ -1,4 +1,4 @@
-﻿#include "TrojanForce.hpp"
+﻿#include "Trojan.hpp"
 
 TrojanDestroy::TrojanDestroy(Vec2 pos, World& world)
 	: Object{ pos, world, U"トロイフォース：破壊" }
@@ -32,7 +32,7 @@ void TrojanDestroy::handleCollisionX()
 {
 	if (not isGet)
 	{
-		world.trojanEnable[(size_t)Trojan::Destroy] = true;
+		world.trojanForce.setEnable((size_t)Trojan::Destroy, true);
 		isGet = true;
 	}
 }
@@ -41,7 +41,7 @@ void TrojanDestroy::handleCollisionY()
 {
 	if (not isGet)
 	{
-		world.trojanEnable[(size_t)Trojan::Destroy] = true;
+		world.trojanForce.setEnable((size_t)Trojan::Destroy, true);
 		isGet = true;
 	}
 }

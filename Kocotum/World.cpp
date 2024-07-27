@@ -5,16 +5,7 @@ World::World(Vec2 pos)
 	, causeWarp{ false }
 	, warpFileName{ U"" }
 {
-	icons =
-	{
-		PieMenuIcon{ Texture{ 0xF08EA_icon, 60 }, ColorF{ 0.86, 0.98, 0.80 }},
-		PieMenuIcon{ Texture{ 0xF05B7_icon, 60 }, ColorF{ 0.60, 0.98, 0.60 }},
-		PieMenuIcon{ Texture{ 0xF0485_icon, 60 }, ColorF{ 0.50, 1.00, 0.83 }},
-		PieMenuIcon{ Texture{ 0xF033E_icon, 60 }, ColorF{ 1.00, 0.65, 0.00 }},
-	};
-
-	trojanEnable = Array<bool>(4, false);
-	trojanIndex = none;
+	
 }
 
 
