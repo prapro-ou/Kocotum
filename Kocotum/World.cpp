@@ -151,6 +151,11 @@ void World::loadWorld(String fileName)
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
 				addObject(std::make_shared<Spring>(pos, *this));
 			}
+			else if (csv[row][1] == U"TrojanDestroy")
+			{
+				Vec2 pos = Parse<Vec2>(csv[row][2]);
+				addObject(std::make_shared<TrojanDestroy>(pos, *this));
+			}
 		}
 	}
 }
@@ -275,6 +280,11 @@ void World::saveWorld(String fileName)
 		{
 			csv.write(U"Spring");
 			csv.write(spring->pos.asPoint());
+		}
+		else if (auto trojanDestroy = std::dynamic_pointer_cast<TrojanDestroy>(object))
+		{
+			csv.write(U"TrojanDestroy");
+			csv.write(trojanDestroy->pos.asPoint());
 		}
 
 		csv.newLine();
