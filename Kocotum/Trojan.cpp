@@ -1,4 +1,4 @@
-﻿#include "TrojanDestroy.hpp"
+﻿#include "TrojanForce.hpp"
 
 TrojanDestroy::TrojanDestroy(Vec2 pos, World& world)
 	: Object{ pos, world, U"トロイフォース：破壊" }

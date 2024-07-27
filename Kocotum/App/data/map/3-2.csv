@@ -292,7 +292,7 @@ Object,Wall,"(4288, 448)",1
 Object,Wall,"(4224, 448)",1
 Object,Wall,"(4224, 0)",1
 Object,Wall,"(4288, 0)",1
-Object,WarpPoint,"(6208, 256)",title.csv
+Object,WarpPoint,"(6208, 256)",data/map/title.csv
 Object,Wall,"(6400, 0)",1
 Object,Wall,"(6464, 0)",1
 Object,Wall,"(6528, 0)",1

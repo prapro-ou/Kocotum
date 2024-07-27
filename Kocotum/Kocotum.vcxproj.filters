@@ -249,7 +249,7 @@
     <ClCompile Include="Spring.cpp">
       <Filter>Source Files\Object</Filter>
     </ClCompile>
-    <ClCompile Include="TrojanDestroy.cpp">
+    <ClCompile Include="Trojan.cpp">
       <Filter>Source Files\Object</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1010,7 +1010,7 @@
     <ClInclude Include="PieMenu.hpp">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
-    <ClInclude Include="TrojanDestroy.hpp">
+    <ClInclude Include="Trojan.hpp">
       <Filter>Header Files\Object</Filter>
     </ClInclude>
   </ItemGroup>

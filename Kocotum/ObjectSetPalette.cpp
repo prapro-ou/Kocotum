@@ -154,8 +154,8 @@ void ObjectSetPalette::update(std::shared_ptr<Object>& object)
 		{
 			if (auto warpPoint = std::dynamic_pointer_cast<WarpPoint>(object))
 			{
-				warpPoint->fileName = FileSystem::FileName(*path);
-				fileName = FileSystem::FileName(*path);
+				warpPoint->fileName = FileSystem::RelativePath(*path);
+				fileName = FileSystem::RelativePath(*path);
 			}
 		}
 	}

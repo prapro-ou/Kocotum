@@ -142,7 +142,7 @@
     </ClCompile>
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="TextBox.cpp" />
-    <ClCompile Include="TrojanDestroy.cpp" />
+    <ClCompile Include="Trojan.cpp" />
     <ClCompile Include="Wall.cpp" />
     <ClCompile Include="WarpPoint.cpp" />
     <ClCompile Include="World.cpp" />
@@ -380,7 +380,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Text.hpp" />
     <ClInclude Include="TextBox.hpp" />
-    <ClInclude Include="TrojanDestroy.hpp" />
+    <ClInclude Include="Trojan.hpp" />
     <ClInclude Include="Wall.hpp" />
     <ClInclude Include="WarpPoint.hpp" />
     <ClInclude Include="World.hpp" />
