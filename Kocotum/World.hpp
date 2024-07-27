@@ -7,7 +7,7 @@
 #include "GameCamera.hpp"
 #include "PieMenu.hpp"
 
-enum class TrojanIndex : size_t
+enum class Trojan : size_t
 {
 	Destroy = 0,
 	Transparent = 1,
@@ -35,7 +35,7 @@ public:
 	Array<PieMenuIcon> icons;
 	std::unique_ptr<PieMenu> pieMenu;
 	Array<bool> trojanEnable;
-	Optional<TrojanIndex> trojanIndex;
+	Optional<size_t> trojanIndex;
 	
 
 	/**

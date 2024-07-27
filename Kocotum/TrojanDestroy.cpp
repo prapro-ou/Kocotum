@@ -32,7 +32,7 @@ void TrojanDestroy::handleCollisionX()
 {
 	if (not isGet)
 	{
-		world.trojanEnable[(size_t)TrojanIndex::Destroy] = true;
+		world.trojanEnable[(size_t)Trojan::Destroy] = true;
 		isGet = true;
 	}
 }
@@ -41,7 +41,7 @@ void TrojanDestroy::handleCollisionY()
 {
 	if (not isGet)
 	{
-		world.trojanEnable[(size_t)TrojanIndex::Destroy] = true;
+		world.trojanEnable[(size_t)Trojan::Destroy] = true;
 		isGet = true;
 	}
 }
@@ -52,5 +52,8 @@ void TrojanDestroy::update()
 
 void TrojanDestroy::draw() const
 {
-	TextureAsset(U"TrojanDestroy").resized(CHIP_SIZE).draw(pos);
+	if (not isGet)
+	{
+		TextureAsset(U"TrojanDestroy").resized(CHIP_SIZE).draw(pos);
+	}
 }

@@ -26,10 +26,10 @@ public:
 		if (MouseM.down())
 		{
 			getData().world.pieMenu = std::make_unique<PieMenu>(getData().world.icons, Scene::CenterF());
-			getData().world.pieMenu->setEnabled((size_t)TrojanIndex::Destroy, getData().world.trojanEnable[(size_t)TrojanIndex::Destroy])
-				.setEnabled((size_t)TrojanIndex::Transparent, getData().world.trojanEnable[(size_t)TrojanIndex::Transparent])
-				.setEnabled((size_t)TrojanIndex::Small, getData().world.trojanEnable[(size_t)TrojanIndex::Small])
-				.setEnabled((size_t)TrojanIndex::JumpPlus, getData().world.trojanEnable[(size_t)TrojanIndex::JumpPlus]);
+			getData().world.pieMenu->setEnabled((size_t)Trojan::Destroy, getData().world.trojanEnable[(size_t)Trojan::Destroy])
+				.setEnabled((size_t)Trojan::Transparent, getData().world.trojanEnable[(size_t)Trojan::Transparent])
+				.setEnabled((size_t)Trojan::Small, getData().world.trojanEnable[(size_t)Trojan::Small])
+				.setEnabled((size_t)Trojan::JumpPlus, getData().world.trojanEnable[(size_t)Trojan::JumpPlus]);
 		}
 
 		if (getData().world.pieMenu)
@@ -40,7 +40,7 @@ public:
 			{
 				if (selected)
 				{
-					getData().world.trojanIndex.value() = (TrojanIndex)*selected;
+					getData().world.trojanIndex = (size_t)*selected;
 				}
 				getData().world.pieMenu.reset();
 			}
