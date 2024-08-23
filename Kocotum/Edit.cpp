@@ -70,7 +70,7 @@ void Edit::createObject(Vec2 pos)
 	}
 	else if (auto iceWall = std::dynamic_pointer_cast<IceWall>(selectObjectType))
 	{
-		getData().world.addObject(std::make_shared<IceWall>(pos, getData().world));
+		getData().world.addObject(std::make_shared<IceWall>(pos, getData().world, textureIndex));
 	}
 	else if (auto speedWall = std::dynamic_pointer_cast<SpeedWall>(selectObjectType))
 	{
@@ -78,7 +78,7 @@ void Edit::createObject(Vec2 pos)
 	}
 	else if (auto needle = std::dynamic_pointer_cast<Needle>(selectObjectType))
 	{
-		getData().world.addObject(std::make_shared<Needle>(pos, getData().world));
+		getData().world.addObject(std::make_shared<Needle>(pos, getData().world, E_Direction::Up, textureIndex));
 	}
 	else if (auto miniNeedle = std::dynamic_pointer_cast<MiniNeedle>(selectObjectType))
 	{
@@ -115,10 +115,6 @@ void Edit::createObject(Vec2 pos)
 	else if (auto oneWayFloor = std::dynamic_pointer_cast<OneWayFloor>(selectObjectType))
 	{
 		getData().world.addObject(std::make_shared<OneWayFloor>(pos, getData().world, textureIndex));
-	}
-	else if (auto iceFloor = std::dynamic_pointer_cast<IceFloor>(selectObjectType))
-	{
-		getData().world.addObject(std::make_shared<IceFloor>(pos, getData().world));
 	}
 	else if (auto moveFloor = std::dynamic_pointer_cast<MoveFloor>(selectObjectType))
 	{

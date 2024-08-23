@@ -23,7 +23,7 @@ struct IceFloor : public Object
 	 * @brief IceFloorクラスのコンストラクタ
 	 * @param pos 滑る床の位置
 	 */
-	IceFloor(Vec2 pos, World& world);
+	IceFloor(Vec2 pos, World& world, size_t textureIndex = 1);
 
 	void restart() override;
 	bool intersectsPlayer() override;

@@ -1,7 +1,7 @@
 ﻿#include "IceFloor.hpp"
 
-IceFloor::IceFloor(Vec2 pos, World& world)
-	: Object{ pos, world, U"滑る床" }
+IceFloor::IceFloor(Vec2 pos, World& world, size_t textureIndex)
+	: Object{ pos, world, U"滑る床", textureIndex }
 	, body{ RectF{pos, CHIP_SIZE} }
 {
 
@@ -97,5 +97,5 @@ void IceFloor::update()
 void IceFloor::draw() const
 {
 	// 滑る床のテクスチャを描画
-	TextureAsset(U"IceFloor").resized(CHIP_SIZE).draw(pos);
+	TextureAsset(U"IceFloor" + Format(textureIndex)).resized(CHIP_SIZE).draw(pos);
 }

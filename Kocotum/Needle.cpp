@@ -1,7 +1,7 @@
 ﻿#include "Needle.hpp"
 
-Needle::Needle(Vec2 pos, World& world, E_Direction direction)
-	: Object{ pos, world, U"針" }
+Needle::Needle(Vec2 pos, World& world, E_Direction direction, size_t textureIndex)
+	: Object{ pos, world, U"針", textureIndex }
 	, direction{ direction }
 	, mouseOverBody{ RectF{ pos, CHIP_SIZE } }
 	, body{ Triangle{ Vec2{ 0.1, CHIP_SIZE.y }, Vec2{ CHIP_SIZE.x / 2, 0 }, Vec2{ CHIP_SIZE.x - 0.1, CHIP_SIZE.y } } }
@@ -57,9 +57,8 @@ void Needle::update()
 
 void Needle::draw() const
 {
-	body.draw(ColorF(0.5), ColorF(1.0), ColorF(1.2)).drawFrame(2, 0, Palette::Dimgray);
 	// 針のテクスチャを描画
-	//TextureAsset(U"Needle").resized(CHIP_SIZE).rotated((uint8)direction * 90_deg).draw(pos);
+	TextureAsset(U"Needle" + Format(textureIndex)).resized(CHIP_SIZE).rotated((uint8)direction * 90_deg).draw(pos);
 }
 
 
@@ -223,14 +222,6 @@ void JumpToggleNeedle::update()
 
 void JumpToggleNeedle::draw() const
 {
-	if (isOn)
-	{
-		body.draw(HSV(0, 1, 1), HSV(0, 0.6, 1), HSV(0, 0.1, 1)).drawFrame(2, 0, Palette::Dimgray);
-	}
-	else
-	{
-		body.drawFrame(2, 0, Palette::White);
-	}
 	// 針の状態に応じたテクスチャを描画
-	//TextureAsset((isOn ? U"JumpToggleNeedle" : U"JumpToggleNeedleAlpha")).resized(CHIP_SIZE).rotated((uint8)direction * 90_deg).draw(pos);
+	TextureAsset((isOn ? U"JumpToggleNeedle" : U"JumpToggleNeedleAlpha")).resized(CHIP_SIZE).rotated((uint8)direction * 90_deg).draw(pos);
 }

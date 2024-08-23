@@ -24,7 +24,7 @@ struct Needle : public Object
 	 * @param player プレイヤー参照
 	 * @param direction 針の向き（デフォルトは上向き）
 	 */
-	Needle(Vec2 pos, World& world, E_Direction direction = E_Direction::Up);
+	Needle(Vec2 pos, World& world, E_Direction direction = E_Direction::Up, size_t textureIndex = 1);
 
 	/**
 	 * @brief 針の向きを設定する

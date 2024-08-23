@@ -48,8 +48,8 @@ void World::loadWorld(String fileName)
 			if (csv[row][1] == U"Wall")
 			{
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
-				//size_t textureIndex = ParseOr<size_t>(csv[row][3], 1);
-				addObject(std::make_shared<Wall>(pos, *this, 1));
+				size_t textureIndex = ParseOr<size_t>(csv[row][3], 1);
+				addObject(std::make_shared<Wall>(pos, *this, textureIndex));
 			}
 			else if (csv[row][1] == U"JumpToggleWall")
 			{
@@ -60,7 +60,8 @@ void World::loadWorld(String fileName)
 			else if (csv[row][1] == U"IceWall")
 			{
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
-				addObject(std::make_shared<IceWall>(pos, *this));
+				size_t textureIndex = ParseOr<size_t>(csv[row][3], 1);
+				addObject(std::make_shared<IceWall>(pos, *this, textureIndex));
 			}
 			else if (csv[row][1] == U"SpeedWall")
 			{
@@ -71,7 +72,8 @@ void World::loadWorld(String fileName)
 			{
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
 				uint16 direction = Parse<uint16>(csv[row][3]);
-				addObject(std::make_shared<Needle>(pos, *this, (E_Direction)direction));
+				size_t textureIndex = ParseOr<size_t>(csv[row][4], 1);
+				addObject(std::make_shared<Needle>(pos, *this, (E_Direction)direction, textureIndex));
 			}
 			else if (csv[row][1] == U"MiniNeedle")
 			{
@@ -123,13 +125,8 @@ void World::loadWorld(String fileName)
 			else if (csv[row][1] == U"OneWayFloor")
 			{
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
-				//size_t textureIndex = ParseOr<size_t>(csv[row][3], 1);
-				addObject(std::make_shared<OneWayFloor>(pos, *this, 1));
-			}
-			else if (csv[row][1] == U"IceFloor")
-			{
-				Vec2 pos = Parse<Vec2>(csv[row][2]);
-				addObject(std::make_shared<IceFloor>(pos, *this));
+				size_t textureIndex = ParseOr<size_t>(csv[row][3], 1);
+				addObject(std::make_shared<OneWayFloor>(pos, *this, textureIndex));
 			}
 			else if (csv[row][1] == U"MoveFloor")
 			{
@@ -202,6 +199,7 @@ void World::saveWorld(String fileName)
 		{
 			csv.write(U"IceWall");
 			csv.write(iceWall->pos.asPoint());
+			csv.write(iceWall->textureIndex);
 		}
 		else if (auto speedWall = std::dynamic_pointer_cast<SpeedWall>(object))
 		{
@@ -213,6 +211,7 @@ void World::saveWorld(String fileName)
 			csv.write(U"Needle");
 			csv.write(needle->pos.asPoint());
 			csv.write((uint8)needle->direction);
+			csv.write(needle->textureIndex);
 		}
 		else if (auto miniNeedle = std::dynamic_pointer_cast<MiniNeedle>(object))
 		{
@@ -266,11 +265,6 @@ void World::saveWorld(String fileName)
 			csv.write(U"OneWayFloor");
 			csv.write(oneWayFloor->pos.asPoint());
 			csv.write(oneWayFloor->textureIndex);
-		}
-		else if (auto iceFloor = std::dynamic_pointer_cast<IceFloor>(object))
-		{
-			csv.write(U"IceFloor");
-			csv.write(iceFloor->pos.asPoint());
 		}
 		else if (auto moveFloor = std::dynamic_pointer_cast<MoveFloor>(object))
 		{

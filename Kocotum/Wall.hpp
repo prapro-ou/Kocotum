@@ -78,7 +78,7 @@ struct IceWall : public Object
 	 * @param effect エフェクト参照
 	 * @param player プレイヤー参照
 	 */
-	IceWall(Vec2 pos, World& world);
+	IceWall(Vec2 pos, World& world, size_t textureIndex = 1);
 
 	void restart() override;
 	bool intersectsPlayer() override;

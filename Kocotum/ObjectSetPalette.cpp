@@ -86,6 +86,14 @@ void ObjectSetPalette::loadSettings(std::shared_ptr<Object>& object)
 	{
 		texture.setValue((int)(oneWayFloor->textureIndex));
 	}
+	else if (auto iceWall = std::dynamic_pointer_cast<IceWall>(object))
+	{
+		texture.setValue((int)(iceWall->textureIndex));
+	}
+	else if (auto needle = std::dynamic_pointer_cast<Needle>(object))
+	{
+		texture.setValue((int)(needle->textureIndex));
+	}
 }
 
 void ObjectSetPalette::update(std::shared_ptr<Object>& object)
@@ -184,6 +192,14 @@ void ObjectSetPalette::update(std::shared_ptr<Object>& object)
 	else if (auto oneWayFloor = std::dynamic_pointer_cast<OneWayFloor>(object))
 	{
 		oneWayFloor->textureIndex = (size_t)texture.getValue();
+	}
+	else if (auto iceWall = std::dynamic_pointer_cast<IceWall>(object))
+	{
+		iceWall->textureIndex = (size_t)texture.getValue();
+	}
+	else if (auto needle = std::dynamic_pointer_cast<Needle>(object))
+	{
+		needle->textureIndex = (size_t)texture.getValue();
 	}
 }
 

@@ -211,8 +211,8 @@ void JumpToggleWall::draw() const
 	TextureAsset((isOn ? U"JumpToggleWall" : U"JumpToggleWallAlpha")).resized(CHIP_SIZE).draw(pos);
 }
 
-IceWall::IceWall(Vec2 pos, World& world)
-	: Object{ pos, world, U"氷の壁" }
+IceWall::IceWall(Vec2 pos, World& world, size_t textureIndex)
+	: Object{ pos, world, U"氷の壁", textureIndex }
 	, body{ RectF{ pos, CHIP_SIZE } }
 {
 }
@@ -304,7 +304,7 @@ void IceWall::update()
 void IceWall::draw() const
 {
 	// 壁のテクスチャを描画
-	TextureAsset(U"IceWall").resized(CHIP_SIZE).draw(pos);
+	TextureAsset(U"IceWall" + Format(textureIndex)).resized(CHIP_SIZE).draw(pos);
 }
 
 SpeedWall::SpeedWall(Vec2 pos, World& world)
