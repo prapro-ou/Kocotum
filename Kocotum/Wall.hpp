@@ -114,3 +114,29 @@ struct SpeedWall : public Object
 	void update() override;
 	void draw() const override;
 };
+
+
+/**
+ * @brief 触れると死ぬ壁オブジェクトを表すクラス
+ */
+struct DangerWall : public Object
+{
+	RectF body; ///< 壁の当たり判定用の矩形
+
+	/**
+	 * @brief Wallクラスのコンストラクタ
+	 * @param pos 壁の位置
+	 * @param effect エフェクト参照
+	 * @param player プレイヤー参照
+	 */
+	DangerWall(Vec2 pos, World& world, size_t textureIndex = 1);
+
+	void restart() override;
+	bool intersectsPlayer() override;
+	bool mouseOver() override;
+	void setPos(Vec2 pos) override;
+	void handleCollisionX() override;
+	void handleCollisionY() override;
+	void update() override;
+	void draw() const override;
+};

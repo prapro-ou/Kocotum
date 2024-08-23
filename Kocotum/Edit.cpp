@@ -76,6 +76,10 @@ void Edit::createObject(Vec2 pos)
 	{
 		getData().world.addObject(std::make_shared<SpeedWall>(pos, getData().world));
 	}
+	else if (auto dangerWall = std::dynamic_pointer_cast<DangerWall>(selectObjectType))
+	{
+		getData().world.addObject(std::make_shared<DangerWall>(pos, getData().world, textureIndex));
+	}
 	else if (auto needle = std::dynamic_pointer_cast<Needle>(selectObjectType))
 	{
 		getData().world.addObject(std::make_shared<Needle>(pos, getData().world, E_Direction::Up, textureIndex));

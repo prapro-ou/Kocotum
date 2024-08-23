@@ -404,3 +404,54 @@ void SpeedWall::draw() const
 	// 壁のテクスチャを描画
 	TextureAsset(U"SpeedWall").resized(CHIP_SIZE).draw(pos);
 }
+
+
+
+
+DangerWall::DangerWall(Vec2 pos, World& world, size_t textureIndex)
+	: Object{ pos, world, U"触れると死ぬ壁", textureIndex }
+	, body{ RectF{ pos, CHIP_SIZE } }
+{
+}
+
+void DangerWall::restart()
+{
+	// 再起動時の処理（現在は何もしない）
+}
+
+bool DangerWall::intersectsPlayer()
+{
+	return body.intersects(world.player.body);
+}
+
+bool DangerWall::mouseOver()
+{
+	return body.mouseOver();
+}
+
+void DangerWall::setPos(Vec2 pos)
+{
+	this->pos = pos;
+	body.setPos(pos);
+}
+
+void DangerWall::handleCollisionX()
+{
+	world.killPlayer();
+}
+
+void DangerWall::handleCollisionY()
+{
+	world.killPlayer();
+}
+
+void DangerWall::update()
+{
+	// 更新処理（現在は何もしない）
+}
+
+void DangerWall::draw() const
+{
+	// 壁のテクスチャを描画
+	TextureAsset(U"DangerWall" + Format(textureIndex)).resized(CHIP_SIZE).draw(pos);
+}

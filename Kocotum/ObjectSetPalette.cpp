@@ -94,6 +94,10 @@ void ObjectSetPalette::loadSettings(std::shared_ptr<Object>& object)
 	{
 		texture.setValue((int)(needle->textureIndex));
 	}
+	else if (auto dangerWall = std::dynamic_pointer_cast<DangerWall>(object))
+	{
+		texture.setValue((int)(dangerWall->textureIndex));
+	}
 }
 
 void ObjectSetPalette::update(std::shared_ptr<Object>& object)
@@ -200,6 +204,10 @@ void ObjectSetPalette::update(std::shared_ptr<Object>& object)
 	else if (auto needle = std::dynamic_pointer_cast<Needle>(object))
 	{
 		needle->textureIndex = (size_t)texture.getValue();
+	}
+	else if (auto dangerWall = std::dynamic_pointer_cast<DangerWall>(object))
+	{
+		dangerWall->textureIndex = (size_t)texture.getValue();
 	}
 }
 

@@ -68,6 +68,12 @@ void World::loadWorld(String fileName)
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
 				addObject(std::make_shared<SpeedWall>(pos, *this));
 			}
+			else if (csv[row][1] == U"DangerWall")
+			{
+				Vec2 pos = Parse<Vec2>(csv[row][2]);
+				size_t textureIndex = ParseOr<size_t>(csv[row][3], 1);
+				addObject(std::make_shared<DangerWall>(pos, *this, textureIndex));
+			}
 			else if (csv[row][1] == U"Needle")
 			{
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
@@ -205,6 +211,12 @@ void World::saveWorld(String fileName)
 		{
 			csv.write(U"SpeedWall");
 			csv.write(speedWall->pos.asPoint());
+		}
+		else if (auto dangerWall = std::dynamic_pointer_cast<DangerWall>(object))
+		{
+			csv.write(U"DangerWall");
+			csv.write(dangerWall->pos.asPoint());
+			csv.write(dangerWall->textureIndex);
 		}
 		else if (auto needle = std::dynamic_pointer_cast<Needle>(object))
 		{

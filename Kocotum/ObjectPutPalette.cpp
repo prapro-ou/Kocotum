@@ -31,6 +31,7 @@ ObjectPutPalette::ObjectPutPalette(Vec2 pos, uint32 width, uint32 height)
     trap.addObject(std::make_shared<MiniNeedle>(pos, world));
     trap.addObject(std::make_shared<JumpToggleNeedle>(pos, world));
 	trap.addObject(std::make_shared<Spring>(pos, world));
+	trap.addObject(std::make_shared<DangerWall>(pos, world));
 
     // アイテムウィンドウの作成
     SelectObjectWindow item{ Vec2{ 0, 0 }, U"アイテム" };

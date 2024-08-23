@@ -35,6 +35,8 @@ void Main()
 
 	TextureAsset::Register(U"SpeedWall", U"data/img/object/SpeedWall.png", TextureDesc::Mipped);
 
+	TextureAsset::Register(U"DangerWall1", U"data/img/object/DangerWall1.png", TextureDesc::Mipped);
+
 	TextureAsset::Register(U"JumpToggleWall", U"data/img/object/JumpToggleWall.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"JumpToggleWallAlpha", U"data/img/object/JumpToggleWallAlpha.png", TextureDesc::Mipped);
 
