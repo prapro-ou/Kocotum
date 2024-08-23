@@ -43,6 +43,12 @@ void Main()
 	TextureAsset::Register(U"TouchActiveFloor", U"data/img/object/TouchActiveFloor.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"TouchActiveFloorActive", U"data/img/object/TouchActiveFloorActive.png", TextureDesc::Mipped);
 
+	TextureAsset::Register(U"Background0", U"data/img/background/Background0.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"Background1", U"data/img/background/Background1.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"Background2", U"data/img/background/Background2.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"Background3", U"data/img/background/Background3.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"Background4", U"data/img/background/Background4.png", TextureDesc::Mipped);
+
 
 
 	App manager;

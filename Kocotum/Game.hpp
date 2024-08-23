@@ -44,6 +44,7 @@ public:
 	void draw() const override
 	{
 		//Print << getData().world.player.pos;
+		TextureAsset(U"Background" + Format(getData().world.backgroundIndex)).resized(Scene::Size()).draw(Vec2{ 0, 0 });
 		{
 			const Transformer2D cameraTransformer = getData().world.camera.createTransformer();
 			getData().world.draw();

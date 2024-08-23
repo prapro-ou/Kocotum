@@ -19,6 +19,10 @@ public:
 	RectF body;
 	/// @brief ワールドを保存するファイル名
 	TextBox fileName;
+	/// @brief 背景の種類のインデックス
+	size_t backgroundIndex;
+	/// @brief 背景の種類
+	RadioButtons background;
 
 	/// @brief コンストラクタ
 	/// @param pos パレットの位置

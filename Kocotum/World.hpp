@@ -27,6 +27,7 @@ public:
 	bool causeWarp;
 	String warpFileName;
 	TrojanForce trojanForce;
+	size_t backgroundIndex;
 	
 
 	/**

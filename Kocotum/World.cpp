@@ -4,6 +4,7 @@ World::World(Vec2 pos)
 	: player{ Player{ pos } }
 	, causeWarp{ false }
 	, warpFileName{ U"" }
+	, backgroundIndex{ size_t(0) }
 {
 	
 }
@@ -155,6 +156,10 @@ void World::loadWorld(String fileName)
 				addObject(std::make_shared<TrojanDestroy>(pos, *this));
 			}
 		}
+		else if (csv[row][0] == U"Background")
+		{
+			backgroundIndex = Parse<size_t>(csv[row][1]);
+		}
 	}
 }
 
@@ -294,6 +299,9 @@ void World::saveWorld(String fileName)
 
 		csv.newLine();
 	}
+
+	csv.write(U"Background");
+	csv.write(backgroundIndex);
 
 	csv.save(fileName);
 }

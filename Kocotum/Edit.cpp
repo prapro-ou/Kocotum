@@ -39,6 +39,7 @@ Edit::Edit(const InitData& init)
 
 	// ワールドパレットのファイル名を設定
 	worldPalette.fileName.setText(getData().fileName);
+	worldPalette.backgroundIndex = getData().world.backgroundIndex;
 
 	if (getData().world.camera.areas.isEmpty())
 	{
@@ -400,6 +401,7 @@ void Edit::checkSceneTransition()
  */
 void Edit::draw() const
 {
+	TextureAsset(U"Background" + Format(getData().world.backgroundIndex)).resized(Scene::Size()).draw(Vec2{ 0, 0 });
 	// グリッドの描画
 	{
 		const auto t = camera.createTransformer();
