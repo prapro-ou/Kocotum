@@ -123,6 +123,10 @@ void Edit::createObject(Vec2 pos)
 	{
 		getData().world.addObject(std::make_shared<MoveFloor>(pos, getData().world));
 	}
+	else if (auto touchActiveFloor = std::dynamic_pointer_cast<TouchActiveFloor>(selectObjectType))
+	{
+		getData().world.addObject(std::make_shared<TouchActiveFloor>(pos, getData().world));
+	}
 	else if (auto moveFloor = std::dynamic_pointer_cast<Spring>(selectObjectType))
 	{
 		getData().world.addObject(std::make_shared<Spring>(pos, getData().world));

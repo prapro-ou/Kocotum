@@ -255,6 +255,9 @@
     <ClCompile Include="TrojanForce.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TouchActiveFloor.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -1018,6 +1021,9 @@
     </ClInclude>
     <ClInclude Include="TrojanForce.hpp">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TouchActiveFloor.hpp">
+      <Filter>Header Files\Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

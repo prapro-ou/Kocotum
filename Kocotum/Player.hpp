@@ -55,6 +55,21 @@ struct Player
 	/// @brief プレイヤーをリスタート位置に戻す
 	void restart();
 
+	void setPos(Vec2 pos)
+	{
+		this->pos = pos;
+	}
+
+	void setFriction(double friction)
+	{
+		this->friction = friction;
+	}
+
+	void setVelocity(Vec2 velocity)
+	{
+		this->velocity = velocity;
+	}
+
 	/**
 	 * @brief X軸方向の位置を更新
 	 * @param objects ゲーム内のオブジェクト配列

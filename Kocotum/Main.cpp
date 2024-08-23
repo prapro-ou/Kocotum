@@ -40,6 +40,8 @@ void Main()
 	TextureAsset::Register(U"IceFloor", U"data/img/object/IceFloor.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"MoveFloor", U"data/img/object/MoveFloor.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"Spring", U"data/img/object/Spring.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"TouchActiveFloor", U"data/img/object/TouchActiveFloor.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"TouchActiveFloorActive", U"data/img/object/TouchActiveFloorActive.png", TextureDesc::Mipped);
 
 
 

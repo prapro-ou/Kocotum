@@ -142,6 +142,7 @@
     </ClCompile>
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="TextBox.cpp" />
+    <ClCompile Include="TouchActiveFloor.cpp" />
     <ClCompile Include="Trojan.cpp" />
     <ClCompile Include="TrojanForce.cpp" />
     <ClCompile Include="Wall.cpp" />
@@ -381,6 +382,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Text.hpp" />
     <ClInclude Include="TextBox.hpp" />
+    <ClInclude Include="TouchActiveFloor.hpp" />
     <ClInclude Include="Trojan.hpp" />
     <ClInclude Include="TrojanForce.hpp" />
     <ClInclude Include="Wall.hpp" />

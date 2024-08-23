@@ -12,3 +12,4 @@
 # include "MoveFloor.hpp"
 # include "Spring.hpp"
 # include "Trojan.hpp"
+# include "TouchActiveFloor.hpp"
