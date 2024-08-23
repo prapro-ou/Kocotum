@@ -56,7 +56,7 @@ void CameraArea::update(const Player& player)
 
 void CameraArea::drawArea() const
 {
-	area.draw(Palette::Plum.withA(25)).drawFrame(1, 0, Palette::Fuchsia);
+	area.draw(Palette::Plum.withA(100)).drawFrame(5, 0, Palette::Fuchsia);
 	Circle{ initPos, 2 }.draw(Palette::Orange);
 }
 
