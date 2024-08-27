@@ -26,11 +26,10 @@ public:
 			csv.write(U"data/map/title.csv");
 			csv.newLine();
 			csv.write(getData().world.player.pos);
-			csv.save(U"data/save/save.csv");
 			csv.newLine();
-			csv.save(0);
+			csv.write(U"0");
 			csv.newLine();
-			csv.save(0);
+			csv.write(U"0");
 			csv.newLine();
 			csv.save(U"data/save/save.csv");
 
