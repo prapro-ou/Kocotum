@@ -22,7 +22,7 @@ void MoveFloor::setDirection(E_Direction direction)
 
 void MoveFloor::restart()
 {
-	elapsed = 0;
+	elapsed = 3;
 }
 
 bool MoveFloor::intersectsPlayer()

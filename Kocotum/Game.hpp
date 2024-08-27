@@ -39,6 +39,7 @@ public:
 		{
 			changeScene(U"Edit");
 			getData().world.restart();
+			getData().world.update();
 		}
 	}
 

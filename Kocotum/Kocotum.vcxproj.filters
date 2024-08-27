@@ -1026,7 +1026,7 @@
       <Filter>Header Files\Object</Filter>
     </ClInclude>
     <ClInclude Include="Play.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
