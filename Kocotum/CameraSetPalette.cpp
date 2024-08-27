@@ -27,7 +27,7 @@ void CameraSetPalette::loadSettings(std::shared_ptr<CameraArea>& area)
 	height.setValue(area->height / CHIP_SIZE.y);
 	initX.setValue(area->initPos.x / CHIP_SIZE.x);
 	initY.setValue(area->initPos.y / CHIP_SIZE.y);
-	scale.setValue((int)area->scale * 100);
+	scale.setValue((int)(area->scale * 100));
 	indexScroll = area->isScroll;
 	velocityX.setValue(area->velocity.x / CHIP_SIZE.x);
 	velocityY.setValue(area->velocity.y / CHIP_SIZE.y);
