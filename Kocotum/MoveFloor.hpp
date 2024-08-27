@@ -23,6 +23,8 @@ struct MoveFloor : public Object
 	Vec2 basePos;
 	/// @brief 1フレーム前からの変化量
 	Vec2 diff;
+	/// @brief 床移動用の経過時間
+	double elapsed;
 
 	MoveFloor(Vec2 pos, World& world, E_Direction direction = E_Direction::Up, double length = CHIP_SIZE.x * 5);
 

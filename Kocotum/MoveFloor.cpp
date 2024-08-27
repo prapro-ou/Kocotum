@@ -9,6 +9,7 @@ MoveFloor::MoveFloor(Vec2 pos, World& world, E_Direction direction, double lengt
 	, previousPos{ pos }
 	, basePos{ pos }
 	, diff{ Vec2{ 0, 0 } }
+	, elapsed{ 0 }
 {
 }
 
@@ -21,7 +22,7 @@ void MoveFloor::setDirection(E_Direction direction)
 
 void MoveFloor::restart()
 {
-	
+	elapsed = 0;
 }
 
 bool MoveFloor::intersectsPlayer()
@@ -96,17 +97,21 @@ void MoveFloor::handleCollisionY()
 
 void MoveFloor::update()
 {
+	elapsed += Scene::DeltaTime();
 	previousPos = pos;
 	Vec2 move{ 0, 0 };
+	double periodic = (Sin(elapsed / 4.0 * 360_deg) + 1) / 2.0;
+
+
 	// 方向が奇数の時(右か左)
 	if ((uint16)direction % 2)
 	{
-		move.x = Periodic::Sine0_1(4s) * length * ((uint16)direction >= 2 ? -1 : 1);
+		move.x = periodic * length * ((uint16)direction >= 2 ? -1 : 1);
 	}
 	// 偶数の時(上か下)
 	else
 	{
-		move.y = Periodic::Sine0_1(4s) * length * ((uint16)direction <= 2 ? -1 : 1);
+		move.y = periodic * length * ((uint16)direction <= 2 ? -1 : 1);
 	}
 
 	pos = basePos + move;
