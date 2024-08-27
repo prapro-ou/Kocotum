@@ -49,8 +49,8 @@ void CameraArea::update(const Player& player)
 	{
 		// プレイヤーの位置に基づいてカメラのターゲット位置を更新
 		cameraTargetPos = player.pos + Vec2{ player.velocity.x / 5, 0 };
-		cameraTargetPos.x = Clamp(cameraTargetPos.x, pos.x + Scene::CenterF().x * scale, pos.x + width - Scene::CenterF().x * scale);
-		cameraTargetPos.y = Clamp(cameraTargetPos.y, pos.y + Scene::CenterF().y * scale, pos.y + height - Scene::CenterF().y * scale);
+		cameraTargetPos.x = Clamp(cameraTargetPos.x, pos.x + Scene::CenterF().x * (1.0 / scale), pos.x + width - Scene::CenterF().x * (1.0 / scale));
+		cameraTargetPos.y = Clamp(cameraTargetPos.y, pos.y + Scene::CenterF().y * (1.0 / scale), pos.y + height - Scene::CenterF().y * (1.0 / scale));
 	}
 }
 
