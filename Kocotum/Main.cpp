@@ -24,6 +24,10 @@ void Main()
 	TextureAsset::Register(U"Wall6", U"data/img/object/Wall6.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"Wall7", U"data/img/object/Wall7.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"Wall8", U"data/img/object/Wall8.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"Wall9", U"data/img/object/Wall9.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"Wall10", U"data/img/object/Wall10.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"Wall11", U"data/img/object/Wall11.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"Wall12", U"data/img/object/Wall12.png", TextureDesc::Mipped);
 
 	TextureAsset::Register(U"OneWayFloor1", U"data/img/object/OneWayFloor1.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"OneWayFloor2", U"data/img/object/OneWayFloor2.png", TextureDesc::Mipped);
