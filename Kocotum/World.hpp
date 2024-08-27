@@ -92,8 +92,6 @@ public:
 		csv.write(deathCount);
 		csv.newLine();
 		csv.write(Format(sw.sF()));
-		Console << sw.sF();
-		Console << Format(sw.sF());
 		csv.newLine();
 		csv.save(U"data/save/save.csv");
 	}
