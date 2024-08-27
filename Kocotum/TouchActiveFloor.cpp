@@ -5,7 +5,7 @@ TouchActiveFloor::TouchActiveFloor(Vec2 pos, World& world, E_Direction direction
 	, direction{ direction }
 	, length{ length }
 	, mouseOverBody{ RectF{ pos, CHIP_SIZE.x * 2, CHIP_SIZE.y } }
-	, body{ RectF{ pos, CHIP_SIZE.x * 2, CHIP_SIZE.y } }
+	, body{ RectF{ pos, CHIP_SIZE.x * 2, CHIP_SIZE.y / 2 } }
 	, previousPos{ pos }
 	, basePos{ pos }
 	, diff{ Vec2{ 0, 0 } }
@@ -30,7 +30,14 @@ void TouchActiveFloor::restart()
 
 bool TouchActiveFloor::intersectsPlayer()
 {
-	return body.intersects(world.player.body.bottom());
+	if (world.player.isGravityReverse)
+	{
+		return body.intersects(world.player.body.top());
+	}
+	else
+	{
+		return body.intersects(world.player.body.bottom());
+	}
 }
 
 bool TouchActiveFloor::mouseOver()
@@ -48,18 +55,7 @@ void TouchActiveFloor::setPos(Vec2 pos)
 
 void TouchActiveFloor::handleCollisionX()
 {
-	if (world.player.velocity.x > 0)
-	{
-		//world.player.pos.x = pos.x - world.player.body.w;
-	}
-	else
-	{
-		//world.player.pos.x = pos.x + CHIP_SIZE.x * 2;
-	}
 
-	//world.player.setFriction(1.0);
-	//world.player.setVelocity(Vec2(0, world.player.velocity.y));
-	world.player.body.setPos(world.player.pos);
 }
 
 void TouchActiveFloor::handleCollisionY()
@@ -72,7 +68,7 @@ void TouchActiveFloor::handleCollisionY()
 		{
 			isTouched = true;
 
-			world.player.pos.y = pos.y + CHIP_SIZE.y;
+			world.player.pos.y = pos.y + CHIP_SIZE.y / 2.1;
 			world.player.jumpNum = 0;
 			world.player.isOnGround = true;
 
@@ -80,10 +76,6 @@ void TouchActiveFloor::handleCollisionY()
 
 			world.player.friction = 1.0;
 			world.player.velocity.y = 0.01;
-		}
-		else
-		{
-			world.player.pos.y = pos.y - world.player.body.h;
 		}
 	}
 	else
@@ -101,10 +93,6 @@ void TouchActiveFloor::handleCollisionY()
 
 			world.player.friction = 1.0;
 			world.player.velocity.y = 0.01;
-		}
-		else
-		{
-			world.player.pos.y = pos.y + CHIP_SIZE.y;
 		}
 	}
 
@@ -188,33 +176,40 @@ void TouchActiveFloor::update()
 		// 方向が奇数の時(右か左)
 		if ((uint16)direction % 2)
 		{
-			pos.x += length * ((uint16)direction >= 2 ? -1 : 1) * Scene::DeltaTime() * (isInversion ? -1 : 1);
+			pos.x += CHIP_SIZE.x * 3 * ((uint16)direction >= 2 ? -1 : 1) * (isInversion ? -1 : 1) * Scene::DeltaTime();
 		}
 		// 偶数の時(上か下)
 		else
 		{
-			pos.y += length * ((uint16)direction <= 2 ? -1 : 1) * Scene::DeltaTime() * (isInversion ? -1 : 1);
+			pos.y += CHIP_SIZE.y * 3 * ((uint16)direction <= 2 ? -1 : 1) * (isInversion ? -1 : 1) * Scene::DeltaTime();
+		}
+
+		diff = pos - previousPos;
+
+		if (diff.y > 0)
+		{
+			world.player.pos.y += diff.y;
 		}
 	}
 
 	body.setPos(pos);
 
-	diff = pos - previousPos;
-
 	if (!world.player.body.intersects(body))
 	{
 		isTouched = false;
 	}
+
+	diff = pos - previousPos;
 }
 
 void TouchActiveFloor::draw() const
 {
 	if (isTouched)
 	{
-		TextureAsset(U"TouchActiveFloorActive").resized(CHIP_SIZE.x * 2, CHIP_SIZE.y).draw(pos);
+		TextureAsset(U"TouchActiveFloorActive").resized(CHIP_SIZE.x * 2, CHIP_SIZE.y / 2).draw(pos);
 	}
 	else
 	{
-		TextureAsset(U"TouchActiveFloor").resized(CHIP_SIZE.x * 2, CHIP_SIZE.y).draw(pos);
+		TextureAsset(U"TouchActiveFloor").resized(CHIP_SIZE.x * 2, CHIP_SIZE.y / 2).draw(pos);
 	}
 }

@@ -371,6 +371,7 @@
     <ClInclude Include="Objects.hpp" />
     <ClInclude Include="ObjectSetPalette.hpp" />
     <ClInclude Include="PieMenu.hpp" />
+    <ClInclude Include="Play.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="RadioButton.hpp" />
     <ClInclude Include="SavePoint.hpp" />

@@ -2,12 +2,16 @@
 
 # include "Edit.hpp"
 # include "Game.hpp"
+# include "Play.hpp"
 
 # include "PieMenu.hpp"
 
 void Main()
 {
+	Scene::Resize(1280, 960);
 	Window::Resize(1280, 960);
+	Scene::SetResizeMode(ResizeMode::Keep);
+	Window::SetFullscreen(true);
 
 
 	FontAsset::Register(U"SelectObjectWindow", 35);
@@ -70,7 +74,9 @@ void Main()
 	App manager;
 	manager.add<Edit>(U"Edit");
 	manager.add<Game>(U"Game");
+	manager.add<Play>(U"Play");
 
+	manager.init(U"Play");
 
 
 	while (System::Update())

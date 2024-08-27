@@ -28,6 +28,9 @@ public:
 	String warpFileName;
 	TrojanForce trojanForce;
 	size_t backgroundIndex;
+	String fileName;
+	uint16 deathCount = 0;
+	Stopwatch sw;
 	
 
 	/**
@@ -73,12 +76,26 @@ public:
 			player.isAlive = false;
 			deathSw.restart();
 			effect.add<DeathEffect>(player.body.center());
+			deathCount++;
 		}
 	}
 
 	void savePlayer(Vec2 pos)
 	{
-		player.respawnPos = pos;;
+		player.respawnPos = pos;
+
+		CSV csv;
+		csv.write(fileName);
+		csv.newLine();
+		csv.write(player.respawnPos);
+		csv.newLine();
+		csv.write(deathCount);
+		csv.newLine();
+		csv.write(Format(sw.sF()));
+		Console << sw.sF();
+		Console << Format(sw.sF());
+		csv.newLine();
+		csv.save(U"data/save/save.csv");
 	}
 
 	/**

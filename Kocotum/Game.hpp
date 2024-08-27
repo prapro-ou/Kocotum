@@ -38,6 +38,7 @@ public:
 		if (KeyEnter.down())
 		{
 			changeScene(U"Edit");
+			getData().world.restart();
 		}
 	}
 
