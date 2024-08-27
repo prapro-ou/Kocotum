@@ -27,6 +27,7 @@ void WorldEditPalette::update(World& world)
 			world.clear();
 			// 選択されたファイルからワールドを読み込む
 			world.loadWorld(*path);
+			backgroundIndex = world.backgroundIndex;
 
 			fileName.setText(FileSystem::FileName(*path));
 		}

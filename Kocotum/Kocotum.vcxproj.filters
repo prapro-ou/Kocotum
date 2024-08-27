@@ -1025,5 +1025,8 @@
     <ClInclude Include="TouchActiveFloor.hpp">
       <Filter>Header Files\Object</Filter>
     </ClInclude>
+    <ClInclude Include="Play.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

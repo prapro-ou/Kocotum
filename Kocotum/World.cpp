@@ -27,6 +27,8 @@ void World::loadWorld(String fileName)
 		return;
 	}
 
+	this->fileName = fileName;
+
 	for (size_t row = 0; row < csv.rows(); ++row)
 	{
 		if (csv[row][0] == U"Camera")
@@ -50,6 +52,7 @@ void World::loadWorld(String fileName)
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
 				size_t textureIndex = ParseOr<size_t>(csv[row][3], 1);
 				addObject(std::make_shared<Wall>(pos, *this, textureIndex));
+				//addObject(std::make_shared<Wall>(pos, *this, 1));
 			}
 			else if (csv[row][1] == U"JumpToggleWall")
 			{
@@ -62,6 +65,7 @@ void World::loadWorld(String fileName)
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
 				size_t textureIndex = ParseOr<size_t>(csv[row][3], 1);
 				addObject(std::make_shared<IceWall>(pos, *this, textureIndex));
+				//addObject(std::make_shared<IceWall>(pos, *this, 1));
 			}
 			else if (csv[row][1] == U"SpeedWall")
 			{
@@ -73,6 +77,7 @@ void World::loadWorld(String fileName)
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
 				size_t textureIndex = ParseOr<size_t>(csv[row][3], 1);
 				addObject(std::make_shared<DangerWall>(pos, *this, textureIndex));
+				//addObject(std::make_shared<DangerWall>(pos, *this, 1));
 			}
 			else if (csv[row][1] == U"Needle")
 			{
@@ -80,6 +85,7 @@ void World::loadWorld(String fileName)
 				uint16 direction = Parse<uint16>(csv[row][3]);
 				size_t textureIndex = ParseOr<size_t>(csv[row][4], 1);
 				addObject(std::make_shared<Needle>(pos, *this, (E_Direction)direction, textureIndex));
+				//addObject(std::make_shared<Needle>(pos, *this, (E_Direction)direction, 1));
 			}
 			else if (csv[row][1] == U"MiniNeedle")
 			{
@@ -133,6 +139,7 @@ void World::loadWorld(String fileName)
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
 				size_t textureIndex = ParseOr<size_t>(csv[row][3], 1);
 				addObject(std::make_shared<OneWayFloor>(pos, *this, textureIndex));
+				//addObject(std::make_shared<OneWayFloor>(pos, *this, 1));
 			}
 			else if (csv[row][1] == U"MoveFloor")
 			{

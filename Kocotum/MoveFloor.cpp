@@ -26,7 +26,14 @@ void MoveFloor::restart()
 
 bool MoveFloor::intersectsPlayer()
 {
-	return body.intersects(world.player.body.bottom());
+	if (world.player.isGravityReverse)
+	{
+		return body.intersects(world.player.body.top());
+	}
+	else
+	{
+		return body.intersects(world.player.body.bottom());
+	}
 }
 
 bool MoveFloor::mouseOver()
