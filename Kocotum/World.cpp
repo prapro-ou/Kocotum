@@ -363,6 +363,10 @@ void World::warp()
 	loadWorld(warpFileName);
 	init();
 	savePlayer(player.respawnPos);
+
+
+	restart();
+	camera.camera.jumpTo(camera.activeArea->cameraTargetPos, camera.activeArea->scale);
 }
 
 void World::update()
