@@ -362,6 +362,7 @@ void World::warp()
 {
 	loadWorld(warpFileName);
 	init();
+	savePlayer(player.respawnPos);
 }
 
 void World::update()

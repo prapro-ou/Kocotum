@@ -28,9 +28,9 @@ public:
 			csv.write(getData().world.player.pos);
 			csv.save(U"data/save/save.csv");
 			csv.newLine();
-			csv.save(Format(getData().world.deathCount));
+			csv.save(0);
 			csv.newLine();
-			csv.save(Format(getData().world.sw.sF()));
+			csv.save(0);
 			csv.newLine();
 			csv.save(U"data/save/save.csv");
 

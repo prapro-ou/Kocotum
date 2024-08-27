@@ -76,7 +76,7 @@ void Main()
 	manager.add<Game>(U"Game");
 	manager.add<Play>(U"Play");
 
-	manager.init(U"Edit");
+	manager.init(U"Play");
 
 
 	while (System::Update())
