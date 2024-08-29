@@ -127,4 +127,16 @@ private:
 
 	/// @brief オブジェクトを置く際のテクスチャ番号
 	size_t textureIndex;
+
+	/// @brief 四分割グリッド選択のためのスペース
+	RectF gridBox;
+
+	/// @brief 四分割グリッド選択のインデックス
+	size_t gridIndex;
+
+	/// @brief 四分割グリッド選択ボタン
+	RadioButtons gridSelect;
+
+	/// @brief グリッドによる割る値
+	int8 gridNum;
 };

@@ -17,6 +17,10 @@ Edit::Edit(const InitData& init)
 	, state{ E_EditState::PlacingObject }
 	, editBox{ RectF{ Vec2{ 850, 0 }, 430, 960 } }
 	, textureIndex{ size_t(1) }
+	, gridBox{ RectF{ 20, 900, 200, 40 } }
+	, gridIndex{ size_t(0) }
+	, gridSelect{ RadioButtons{ Vec2{ 20, 900 }, { U"通常", U"四分割" }, gridIndex } }
+	, gridNum{ 1 }
 {
 	// グリッドの初期化
 	grid.clear();
@@ -160,6 +164,9 @@ void Edit::update()
 	updatePaletteButtons();
 	// シーン遷移のチェック
 	checkSceneTransition();
+
+	gridSelect.update();
+	gridNum = (int8)gridIndex + 1;
 }
 
 /**
@@ -197,7 +204,7 @@ void Edit::updatePlacingObject()
 		// パレットで選択されたオブジェクトタイプを設定
 		selectObjectType = *result;
 	}
-	if (not editBox.mouseOver())
+	if (not editBox.mouseOver() and not gridBox.mouseOver())
 	{
 		// オブジェクトを配置または削除
 		placeOrRemoveObjects();
@@ -227,11 +234,13 @@ void Edit::placeOrRemoveObjects()
 	{
 		for (int x = 0; x < grid.width(); x++)
 		{
+			grid[y][x].setSize(CHIP_SIZE / gridNum);
+			grid[y][x].setPos(x * CHIP_SIZE.x / gridNum, y * CHIP_SIZE.y / gridNum);
 			// マウス左ボタンが押されていて、オブジェクトにマウスオーバーしていない場合
 			if (grid[y][x].leftPressed() and not isMouseOverObject)
 			{
 				// 新しいオブジェクトを作成
-				createObject(Vec2{ x * CHIP_SIZE.x, y * CHIP_SIZE.y });
+				createObject(Vec2{ x * CHIP_SIZE.x / gridNum, y * CHIP_SIZE.y / gridNum });
 			}
 		}
 	}
@@ -348,7 +357,7 @@ void Edit::addNewCameraAreaIfNeeded(bool isMouseOverCameraArea)
 			// 左クリックされた場合、新しいカメラエリアを追加
 			if (grid[y][x].leftClicked() and not isMouseOverCameraArea)
 			{
-				Vec2 nowPos = Vec2{ x * CHIP_SIZE.x, y * CHIP_SIZE.y };
+				Vec2 nowPos = Vec2{ x * CHIP_SIZE.x / gridNum, y * CHIP_SIZE.y / gridNum };
 				getData().world.camera.addArea(std::make_shared<CameraArea>(nowPos, nowPos + Scene::CenterF()));
 				selectCamera = getData().world.camera.areas.back();
 				cameraPalette.loadSettings(selectCamera);
@@ -416,8 +425,8 @@ void Edit::draw() const
 
 		for (size_t i = 0; i <= grid.width(); ++i)
 		{
-			RectF{ -1, (-1 + (i * CHIP_SIZE.y)), (grid.width() * CHIP_SIZE.y + 2), 2 }.draw(Palette::Black);
-			RectF{ (-1 + (i * CHIP_SIZE.x)), -1, 2, (grid.height() * CHIP_SIZE.x + 2) }.draw(Palette::Black);
+			RectF{ -1, (-1 + (i * CHIP_SIZE.y / gridNum)), (grid.width() * CHIP_SIZE.y / gridNum + 2), 2 }.draw((i % 2 == 0 ? Palette::Magenta : Palette::Black));
+			RectF{ (-1 + (i * CHIP_SIZE.x / gridNum)), -1, 2, (grid.height() * CHIP_SIZE.x / gridNum + 2) }.draw((i % 2 == 0 ? Palette::Magenta : Palette::Black));
 		}
 
 		for (int y = 0; y < grid.height(); y++)
@@ -435,6 +444,9 @@ void Edit::draw() const
 		getData().world.camera.drawArea();
 		getData().world.draw();
 	}
+
+	gridBox.draw();
+	gridSelect.draw();
 
 	// パレットボタンの描画
 	for (int i = 0; i < paletteButtons.size(); i++)
