@@ -1,7 +1,7 @@
 ﻿#include "Player.hpp"
 
 Player::Player(Vec2 pos)
-	: body{ RectF{ 25, 40 } }
+	: body{ RectF{ 25, 35 } }
 	, pos{ pos }
 	, respawnPos{ pos }
 	, velocity{ Vec2{ 0, 0 } }
