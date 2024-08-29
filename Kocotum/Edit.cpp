@@ -64,6 +64,10 @@ void Edit::createObject(Vec2 pos)
 	{
 		getData().world.addObject(std::make_shared<Wall>(pos, getData().world, textureIndex));
 	}
+	else if (auto quarterWall = std::dynamic_pointer_cast<QuarterWall>(selectObjectType))
+	{
+		getData().world.addObject(std::make_shared<QuarterWall>(pos, getData().world, textureIndex));
+	}
 	else if (auto jumpToggleWall = std::dynamic_pointer_cast<JumpToggleWall>(selectObjectType))
 	{
 		getData().world.addObject(std::make_shared<JumpToggleWall>(pos, getData().world));

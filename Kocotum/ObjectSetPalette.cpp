@@ -94,6 +94,10 @@ void ObjectSetPalette::loadSettings(std::shared_ptr<Object>& object)
 	{
 		texture.setValue((int)(wall->textureIndex));
 	}
+	else if (auto quarterWall = std::dynamic_pointer_cast<QuarterWall>(object))
+	{
+		texture.setValue((int)(quarterWall->textureIndex));
+	}
 	else if (auto oneWayFloor = std::dynamic_pointer_cast<OneWayFloor>(object))
 	{
 		texture.setValue((int)(oneWayFloor->textureIndex));
@@ -217,6 +221,10 @@ void ObjectSetPalette::update(std::shared_ptr<Object>& object)
 	if (auto wall = std::dynamic_pointer_cast<Wall>(object))
 	{
 		wall->textureIndex = (size_t)texture.getValue();
+	}
+	else if (auto quarterWall = std::dynamic_pointer_cast<QuarterWall>(object))
+	{
+		quarterWall->textureIndex = (size_t)texture.getValue();
 	}
 	else if (auto oneWayFloor = std::dynamic_pointer_cast<OneWayFloor>(object))
 	{

@@ -455,3 +455,100 @@ void DangerWall::draw() const
 	// 壁のテクスチャを描画
 	TextureAsset(U"DangerWall" + Format(textureIndex)).resized(CHIP_SIZE).draw(pos);
 }
+
+
+
+
+QuarterWall::QuarterWall(Vec2 pos, World& world, size_t textureIndex)
+	: Object{ pos, world, U"四分の一サイズの壁", textureIndex }
+	, body{ RectF{ pos, CHIP_SIZE / 2.0 } }
+{
+}
+
+void QuarterWall::restart()
+{
+	// 再起動時の処理（現在は何もしない）
+}
+
+bool QuarterWall::intersectsPlayer()
+{
+	return body.intersects(world.player.body);
+}
+
+bool QuarterWall::mouseOver()
+{
+	return body.mouseOver();
+}
+
+void QuarterWall::setPos(Vec2 pos)
+{
+	this->pos = pos;
+	body.setPos(pos);
+}
+
+void QuarterWall::handleCollisionX()
+{
+	// プレイヤーとの水平方向の衝突処理
+	if (world.player.velocity.x > 0)
+	{
+		// 右方向に進行中の場合
+		world.player.pos.x = pos.x - world.player.body.w;
+	}
+	else
+	{
+		// 左方向に進行中の場合
+		world.player.pos.x = pos.x + body.w;
+	}
+
+	world.player.friction = 1.0;
+	world.player.velocity.x = 0;
+	world.player.body.setPos(world.player.pos);
+}
+
+void QuarterWall::handleCollisionY()
+{
+	// プレイヤーとの垂直方向の衝突処理
+	if (world.player.isGravityReverse)
+	{
+		// 重力反転時の処理
+		if (world.player.velocity.y > 0)
+		{
+			world.player.pos.y = pos.y + body.h;
+			world.player.jumpNum = 0;
+			world.player.isOnGround = true;
+		}
+		else
+		{
+			world.player.pos.y = pos.y - world.player.body.h;
+		}
+	}
+	else
+	{
+		// 通常重力時の処理
+		if (world.player.velocity.y > 0)
+		{
+			world.player.pos.y = pos.y - world.player.body.h;
+			world.player.jumpNum = 0;
+			world.player.isOnGround = true;
+		}
+		else
+		{
+			world.player.pos.y = pos.y + body.h;
+		}
+	}
+
+	world.player.friction = 1.0;
+	world.player.velocity.y = 0.01;
+	world.player.body.setPos(world.player.pos);
+}
+
+void QuarterWall::update()
+{
+	// 更新処理（現在は何もしない）
+}
+
+void QuarterWall::draw() const
+{
+	// 壁のテクスチャを描画
+	TextureAsset(U"QuarterWall" + Format(textureIndex)).resized(CHIP_SIZE / 2).draw(pos);
+}

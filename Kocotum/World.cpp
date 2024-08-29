@@ -79,6 +79,13 @@ void World::loadWorld(String fileName)
 				addObject(std::make_shared<DangerWall>(pos, *this, textureIndex));
 				//addObject(std::make_shared<DangerWall>(pos, *this, 1));
 			}
+			else if (csv[row][1] == U"QuarterWall")
+			{
+				Vec2 pos = Parse<Vec2>(csv[row][2]);
+				size_t textureIndex = ParseOr<size_t>(csv[row][3], 1);
+				addObject(std::make_shared<QuarterWall>(pos, *this, textureIndex));
+				//addObject(std::make_shared<DangerWall>(pos, *this, 1));
+			}
 			else if (csv[row][1] == U"Needle")
 			{
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
@@ -231,6 +238,12 @@ void World::saveWorld(String fileName)
 			csv.write(U"DangerWall");
 			csv.write(dangerWall->pos.asPoint());
 			csv.write(dangerWall->textureIndex);
+		}
+		else if (auto quarterWall = std::dynamic_pointer_cast<QuarterWall>(object))
+		{
+			csv.write(U"QuarterWall");
+			csv.write(quarterWall->pos.asPoint());
+			csv.write(quarterWall->textureIndex);
 		}
 		else if (auto needle = std::dynamic_pointer_cast<Needle>(object))
 		{
