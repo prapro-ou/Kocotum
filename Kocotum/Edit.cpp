@@ -418,7 +418,7 @@ void Edit::checkSceneTransition()
  */
 void Edit::draw() const
 {
-	TextureAsset(U"Background" + Format(getData().world.backgroundIndex)).resized(Scene::Size()).draw(Vec2{ 0, 0 });
+	TextureAsset(U"Background" + Format(getData().world.backgroundIndex)).resized(Scene::Size()).draw(Vec2{ 0, 0 }, ColorF(0.75));
 	// グリッドの描画
 	{
 		const auto t = camera.createTransformer();

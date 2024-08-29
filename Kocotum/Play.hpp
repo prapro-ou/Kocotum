@@ -72,7 +72,7 @@ public:
 
 	void draw() const override
 	{
-		TextureAsset(U"Background" + Format(getData().world.backgroundIndex)).resized(Scene::Size()).draw(Vec2{ 0, 0 });
+		TextureAsset(U"Background" + Format(getData().world.backgroundIndex)).resized(Scene::Size()).draw(Vec2{ 0, 0 }, ColorF(0.75));
 		{
 			const Transformer2D cameraTransformer = getData().world.camera.createTransformer();
 			getData().world.draw();
