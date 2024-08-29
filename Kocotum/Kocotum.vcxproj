@@ -118,6 +118,7 @@
     <ClCompile Include="CameraSetPalette.cpp" />
     <ClCompile Include="Edit.cpp" />
     <ClCompile Include="IceFloor.cpp" />
+    <ClCompile Include="ImageObject.cpp" />
     <ClCompile Include="MoveFloor.cpp" />
     <ClCompile Include="OneWayFloor.cpp" />
     <ClCompile Include="GameCamera.cpp" />

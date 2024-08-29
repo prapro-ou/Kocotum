@@ -11,8 +11,6 @@ struct ImageObject : public Object
 {
 	/// @brief 本体
 	RectF body;
-	/// @brief マウス判定用の矩形
-	RectF mouseOverBody;
 	/// @brief 画像のテクスチャ
 	Texture texture;
 
