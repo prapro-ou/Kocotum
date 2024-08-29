@@ -13,8 +13,10 @@ struct ImageObject : public Object
 	RectF body;
 	/// @brief 画像のテクスチャ
 	Texture texture;
+	/// @brief 画像のパス
+	String fileName;
 
-	ImageObject(Vec2 pos, World& world, String fileName = U"");
+	ImageObject(Vec2 pos, World& world, Size size = CHIP_SIZE.asPoint(), String fileName = U"");
 
 	void loadTexture(String fileName);
 	void restart() override;
