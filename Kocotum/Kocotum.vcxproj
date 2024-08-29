@@ -359,6 +359,7 @@
     <ClInclude Include="Effect.hpp" />
     <ClInclude Include="GIF.hpp" />
     <ClInclude Include="IceFloor.hpp" />
+    <ClInclude Include="ImageObject.hpp" />
     <ClInclude Include="MoveFloor.hpp" />
     <ClInclude Include="OneWayFloor.hpp" />
     <ClInclude Include="Game.hpp" />

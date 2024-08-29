@@ -1028,5 +1028,8 @@
     <ClInclude Include="Play.hpp">
       <Filter>Header Files\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="ImageObject.hpp">
+      <Filter>Header Files\Object</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
