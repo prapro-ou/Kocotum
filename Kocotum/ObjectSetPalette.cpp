@@ -10,7 +10,9 @@ ObjectSetPalette::ObjectSetPalette(Vec2 pos, uint32 width, uint32 height)
 	, length{ SpinBox(pos + Vec2{ 120, 300 }, 150, 40, 5, U"64") }
 	, text{ TextBox(pos + Vec2{ 120, 350 }, 400, 20, U"Text") }
 	, fileName{ U"" }
-	, texture{ SpinBox{ pos + Vec2{ 2, 550 }, 150, 40, 5, U"1"} }
+	, sizeX{ SpinBox(pos + Vec2{ 50, 550 }, 150, 30, 5, U"1") }
+	, sizeY{ SpinBox(pos + Vec2{ 250, 550 }, 150, 30, 5, U"1") }
+	, texture{ SpinBox{ pos + Vec2{ 2, 650 }, 150, 40, 5, U"1"} }
 {
 	// コンストラクタの初期化
 }
@@ -76,6 +78,16 @@ void ObjectSetPalette::loadSettings(std::shared_ptr<Object>& object)
 	if (auto warpPoint = std::dynamic_pointer_cast<WarpPoint>(object))
 	{
 		fileName = warpPoint->fileName;
+	}
+	else if (auto imageObject = std::dynamic_pointer_cast<ImageObject>(object))
+	{
+		fileName = imageObject->fileName;
+	}
+
+	if (auto imageObject = std::dynamic_pointer_cast<ImageObject>(object))
+	{
+		sizeX.setValue(imageObject->body.size.x / CHIP_SIZE.x);
+		sizeY.setValue(imageObject->body.size.y / CHIP_SIZE.y);
 	}
 
 	if (auto wall = std::dynamic_pointer_cast<Wall>(object))
@@ -176,7 +188,7 @@ void ObjectSetPalette::update(std::shared_ptr<Object>& object)
 	if (SimpleGUI::Button(U"ファイル読み込み", pos + Vec2{ 50, 400 }))
 	{
 		// ファイル選択ダイアログを開く
-		Optional<FilePath> path = Dialog::OpenFile({ FileFilter::CSV() });
+		Optional<FilePath> path = Dialog::OpenFile({ FileFilter::AllFiles() });
 
 		if (path.has_value())
 		{
@@ -185,7 +197,20 @@ void ObjectSetPalette::update(std::shared_ptr<Object>& object)
 				warpPoint->fileName = FileSystem::RelativePath(*path);
 				fileName = FileSystem::RelativePath(*path);
 			}
+			else if (auto imageObject = std::dynamic_pointer_cast<ImageObject>(object))
+			{
+				imageObject->loadTexture(FileSystem::RelativePath(*path));
+				fileName = FileSystem::RelativePath(*path);
+			}
 		}
+	}
+
+	sizeX.update();
+	sizeY.update();
+
+	if (auto imageObject = std::dynamic_pointer_cast<ImageObject>(object))
+	{
+		imageObject->body.setSize(Size{ sizeX.getValue(), sizeY.getValue() } *CHIP_SIZE);
 	}
 
 	texture.update();
@@ -227,6 +252,11 @@ void ObjectSetPalette::draw() const
 	text.draw();
 	SimpleGUI::Button(U"ファイル読み込み", pos + Vec2{ 50, 400 });
 	SimpleGUI::GetFont()(U"ファイル:" + fileName).draw(pos + Vec2{ 0, 450 }, Palette::Black);
-	SimpleGUI::GetFont()(U"テクスチャ番号").draw(pos + Vec2{ 0, 500 }, Palette::Black);
+	SimpleGUI::GetFont()(U"画像サイズ").draw(pos + Vec2{ 20, 520 }, Palette::Black);
+	SimpleGUI::GetFont()(U"幅:").draw(pos + Vec2{ 20, 550 }, Palette::Black);
+	SimpleGUI::GetFont()(U"高さ:").draw(pos + Vec2{ 200, 550 }, Palette::Black);
+	sizeX.draw();
+	sizeY.draw();
+	SimpleGUI::GetFont()(U"テクスチャ番号").draw(pos + Vec2{ 0, 600 }, Palette::Black);
 	texture.draw();
 }

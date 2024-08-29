@@ -33,6 +33,12 @@ public:
 	/// @brief 長さ設定用のSpinBox
 	SpinBox length;
 
+	/// @brief 横サイズ設定用のSpinBox
+	SpinBox sizeX;
+
+	/// @brief 縦サイズ設定用のSpinBox
+	SpinBox sizeY;
+
 	/// @brief テキスト設定用のTextBox
 	TextBox text;
 

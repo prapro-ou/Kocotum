@@ -43,6 +43,7 @@ ObjectPutPalette::ObjectPutPalette(Vec2 pos, uint32 width, uint32 height)
 
 	SelectObjectWindow textImage{ Vec2{ 0, 0 }, U"テキスト・画像" };
 	textImage.addObject(std::make_shared<Text>(pos, world, U"T"));
+	textImage.addObject(std::make_shared<ImageObject>(pos, world));
 
 	SelectObjectWindow trojan{ Vec2{ 0, 0 }, U"トロイフォース" };
 	trojan.addObject(std::make_shared<TrojanDestroy>(pos, world));

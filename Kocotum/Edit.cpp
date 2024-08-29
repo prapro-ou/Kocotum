@@ -128,9 +128,9 @@ void Edit::createObject(Vec2 pos)
 	{
 		getData().world.addObject(std::make_shared<TouchActiveFloor>(pos, getData().world));
 	}
-	else if (auto moveFloor = std::dynamic_pointer_cast<Spring>(selectObjectType))
+	else if (auto imageObject = std::dynamic_pointer_cast<ImageObject>(selectObjectType))
 	{
-		getData().world.addObject(std::make_shared<Spring>(pos, getData().world));
+		getData().world.addObject(std::make_shared<ImageObject>(pos, getData().world));
 	}
 	else if (auto trojanDestroy = std::dynamic_pointer_cast<TrojanDestroy>(selectObjectType))
 	{
