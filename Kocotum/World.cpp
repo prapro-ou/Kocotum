@@ -94,6 +94,14 @@ void World::loadWorld(String fileName)
 				addObject(std::make_shared<Needle>(pos, *this, (E_Direction)direction, textureIndex));
 				//addObject(std::make_shared<Needle>(pos, *this, (E_Direction)direction, 1));
 			}
+			else if (csv[row][1] == U"QuarterNeedle")
+			{
+				Vec2 pos = Parse<Vec2>(csv[row][2]);
+				uint16 direction = Parse<uint16>(csv[row][3]);
+				size_t textureIndex = ParseOr<size_t>(csv[row][4], 1);
+				addObject(std::make_shared<QuarterNeedle>(pos, *this, (E_Direction)direction, textureIndex));
+				//addObject(std::make_shared<Needle>(pos, *this, (E_Direction)direction, 1));
+			}
 			else if (csv[row][1] == U"MiniNeedle")
 			{
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
@@ -251,6 +259,13 @@ void World::saveWorld(String fileName)
 			csv.write(needle->pos.asPoint());
 			csv.write((uint8)needle->direction);
 			csv.write(needle->textureIndex);
+		}
+		else if (auto quarterNeedle = std::dynamic_pointer_cast<QuarterNeedle>(object))
+		{
+			csv.write(U"QuarterNeedle");
+			csv.write(quarterNeedle->pos.asPoint());
+			csv.write((uint8)quarterNeedle->direction);
+			csv.write(quarterNeedle->textureIndex);
 		}
 		else if (auto miniNeedle = std::dynamic_pointer_cast<MiniNeedle>(object))
 		{

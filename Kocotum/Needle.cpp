@@ -225,3 +225,67 @@ void JumpToggleNeedle::draw() const
 	// 針の状態に応じたテクスチャを描画
 	TextureAsset((isOn ? U"JumpToggleNeedle" : U"JumpToggleNeedleAlpha")).resized(CHIP_SIZE).rotated((uint8)direction * 90_deg).draw(pos);
 }
+
+
+
+
+QuarterNeedle::QuarterNeedle(Vec2 pos, World& world, E_Direction direction, size_t textureIndex)
+	: Object{ pos, world, U"四分の一サイズの針", textureIndex }
+	, direction{ direction }
+	, mouseOverBody{ RectF{ pos, CHIP_SIZE / 2 } }
+	, body{ Triangle{ Vec2{ 0.1, CHIP_SIZE.y / 2 }, Vec2{ CHIP_SIZE.x / 4, 0 }, Vec2{ CHIP_SIZE.x / 2 - 0.1, CHIP_SIZE.y / 2 } } }
+{
+	body.moveBy(pos);
+	body = body.rotatedAt(pos + CHIP_SIZE / 2, (uint8)direction * 90_deg);
+}
+
+void QuarterNeedle::setDirection(E_Direction direction)
+{
+	// 回転角度を計算し、針の向きと形状を更新
+	int8 rotate = (uint8)direction - (uint8)this->direction;
+	this->direction = direction;
+	body = body.rotatedAt(pos + CHIP_SIZE / 2, rotate * 90_deg);
+}
+
+void QuarterNeedle::restart()
+{
+	// 再起動時の処理（現在は何もしない）
+}
+
+bool QuarterNeedle::intersectsPlayer()
+{
+	return body.intersects(world.player.body);
+}
+
+bool QuarterNeedle::mouseOver()
+{
+	return mouseOverBody.mouseOver();
+}
+
+void QuarterNeedle::setPos(Vec2 pos)
+{
+	mouseOverBody.setPos(pos);
+	body.moveBy(pos - this->pos);
+	this->pos = pos;
+}
+
+void QuarterNeedle::handleCollisionX()
+{
+	world.killPlayer();
+}
+
+void QuarterNeedle::handleCollisionY()
+{
+	world.killPlayer();
+}
+
+void QuarterNeedle::update()
+{
+	// 更新処理（現在は何もしない）
+}
+
+void QuarterNeedle::draw() const
+{
+	// 針のテクスチャを描画
+	TextureAsset(U"QuarterNeedle" + Format(textureIndex)).resized(CHIP_SIZE / 2).rotated((uint8)direction * 90_deg).draw(pos);
+}

@@ -29,6 +29,7 @@ ObjectPutPalette::ObjectPutPalette(Vec2 pos, uint32 width, uint32 height)
     // トラップウィンドウの作成と初期化
     SelectObjectWindow trap{ Vec2{ 0, 0 }, U"トラップ" };
     trap.addObject(std::make_shared<Needle>(pos, world));
+    trap.addObject(std::make_shared<QuarterNeedle>(pos, world));
     trap.addObject(std::make_shared<MiniNeedle>(pos, world));
     trap.addObject(std::make_shared<JumpToggleNeedle>(pos, world));
 	trap.addObject(std::make_shared<Spring>(pos, world));

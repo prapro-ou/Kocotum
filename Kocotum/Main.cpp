@@ -33,6 +33,8 @@ void Main()
 	TextureAsset::Register(U"Wall11", U"data/img/object/Wall11.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"Wall12", U"data/img/object/Wall12.png", TextureDesc::Mipped);
 
+	TextureAsset::Register(U"QuarterWall1", U"data/img/object/QuarterWall1.png", TextureDesc::Mipped);
+
 	TextureAsset::Register(U"OneWayFloor1", U"data/img/object/OneWayFloor1.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"OneWayFloor2", U"data/img/object/OneWayFloor2.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"OneWayFloor3", U"data/img/object/OneWayFloor3.png", TextureDesc::Mipped);
@@ -51,6 +53,8 @@ void Main()
 	TextureAsset::Register(U"Needle1", U"data/img/object/Needle1.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"Needle2", U"data/img/object/Needle2.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"Needle3", U"data/img/object/Needle3.png", TextureDesc::Mipped);
+
+	TextureAsset::Register(U"QuarterNeedle1", U"data/img/object/QuarterNeedle1.png", TextureDesc::Mipped);
 
 	TextureAsset::Register(U"JumpToggleNeedle", U"data/img/object/JumpToggleNeedle.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"JumpToggleNeedleAlpha", U"data/img/object/JumpToggleNeedleAlpha.png", TextureDesc::Mipped);

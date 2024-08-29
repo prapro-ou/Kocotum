@@ -88,6 +88,10 @@ void Edit::createObject(Vec2 pos)
 	{
 		getData().world.addObject(std::make_shared<Needle>(pos, getData().world, E_Direction::Up, textureIndex));
 	}
+	else if (auto quarterNeedle = std::dynamic_pointer_cast<QuarterNeedle>(selectObjectType))
+	{
+		getData().world.addObject(std::make_shared<QuarterNeedle>(pos, getData().world));
+	}
 	else if (auto miniNeedle = std::dynamic_pointer_cast<MiniNeedle>(selectObjectType))
 	{
 		getData().world.addObject(std::make_shared<MiniNeedle>(pos, getData().world));

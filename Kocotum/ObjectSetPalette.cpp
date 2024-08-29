@@ -24,6 +24,10 @@ void ObjectSetPalette::loadSettings(std::shared_ptr<Object>& object)
 	{
 		indexDirection = (size_t)needle->direction;
 	}
+	else if (auto quarterNeedle = std::dynamic_pointer_cast<QuarterNeedle>(object))
+	{
+		indexDirection = (size_t)quarterNeedle->direction;
+	}
 	else if (auto miniNeedle = std::dynamic_pointer_cast<MiniNeedle>(object))
 	{
 		indexDirection = (size_t)miniNeedle->direction;
@@ -110,6 +114,10 @@ void ObjectSetPalette::loadSettings(std::shared_ptr<Object>& object)
 	{
 		texture.setValue((int)(needle->textureIndex));
 	}
+	else if (auto quarterNeedle = std::dynamic_pointer_cast<QuarterNeedle>(object))
+	{
+		texture.setValue((int)(quarterNeedle->textureIndex));
+	}
 	else if (auto dangerWall = std::dynamic_pointer_cast<DangerWall>(object))
 	{
 		texture.setValue((int)(dangerWall->textureIndex));
@@ -125,6 +133,10 @@ void ObjectSetPalette::update(std::shared_ptr<Object>& object)
 	if (auto needle = std::dynamic_pointer_cast<Needle>(object))
 	{
 		needle->setDirection((E_Direction)indexDirection);
+	}
+	else if (auto quarterNeedle = std::dynamic_pointer_cast<QuarterNeedle>(object))
+	{
+		quarterNeedle->setDirection((E_Direction)indexDirection);
 	}
 	else if (auto miniNeedle = std::dynamic_pointer_cast<MiniNeedle>(object))
 	{
@@ -237,6 +249,10 @@ void ObjectSetPalette::update(std::shared_ptr<Object>& object)
 	else if (auto needle = std::dynamic_pointer_cast<Needle>(object))
 	{
 		needle->textureIndex = (size_t)texture.getValue();
+	}
+	else if (auto quarterNeedle = std::dynamic_pointer_cast<QuarterNeedle>(object))
+	{
+		quarterNeedle->textureIndex = (size_t)texture.getValue();
 	}
 	else if (auto dangerWall = std::dynamic_pointer_cast<DangerWall>(object))
 	{
