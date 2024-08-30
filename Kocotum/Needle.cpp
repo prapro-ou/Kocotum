@@ -236,7 +236,7 @@ QuarterNeedle::QuarterNeedle(Vec2 pos, World& world, E_Direction direction, size
 	, body{ Triangle{ Vec2{ 0.1, CHIP_SIZE.y / 2 }, Vec2{ CHIP_SIZE.x / 4, 0 }, Vec2{ CHIP_SIZE.x / 2 - 0.1, CHIP_SIZE.y / 2 } } }
 {
 	body.moveBy(pos);
-	body = body.rotatedAt(pos + CHIP_SIZE / 2, (uint8)direction * 90_deg);
+	body = body.rotatedAt(pos + CHIP_SIZE / 4, (uint8)direction * 90_deg);
 }
 
 void QuarterNeedle::setDirection(E_Direction direction)
@@ -244,7 +244,7 @@ void QuarterNeedle::setDirection(E_Direction direction)
 	// 回転角度を計算し、針の向きと形状を更新
 	int8 rotate = (uint8)direction - (uint8)this->direction;
 	this->direction = direction;
-	body = body.rotatedAt(pos + CHIP_SIZE / 2, rotate * 90_deg);
+	body = body.rotatedAt(pos + CHIP_SIZE / 4, rotate * 90_deg);
 }
 
 void QuarterNeedle::restart()
