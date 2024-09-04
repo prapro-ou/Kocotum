@@ -18,6 +18,7 @@ Player::Player(Vec2 pos)
 	, friction{ 0.2 }
 	, velocityFriction{ 0 }
 	, velocityClamp{ 0 }
+	, scale { 1.0 }
 {
 	body.setPos(pos);
 	gif.addGIF(U"idle", GIF(U"data/img/player/Idle.gif"));
@@ -59,12 +60,13 @@ void Player::restart()
 	isFacingRight = true;
 	velocityFriction = 0;
 	velocityClamp = 0;
+	setScale(1.0);
 }
 
 void Player::updatePositionX(Array<std::shared_ptr<Object>>& objects)
 {
 	// X軸方向の速度と位置を更新
-	pos.x += velocity.x * Scene::DeltaTime();
+	pos.x += velocity.x * Scene::DeltaTime() * scale;
 	body.setPos(pos);
 
 	// オブジェクトとの衝突判定とX軸方向の衝突処理
@@ -80,7 +82,7 @@ void Player::updatePositionX(Array<std::shared_ptr<Object>>& objects)
 void Player::updatePositionY(Array<std::shared_ptr<Object>>& objects)
 {
 	// Y軸方向の位置を更新（重力の影響を考慮）
-	pos.y += velocity.y * gravityDirection * Scene::DeltaTime();
+	pos.y += velocity.y * gravityDirection * Scene::DeltaTime() * scale;
 	body.setPos(pos);
 
 	// 地面との接触状態をリセットし、オブジェクトとの衝突判定とY軸方向の衝突処理を行う

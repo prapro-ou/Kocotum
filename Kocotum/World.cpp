@@ -182,6 +182,11 @@ void World::loadWorld(String fileName)
 				String fileName = csv[row][4];
 				addObject(std::make_shared<ImageObject>(pos, *this, size, fileName));
 			}
+			else if (csv[row][1] == U"ShrinkItem")
+			{
+				Vec2 pos = Parse<Vec2>(csv[row][2]);
+				addObject(std::make_shared<ShrinkItem>(pos, *this));
+				}
 			else if (csv[row][1] == U"TrojanDestroy")
 			{
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
@@ -345,6 +350,11 @@ void World::saveWorld(String fileName)
 			csv.write(imageObject->pos.asPoint());
 			csv.write(imageObject->body.size);
 			csv.write(imageObject->fileName);
+		}
+		else if (auto shrinkItem = std::dynamic_pointer_cast<ShrinkItem>(object))
+		{
+			csv.write(U"ShrinkItem");
+			csv.write(shrinkItem->pos.asPoint());
 		}
 		else if (auto trojanDestroy = std::dynamic_pointer_cast<TrojanDestroy>(object))
 		{

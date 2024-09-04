@@ -134,6 +134,7 @@
     <ClCompile Include="SavePoint.cpp" />
     <ClCompile Include="ScrollBarV.cpp" />
     <ClCompile Include="SelectObjectWindow.cpp" />
+    <ClCompile Include="SizeChangeItem.cpp" />
     <ClCompile Include="SpinBox.cpp" />
     <ClCompile Include="Spring.cpp" />
     <ClCompile Include="StartPoint.cpp" />
@@ -379,6 +380,7 @@
     <ClInclude Include="SavePoint.hpp" />
     <ClInclude Include="ScrollBarV.hpp" />
     <ClInclude Include="SelectObjectWindow.hpp" />
+    <ClInclude Include="SizeChangeItem.hpp" />
     <ClInclude Include="SpinBox.hpp" />
     <ClInclude Include="Spring.hpp" />
     <ClInclude Include="StartPoint.hpp" />

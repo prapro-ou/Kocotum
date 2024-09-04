@@ -40,6 +40,8 @@ struct Player
 	double velocityFriction;
 	/// @brief 最大スピードに抑える用のdouble
 	double velocityClamp;
+	/// @brief 身体の倍率
+	double scale;
 
 	GIFManager gif;
 
@@ -68,6 +70,12 @@ struct Player
 	void setVelocity(Vec2 velocity)
 	{
 		this->velocity = velocity;
+	}
+
+	void setScale(double scale)
+	{
+		this->scale = scale;
+		body.setSize(Vec2{ 25, 35 } * scale);
 	}
 
 	/**
