@@ -66,7 +66,7 @@ void Player::restart()
 void Player::updatePositionX(Array<std::shared_ptr<Object>>& objects)
 {
 	// X軸方向の速度と位置を更新
-	pos.x += velocity.x * Scene::DeltaTime() * scale;
+	pos.x += velocity.x * Scene::DeltaTime() * Min(1.0, scale);
 	body.setPos(pos);
 
 	// オブジェクトとの衝突判定とX軸方向の衝突処理
@@ -196,5 +196,6 @@ void Player::update(Array<std::shared_ptr<Object>>& objects)
 void Player::draw() const
 {
 	// プレイヤーの向きと重力の反転状態に応じてテクスチャを描画
-	gif.getTexture().mirrored(not isFacingRight).flipped(isGravityReverse).resized(body.stretched(7.5, 0).size).draw(pos.x - 7.5, pos.y);
+	body.draw();
+	gif.getTexture().mirrored(not isFacingRight).flipped(isGravityReverse).resized(body.stretched(7.5 * scale, 0).size).draw(pos.x - 7.5 * scale, pos.y);
 }

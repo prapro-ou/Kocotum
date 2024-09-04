@@ -24,3 +24,23 @@ struct ShrinkItem : public Object
 	void update() override;
 	void draw() const override;
 };
+
+
+struct GrowItem : public Object
+{
+	RectF body; /// 当たり判定用の矩形
+	bool isTouched;
+
+
+	GrowItem(Vec2 pos, World& world);
+
+
+	void restart() override;
+	bool intersectsPlayer() override;
+	bool mouseOver() override;
+	void setPos(Vec2 pos) override;
+	void handleCollisionX() override;
+	void handleCollisionY() override;
+	void update() override;
+	void draw() const override;
+};

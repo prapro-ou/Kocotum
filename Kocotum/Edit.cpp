@@ -148,6 +148,10 @@ void Edit::createObject(Vec2 pos)
 	{
 		getData().world.addObject(std::make_shared<ShrinkItem>(pos, getData().world));
 	}
+	else if (auto growItem = std::dynamic_pointer_cast<GrowItem>(selectObjectType))
+	{
+		getData().world.addObject(std::make_shared<GrowItem>(pos, getData().world));
+	}
 	else if (auto trojanDestroy = std::dynamic_pointer_cast<TrojanDestroy>(selectObjectType))
 	{
 		getData().world.addObject(std::make_shared<TrojanDestroy>(pos, getData().world));
