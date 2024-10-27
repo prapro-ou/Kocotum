@@ -37,6 +37,9 @@ ObjectPutPalette::ObjectPutPalette(Vec2 pos, uint32 width, uint32 height)
 
     // アイテムウィンドウの作成
     SelectObjectWindow item{ Vec2{ 0, 0 }, U"アイテム" };
+	item.addObject(std::make_shared<ShrinkItem>(pos, world));
+	item.addObject(std::make_shared<GrowItem>(pos, world));
+	item.addObject(std::make_shared<NeutralizeItem>(pos, world));
 	item.addObject(std::make_shared<JumpItem>(pos, world));
 
     // 重力ウィンドウの作成と初期化

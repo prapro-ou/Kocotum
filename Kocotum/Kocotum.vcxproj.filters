@@ -261,6 +261,9 @@
     <ClCompile Include="ImageObject.cpp">
       <Filter>Source Files\Object</Filter>
     </ClCompile>
+    <ClCompile Include="SizeChangeItem.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
     <ClCompile Include="JumpItem.cpp">
       <Filter>Source Files\Object</Filter>
     </ClCompile>
@@ -1035,6 +1038,9 @@
       <Filter>Header Files\Scene</Filter>
     </ClInclude>
     <ClInclude Include="ImageObject.hpp">
+      <Filter>Header Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="SizeChangeItem.hpp">
       <Filter>Header Files\Object</Filter>
     </ClInclude>
     <ClInclude Include="JumpItem.hpp">

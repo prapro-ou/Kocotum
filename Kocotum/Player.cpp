@@ -18,6 +18,7 @@ Player::Player(Vec2 pos)
 	, friction{ 0.2 }
 	, velocityFriction{ 0 }
 	, velocityClamp{ 0 }
+	, scale { 1.0 }
 {
 	body.setPos(pos);
 	gif.addGIF(U"idle", GIF(U"data/img/player/Idle.gif"));
@@ -59,12 +60,13 @@ void Player::restart()
 	isFacingRight = true;
 	velocityFriction = 0;
 	velocityClamp = 0;
+	setScale(1.0);
 }
 
 void Player::updatePositionX(Array<std::shared_ptr<Object>>& objects)
 {
 	// X軸方向の速度と位置を更新
-	pos.x += velocity.x * Scene::DeltaTime();
+	pos.x += velocity.x * Scene::DeltaTime() * Min(1.0, scale);
 	body.setPos(pos);
 
 	// オブジェクトとの衝突判定とX軸方向の衝突処理
@@ -98,7 +100,7 @@ void Player::update(Array<std::shared_ptr<Object>>& objects)
 {
 	// 重力加速度を設定
 	accelaration.x = 2100;
-	accelaration.y = 2500;
+	accelaration.y = 2500 * Max(1.0, scale - 0.75);
 
 	// 横方向の入力
 	// 右:1 左:-1 両方押されてるか両方押されてない:0
@@ -194,5 +196,6 @@ void Player::update(Array<std::shared_ptr<Object>>& objects)
 void Player::draw() const
 {
 	// プレイヤーの向きと重力の反転状態に応じてテクスチャを描画
-	gif.getTexture().mirrored(not isFacingRight).flipped(isGravityReverse).resized(body.stretched(7.5, 0).size).draw(pos.x - 7.5, pos.y);
+	body.draw();
+	gif.getTexture().mirrored(not isFacingRight).flipped(isGravityReverse).resized(body.stretched(7.5 * scale, 0).size).draw(pos.x - 7.5 * scale, pos.y);
 }
