@@ -192,6 +192,11 @@ void World::loadWorld(String fileName)
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
 				addObject(std::make_shared<GrowItem>(pos, *this));
 			}
+			else if (csv[row][1] == U"NeutralizeItem")
+			{
+				Vec2 pos = Parse<Vec2>(csv[row][2]);
+				addObject(std::make_shared<NeutralizeItem>(pos, *this));
+			}
 			else if (csv[row][1] == U"TrojanDestroy")
 			{
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
@@ -365,6 +370,11 @@ void World::saveWorld(String fileName)
 		{
 			csv.write(U"GrowItem");
 			csv.write(growItem->pos.asPoint());
+		}
+		else if (auto neutralizeItem = std::dynamic_pointer_cast<NeutralizeItem>(object))
+		{
+			csv.write(U"NeutralizeItem");
+			csv.write(neutralizeItem->pos.asPoint());
 		}
 		else if (auto trojanDestroy = std::dynamic_pointer_cast<TrojanDestroy>(object))
 		{

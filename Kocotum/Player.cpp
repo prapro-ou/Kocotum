@@ -82,7 +82,7 @@ void Player::updatePositionX(Array<std::shared_ptr<Object>>& objects)
 void Player::updatePositionY(Array<std::shared_ptr<Object>>& objects)
 {
 	// Y軸方向の位置を更新（重力の影響を考慮）
-	pos.y += velocity.y * gravityDirection * Scene::DeltaTime() * scale;
+	pos.y += velocity.y * gravityDirection * Scene::DeltaTime();
 	body.setPos(pos);
 
 	// 地面との接触状態をリセットし、オブジェクトとの衝突判定とY軸方向の衝突処理を行う
@@ -100,7 +100,7 @@ void Player::update(Array<std::shared_ptr<Object>>& objects)
 {
 	// 重力加速度を設定
 	accelaration.x = 2100;
-	accelaration.y = 2500;
+	accelaration.y = 2500 * Max(1.0, scale - 0.75);
 
 	// 横方向の入力
 	// 右:1 左:-1 両方押されてるか両方押されてない:0

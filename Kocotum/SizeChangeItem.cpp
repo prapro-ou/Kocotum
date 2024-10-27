@@ -125,3 +125,69 @@ void GrowItem::draw() const
 {
 	TextureAsset(U"GrowItem").resized(CHIP_SIZE).draw(pos);
 }
+
+
+
+
+NeutralizeItem::NeutralizeItem(Vec2 pos, World& world)
+	:Object{ pos, world, U"触れると元に戻るアイテム" }
+	, body{ RectF{ pos, CHIP_SIZE } }
+	, isTouched{ false }
+{ }
+
+
+void NeutralizeItem::restart()
+{
+
+}
+
+
+bool NeutralizeItem::intersectsPlayer()
+{
+	return body.intersects(world.player.body);
+}
+
+bool NeutralizeItem::mouseOver()
+{
+	return body.mouseOver();
+}
+
+void NeutralizeItem::setPos(Vec2 pos)
+{
+	this->pos = pos;
+	body.setPos(pos);
+}
+
+void NeutralizeItem::handleCollisionX()
+{
+	if (not isTouched)
+	{
+		world.player.setScale(1.0);
+		//world.effect.add<NeutralizeEffect>(body.center());
+		isTouched = true;
+	}
+}
+
+void NeutralizeItem::handleCollisionY()
+{
+	if (not isTouched)
+	{
+		world.player.setScale(1.0);
+		//world.effect.add<NeutralizeEffect>(body.center());
+		isTouched = true;
+	}
+}
+
+void NeutralizeItem::update()
+{
+	if (not intersectsPlayer())
+	{
+		isTouched = false;
+	}
+}
+
+void NeutralizeItem::draw() const
+{
+	TextureAsset(U"NeutralizeItem").resized(CHIP_SIZE).draw(pos);
+}
+
