@@ -175,6 +175,11 @@ void World::loadWorld(String fileName)
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
 				addObject(std::make_shared<Spring>(pos, *this));
 			}
+			else if (csv[row][1] == U"JumpItem")
+			{
+				Vec2 pos = Parse<Vec2>(csv[row][2]);
+				addObject(std::make_shared<JumpItem>(pos, *this));
+				}
 			else if (csv[row][1] == U"Image")
 			{
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
@@ -339,6 +344,11 @@ void World::saveWorld(String fileName)
 			csv.write(U"Spring");
 			csv.write(spring->pos.asPoint());
 		}
+		else if (auto jumpItem = std::dynamic_pointer_cast<JumpItem>(object))
+		{
+			csv.write(U"JumpItem");
+			csv.write(jumpItem->pos.asPoint());
+			}
 		else if (auto imageObject = std::dynamic_pointer_cast<ImageObject>(object))
 		{
 			csv.write(U"Image");

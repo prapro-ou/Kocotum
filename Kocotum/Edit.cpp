@@ -140,6 +140,14 @@ void Edit::createObject(Vec2 pos)
 	{
 		getData().world.addObject(std::make_shared<TouchActiveFloor>(pos, getData().world));
 	}
+	else if (auto spring = std::dynamic_pointer_cast<Spring>(selectObjectType))
+	{
+		getData().world.addObject(std::make_shared<Spring>(pos, getData().world));
+	}
+	else if (auto jumpItem = std::dynamic_pointer_cast<JumpItem>(selectObjectType))
+	{
+		getData().world.addObject(std::make_shared<JumpItem>(pos, getData().world));
+	}
 	else if (auto imageObject = std::dynamic_pointer_cast<ImageObject>(selectObjectType))
 	{
 		getData().world.addObject(std::make_shared<ImageObject>(pos, getData().world));

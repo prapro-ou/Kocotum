@@ -14,3 +14,4 @@
 # include "Trojan.hpp"
 # include "TouchActiveFloor.hpp"
 # include "ImageObject.hpp"
+# include "JumpItem.hpp"

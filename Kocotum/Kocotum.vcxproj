@@ -119,6 +119,7 @@
     <ClCompile Include="Edit.cpp" />
     <ClCompile Include="IceFloor.cpp" />
     <ClCompile Include="ImageObject.cpp" />
+    <ClCompile Include="JumpItem.cpp" />
     <ClCompile Include="MoveFloor.cpp" />
     <ClCompile Include="OneWayFloor.cpp" />
     <ClCompile Include="GameCamera.cpp" />
@@ -361,6 +362,7 @@
     <ClInclude Include="GIF.hpp" />
     <ClInclude Include="IceFloor.hpp" />
     <ClInclude Include="ImageObject.hpp" />
+    <ClInclude Include="JumpItem.hpp" />
     <ClInclude Include="MoveFloor.hpp" />
     <ClInclude Include="OneWayFloor.hpp" />
     <ClInclude Include="Game.hpp" />

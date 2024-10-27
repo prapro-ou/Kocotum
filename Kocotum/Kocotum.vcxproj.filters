@@ -261,6 +261,9 @@
     <ClCompile Include="ImageObject.cpp">
       <Filter>Source Files\Object</Filter>
     </ClCompile>
+    <ClCompile Include="JumpItem.cpp">
+      <Filter>Source Files\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -1032,6 +1035,9 @@
       <Filter>Header Files\Scene</Filter>
     </ClInclude>
     <ClInclude Include="ImageObject.hpp">
+      <Filter>Header Files\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="JumpItem.hpp">
       <Filter>Header Files\Object</Filter>
     </ClInclude>
   </ItemGroup>
