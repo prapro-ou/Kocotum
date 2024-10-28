@@ -1049,5 +1049,8 @@
     <ClInclude Include="Goal.hpp">
       <Filter>Header Files\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="GoalPoint.hpp">
+      <Filter>Header Files\Object</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
