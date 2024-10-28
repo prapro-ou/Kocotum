@@ -76,3 +76,48 @@ struct EXEffect : IEffect
 		return t < 1.0;
 	}
 };
+
+
+struct ToggleEffect : IEffect
+{
+	struct Particle
+	{
+		Vec2 start;
+
+		Vec2 velocity;
+
+		double alpha;
+	};
+	Array<Particle> m_particles;
+	Vec2 center;
+	explicit ToggleEffect(const Vec2& start)
+		: m_particles(Random(1, 4)),
+		center(start)
+	{
+		for (auto& particle : m_particles)
+		{
+			const Vec2 vec = RandomVec2(40.0);
+			particle.start = start + vec;
+
+			particle.velocity = vec * Random(0.5, 1.0);
+
+			particle.alpha = Random(0.4, 1.0);
+		}
+	}
+
+	bool update(double t) override
+	{
+		t *= 1.5;
+		for (const auto& particle : m_particles)
+		{
+			const Vec2 pos = particle.start
+				+ particle.velocity * EaseOutQuad(t);
+
+			RectF{ pos, 10.0 }.draw(ColorF(1, 0.25, 0.25, particle.alpha * (1 - EaseInQuad(t))));
+		}
+		RectF{ Arg::center(center),50 + EaseOutExpo(t) * 25 }.rotated(45_deg).drawFrame(1, ColorF(1, 0.25, 0.25, 0.5 - EaseInQuad(t) * 0.5));
+		RectF{ Arg::center(center),50 + EaseOutQuart(t) * 25 }.rotated(45_deg).drawFrame(1, ColorF(1, 0.25, 0.25, 0.5 - EaseInQuad(t) * 0.5));
+		RectF{ Arg::center(center),50 + EaseOutSine(t) * 25 }.rotated(45_deg).drawFrame(1, ColorF(1, 0.25, 0.25, 0.5 - EaseInQuad(t) * 0.5));
+		return (t < 1.0);
+	}
+};

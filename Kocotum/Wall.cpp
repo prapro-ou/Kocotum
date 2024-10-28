@@ -202,6 +202,7 @@ void JumpToggleWall::update()
 	if (world.player.jumpNum < world.player.maxJumpNum && KeySpace.down() && world.player.isAlive)
 	{
 		isOn = !isOn; // 状態を反転
+		world.effect.add<ToggleEffect>(pos + CHIP_SIZE / 2);
 	}
 }
 
