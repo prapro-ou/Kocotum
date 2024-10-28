@@ -196,6 +196,6 @@ void Player::update(Array<std::shared_ptr<Object>>& objects)
 void Player::draw() const
 {
 	// プレイヤーの向きと重力の反転状態に応じてテクスチャを描画
-	body.draw();
+	// body.draw();
 	gif.getTexture().mirrored(not isFacingRight).flipped(isGravityReverse).resized(body.stretched(7.5 * scale, 0).size).draw(pos.x - 7.5 * scale, pos.y);
 }

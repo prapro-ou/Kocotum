@@ -31,6 +31,7 @@ public:
 	String fileName;
 	uint16 deathCount = 0;
 	Stopwatch sw;
+	bool isGoal;
 	
 
 	/**
@@ -94,6 +95,11 @@ public:
 		csv.write(Format(sw.sF()));
 		csv.newLine();
 		csv.save(U"data/save/save.csv");
+	}
+
+	void goal()
+	{
+		isGoal = true;
 	}
 
 	/**

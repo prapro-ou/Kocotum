@@ -361,6 +361,7 @@
     <ClInclude Include="Edit.hpp" />
     <ClInclude Include="Effect.hpp" />
     <ClInclude Include="GIF.hpp" />
+    <ClInclude Include="Goal.hpp" />
     <ClInclude Include="IceFloor.hpp" />
     <ClInclude Include="ImageObject.hpp" />
     <ClInclude Include="JumpItem.hpp" />

@@ -5,6 +5,7 @@ World::World(Vec2 pos)
 	, causeWarp{ false }
 	, warpFileName{ U"" }
 	, backgroundIndex{ size_t(0) }
+	, isGoal{ false }
 {
 	
 }

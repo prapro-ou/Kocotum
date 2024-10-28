@@ -3,6 +3,7 @@
 # include "Edit.hpp"
 # include "Game.hpp"
 # include "Play.hpp"
+# include "Goal.hpp"
 
 # include "PieMenu.hpp"
 
@@ -79,6 +80,7 @@ void Main()
 	manager.add<Edit>(U"Edit");
 	manager.add<Game>(U"Game");
 	manager.add<Play>(U"Play");
+	manager.add<Goal>(U"Goal");
 
 	manager.init(U"Edit");
 
