@@ -16,4 +16,3 @@
 # include "ImageObject.hpp"
 # include "SizeChangeItem.hpp"
 # include "JumpItem.hpp"
-# include "GoalPoint.hpp"
