@@ -138,6 +138,11 @@ void World::loadWorld(String fileName)
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
 				addObject(std::make_shared<SavePoint>(pos, *this));
 			}
+			else if (csv[row][1] == U"GoalPoint")
+			{
+				Vec2 pos = Parse<Vec2>(csv[row][2]);
+				addObject(std::make_shared<GoalPoint>(pos, *this));
+			}
 			else if (csv[row][1] == U"Text")
 			{
 				Vec2 pos = Parse<Vec2>(csv[row][2]);
@@ -322,6 +327,11 @@ void World::saveWorld(String fileName)
 		{
 			csv.write(U"SavePoint");
 			csv.write(savePoint->pos.asPoint());
+		}
+		else if (auto goalPoint = std::dynamic_pointer_cast<GoalPoint>(object))
+		{
+			csv.write(U"GoalPoint");
+			csv.write(goalPoint->pos.asPoint());
 		}
 		else if (auto text = std::dynamic_pointer_cast<Text>(object))
 		{

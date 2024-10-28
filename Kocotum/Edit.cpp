@@ -120,6 +120,10 @@ void Edit::createObject(Vec2 pos)
 	{
 		getData().world.addObject(std::make_shared<SavePoint>(pos, getData().world));
 	}
+	else if (auto goalPoint = std::dynamic_pointer_cast<GoalPoint>(selectObjectType))
+	{
+		getData().world.addObject(std::make_shared<GoalPoint>(pos, getData().world));
+	}
 	else if (auto text = std::dynamic_pointer_cast<Text>(selectObjectType))
 	{
 		getData().world.addObject(std::make_shared<Text>(pos, getData().world));
