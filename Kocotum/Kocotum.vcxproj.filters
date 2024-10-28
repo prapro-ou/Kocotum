@@ -1046,5 +1046,8 @@
     <ClInclude Include="JumpItem.hpp">
       <Filter>Header Files\Object</Filter>
     </ClInclude>
+    <ClInclude Include="Goal.hpp">
+      <Filter>Header Files\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
