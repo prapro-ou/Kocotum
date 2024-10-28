@@ -158,7 +158,7 @@ struct ToggleEffect : IEffect
 
 	bool update(double t) override
 	{
-		t *= 1.5;
+		t *= 2.0;
 		for (const auto& particle : m_particles)
 		{
 			const Vec2 pos = particle.start

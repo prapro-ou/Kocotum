@@ -83,7 +83,7 @@ void Main()
 	manager.add<Play>(U"Play");
 	manager.add<Goal>(U"Goal");
 
-	manager.init(U"Edit");
+	manager.init(U"Play");
 
 
 	while (System::Update())
