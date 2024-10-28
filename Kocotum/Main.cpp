@@ -13,6 +13,7 @@ void Main()
 	Window::Resize(1280, 960);
 	Scene::SetResizeMode(ResizeMode::Keep);
 	Window::SetFullscreen(true);
+	Scene::SetBackground(ColorF(0.9));
 
 
 	FontAsset::Register(U"SelectObjectWindow", 35);

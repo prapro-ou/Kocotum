@@ -117,6 +117,7 @@
   <ItemGroup>
     <ClCompile Include="CameraSetPalette.cpp" />
     <ClCompile Include="Edit.cpp" />
+    <ClCompile Include="GoalPoint.cpp" />
     <ClCompile Include="IceFloor.cpp" />
     <ClCompile Include="ImageObject.cpp" />
     <ClCompile Include="JumpItem.cpp" />
@@ -362,6 +363,7 @@
     <ClInclude Include="Effect.hpp" />
     <ClInclude Include="GIF.hpp" />
     <ClInclude Include="Goal.hpp" />
+    <ClInclude Include="GoalPoint.hpp" />
     <ClInclude Include="IceFloor.hpp" />
     <ClInclude Include="ImageObject.hpp" />
     <ClInclude Include="JumpItem.hpp" />
