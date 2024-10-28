@@ -68,6 +68,12 @@ public:
 		{
 			getData().world.restart();
 		}
+
+		if (getData().world.isGoal)
+		{
+			getData().world.isGoal = false;
+			changeScene(U"Goal");
+		}
 	}
 
 	void draw() const override

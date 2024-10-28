@@ -128,6 +128,10 @@ void Edit::createObject(Vec2 pos)
 	{
 		getData().world.addObject(std::make_shared<WarpPoint>(pos, getData().world));
 	}
+	else if (auto goalPoint = std::dynamic_pointer_cast<GoalPoint>(selectObjectType))
+	{
+		getData().world.addObject(std::make_shared<GoalPoint>(pos, getData().world));
+	}
 	else if (auto oneWayFloor = std::dynamic_pointer_cast<OneWayFloor>(selectObjectType))
 	{
 		getData().world.addObject(std::make_shared<OneWayFloor>(pos, getData().world, textureIndex));
