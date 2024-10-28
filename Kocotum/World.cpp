@@ -494,7 +494,6 @@ void World::update()
 
 void World::draw() const
 {
-	effect.update();
 
 	// オブジェクトの描画
 	for (auto& object : objects)
@@ -522,4 +521,6 @@ void World::draw() const
 	{
 		player.draw();
 	}
+
+	effect.update();
 }

@@ -3,16 +3,67 @@
 
 struct DeathEffect : IEffect
 {
+	struct Trigon
+	{
+		Vec2 basepos;
+		double r;
+		double angle;
+		double scale;
+		int max;
+		bool reverse;
+		ColorF color;
+	};
+
 	Vec2 m_pos;
+	Array<Trigon> m_trigons;
 
 	explicit DeathEffect(const Vec2& pos)
-		: m_pos{ pos } {}
+		: m_pos{ pos }
+	{
+		for (auto i : step(5))
+		{
+			Trigon trigon
+			{
+				.basepos = pos,
+				.r = 0,
+				.angle = Random(360_deg),
+				.scale = 0,
+				.max = 30 + Random(-3, 3),
+				.reverse = RandomBool(),
+				.color = ColorF(0.5, 0.7, 1),
+			};
+			m_trigons << trigon;
+		}
+	}
+
+	void drawTrigon(double t)
+	{
+		const double e = EaseOutExpo(t);
+		double r = e * 23 + t * 5;
+
+		for (auto trigon : m_trigons)
+		{
+			if (t < 0.2)
+			{
+				trigon.scale = t * trigon.max;
+				trigon.color = ColorF(0.5, 0.7, 1, 1);
+			}
+			else
+			{
+				trigon.scale = trigon.max - (t - 0.2) * trigon.max;
+				if (t < 0.4)	trigon.color = ColorF(0.5, 0.7, 1, 1);
+				else trigon.color = ColorF(0.4, 0.6, 1, 0.3 + 0.7 * Periodic::Square0_1(0.1));
+			}
+			Triangle{ OffsetCircular{ m_pos, r * 0.8 + t * 30, trigon.angle }, trigon.scale, trigon.reverse * 180_deg }.draw(trigon.color);
+		}
+	}
 
 	bool update(double t) override
 	{
 		double e = EaseOutCubic(t * 4);
 
-		Circle{ m_pos, e * 100 }.drawFrame((1 - e) * 5);
+		Circle{ m_pos, e * 100 }.drawFrame((1 - e) * 5, ColorF(0.5, 0.7, 1));
+		drawTrigon(e);
 
 		return t < 0.25;
 	}
